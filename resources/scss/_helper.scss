@@ -84,7 +84,7 @@
 
 @for $i from 2 through 6 {
 	.bg-cover-#{$i}:after {
-		background-image: url('images/cover-#{$i}.jpg');
+		//background-image: url('images/cover-#{$i}.jpg');
 	}
 	.bg-cover-none:after {
 		background-color: var(--bs-body-bg);
@@ -100,7 +100,7 @@
 .list-group-item.active,
 .page-item.active .page-link,
 .form-check-input:checked,
-.nav-pills .nav-link.active, 
+.nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
 	background-color: var(--bs-theme);
 	border-color: var(--bs-theme);
@@ -109,7 +109,7 @@
 	background-color: var(--bs-theme);
 	border-color: var(--bs-theme);
 	position: relative;
-	
+
 	&:before {
 		content: '';
 		position: absolute;
@@ -117,7 +117,7 @@
 		left: -1px;
 		right: -1px;
 		bottom: -1px;
-		
+
 		border-radius: $border-radius;
 		@include transition($btn-transition);
 	}
@@ -132,14 +132,14 @@
 	&.active {
 		background-color: var(--bs-theme);
 		border-color: var(--bs-theme);
-		
+
 		&:before {
 			background: rgba($white, .2);
 		}
 	}
 	&:focus,
 	&:active,
-	&.active:focus, 
+	&.active:focus,
 	&:active:focus {
 		@include box-shadow(0 0 0 0.25rem rgba(#{var(--bs-theme-rgb)}, .5));
 	}
@@ -147,7 +147,7 @@
 .btn-outline-theme {
 	color: var(--bs-theme);
 	border-color: var(--bs-theme);
-	
+
 	&:hover,
 	&.active {
 		background-color: var(--bs-theme);
@@ -159,14 +159,14 @@
 	}
 	&:focus,
 	&:active,
-	&.active:focus, 
+	&.active:focus,
 	&:active:focus {
 		@include box-shadow(0 0 0 0.25rem rgba(#{var(--bs-theme-rgb)}, .5));
 	}
 }
 .nav-link {
 	color: var(--bs-theme);
-	
+
 	&:hover {
 		color: rgba(#{var(--bs-theme-rgb)}, .5);
 	}
