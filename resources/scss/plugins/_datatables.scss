@@ -1,0 +1,47 @@
+.dataTables_wrapper {
+	&.dt-bootstrap5 {
+		& .dataTables_length {
+			& .form-select {
+				margin: 0 $spacer * .5;
+			}
+		}
+		& .dt-buttons {
+			& .btn-outline-default {
+				background-color: transparent;
+				
+				&:hover,
+				&:focus {
+					background-color: $default;
+				}
+			}
+		}
+		& .dataTable {
+			&.dtr-inline {
+				& tr {
+					& td {
+						&.dtr-control {
+							&:before {
+								border-width: 1px;
+								margin-top: -8px;
+								border-color: $border-color;
+								background: none;
+								border-radius: 0;
+							}
+						}
+					}
+					&.parent {
+						& td {
+							&.dtr-control {
+								&:before {
+									border-color: var(--bs-theme);
+									color: var(--bs-theme);
+									background: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
