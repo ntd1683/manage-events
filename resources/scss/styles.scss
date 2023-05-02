@@ -3,9 +3,10 @@
  * Copyright 2022 SeanTheme
  */
 
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
 @import '_functions.scss';
 @import '_variables.scss';
-@import '~bootstrap/scss/bootstrap';
 @import '_mixins.scss';
 
 @import '_helper.scss';
