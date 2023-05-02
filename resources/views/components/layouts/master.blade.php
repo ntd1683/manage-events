@@ -18,8 +18,8 @@
           name="viewport" />
 
     <!-- core-css -->
-    <link href="assets/css/vendor.min.css" rel="stylesheet" />
-    <link href="assets/css/app.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+{{--    <link href="assets/css/vendor.css" rel="stylesheet" />--}}
 
     <script>
         window.App = {{ Js::from([
@@ -46,7 +46,6 @@
 </div>
 
 <!-- BEGIN core-js -->
-<script src="assets/js/vendor.min.js"></script>
-<script src="assets/js/app.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

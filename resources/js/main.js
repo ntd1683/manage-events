@@ -284,40 +284,40 @@ const app = {
 
 /* 02. Handle Scrollbar
 ------------------------------------------------ */
-const handleScrollbar = function() {
-    "use strict";
-    const elms = document.querySelectorAll('['+ app.scrollBar.attr +']');
-
-    for (let i = 0; i < elms.length; i++) {
-        generateScrollbar(elms[i])
-    }
-};
-const generateScrollbar = function(elm) {
-    "use strict";
-
-    if (elm.scrollbarInit || (app.isMobile && elm.getAttribute(app.scrollBar.skipMobileAttr))) {
-        return;
-    }
-    elm.style.height = (!elm.getAttribute(app.scrollBar.heightAttr)) ? elm.offsetHeight : elm.getAttribute(app.scrollBar.heightAttr);
-    elm.scrollbarInit = true;
-
-    if(app.isMobile) {
-        elm.style.overflowX = 'scroll';
-    } else {
-        const dataWheelPropagation = (elm.getAttribute(app.scrollBar.wheelPropagationAttr)) ? elm.getAttribute(app.scrollBar.wheelPropagationAttr) : false;
-
-        if (elm.closest('.'+ app.sidebar.class) && elm.closest('.'+ app.sidebar.class).length !== 0) {
-            app.sidebar.scrollBar.dom = new PerfectScrollbar(elm, {
-                wheelPropagation: dataWheelPropagation
-            });
-        } else {
-            new PerfectScrollbar(elm, {
-                wheelPropagation: dataWheelPropagation
-            });
-        }
-    }
-    elm.setAttribute(app.init.attr, true);
-};
+// const handleScrollbar = function() {
+//     "use strict";
+//     const elms = document.querySelectorAll('['+ app.scrollBar.attr +']');
+//
+//     for (let i = 0; i < elms.length; i++) {
+//         generateScrollbar(elms[i])
+//     }
+// };
+// const generateScrollbar = function(elm) {
+//     "use strict";
+//
+//     if (elm.scrollbarInit || (app.isMobile && elm.getAttribute(app.scrollBar.skipMobileAttr))) {
+//         return;
+//     }
+//     elm.style.height = (!elm.getAttribute(app.scrollBar.heightAttr)) ? elm.offsetHeight : elm.getAttribute(app.scrollBar.heightAttr);
+//     elm.scrollbarInit = true;
+//
+//     if(app.isMobile) {
+//         elm.style.overflowX = 'scroll';
+//     } else {
+//         const dataWheelPropagation = (elm.getAttribute(app.scrollBar.wheelPropagationAttr)) ? elm.getAttribute(app.scrollBar.wheelPropagationAttr) : false;
+//
+//         if (elm.closest('.'+ app.sidebar.class) && elm.closest('.'+ app.sidebar.class).length !== 0) {
+//             app.sidebar.scrollBar.dom = new PerfectScrollbar(elm, {
+//                 wheelPropagation: dataWheelPropagation
+//             });
+//         } else {
+//             new PerfectScrollbar(elm, {
+//                 wheelPropagation: dataWheelPropagation
+//             });
+//         }
+//     }
+//     elm.setAttribute(app.init.attr, true);
+// };
 
 
 
@@ -575,7 +575,7 @@ const handleToggleClass = function() {
     });
 }
 
-
+const Cookies = window.cookies;
 
 /* 11. Handle Theme Panel
 ------------------------------------------------ */
@@ -727,7 +727,7 @@ const App = function () {
             handleSidebarScrollMemory();
         },
         initComponent: function() {
-            handleScrollbar();
+            // handleScrollbar();
             handleScrollToTopButton();
             handleScrollTo();
             handleCardAction();

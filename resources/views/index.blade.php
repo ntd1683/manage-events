@@ -1,4 +1,4 @@
-
+<x-layouts.master>
 <!-- BEGIN row -->
 <div class="row">
     <!-- BEGIN col-3 -->
@@ -811,3 +811,4 @@
     <!-- END col-6 -->
 </div>
 <!-- END row -->
+</x-layouts.master>

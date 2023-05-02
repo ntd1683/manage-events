@@ -1,8 +1,7 @@
 import './bootstrap';
-import TranslationPlugin from './plugins/Translation'
+import main from './main'
 
 window.$ = window.jQuery = require('jquery');
 window.Popper = require('popper.js');
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
 require('bootstrap');
-
-app.use(TranslationPlugin)

@@ -20,4 +20,3 @@ yarn-error.log
 .DS_Store
 /**/*/http-client.private.env.json
 /bootstrap/ssr
-/public/
