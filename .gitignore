@@ -20,3 +20,6 @@ yarn-error.log
 .DS_Store
 /**/*/http-client.private.env.json
 /bootstrap/ssr
+/public/js
+/public/css
+/public/fonts
