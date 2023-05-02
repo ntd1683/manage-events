@@ -19,3 +19,5 @@ yarn-error.log
 /.vscode
 .DS_Store
 /**/*/http-client.private.env.json
+/bootstrap/ssr
+/public/
