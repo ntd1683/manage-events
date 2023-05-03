@@ -1,9 +1,6 @@
 <x-layouts.master>
     <!-- BEGIN #content -->
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">BREADCRUMB</a></li>
-            <li class="breadcrumb-item active">HOME PAGE</li>
-        </ul>
+    {{ Breadcrumbs::render('index') }}
 
         <h1 class="page-header">
             Starter Page <small>page header description goes here...</small>
