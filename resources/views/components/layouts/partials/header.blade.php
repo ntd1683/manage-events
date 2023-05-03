@@ -23,7 +23,7 @@
 
     <!-- BEGIN brand -->
     <div class="brand">
-        <a href="index.html" class="brand-logo">
+        <a href="#" class="brand-logo">
 					<span class="brand-img">
 						<span class="brand-img-text text-theme">H</span>
 					</span>
@@ -46,7 +46,7 @@
             <div class="dropdown-menu fade dropdown-menu-end w-300px text-center p-0 mt-1">
                 <div class="row row-grid gx-0">
                     <div class="col-4">
-                        <a href="email_inbox.html" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div class="position-relative">
                                 <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                                 <i class="bi bi-envelope h2 opacity-5 d-block my-1"></i>
@@ -55,13 +55,13 @@
                         </a>
                     </div>
                     <div class="col-4">
-                        <a href="pos_customer_order.html" target="_blank" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-hdd-network h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">POS SYSTEM</div>
+                            <div class="fw-500 fs-10px text-white">DISK DRIVE</div>
                         </a>
                     </div>
                     <div class="col-4">
-                        <a href="calendar.html" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-calendar4 h2 opacity-5 d-block my-1"></i></div>
                             <div class="fw-500 fs-10px text-white">CALENDAR</div>
                         </a>
@@ -69,13 +69,13 @@
                 </div>
                 <div class="row row-grid gx-0">
                     <div class="col-4">
-                        <a href="helper.html" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-terminal h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">HELPER</div>
+                            <div class="fw-500 fs-10px text-white">TERMINAL</div>
                         </a>
                     </div>
                     <div class="col-4">
-                        <a href="settings.html" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div class="position-relative">
                                 <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                                 <i class="bi bi-sliders h2 opacity-5 d-block my-1"></i>
@@ -84,9 +84,9 @@
                         </a>
                     </div>
                     <div class="col-4">
-                        <a href="widgets.html" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-collection-play h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">WIDGETS</div>
+                            <div class="fw-500 fs-10px text-white">LIBRARY</div>
                         </a>
                     </div>
                 </div>
@@ -99,68 +99,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end mt-1 w-300px fs-11px pt-1">
                 <h6 class="dropdown-header fs-10px mb-1">NOTIFICATIONS</h6>
-                <div class="dropdown-divider mt-1"></div>
-                <a href="#" class="d-flex align-items-center py-10px dropdown-item text-wrap">
-                    <div class="fs-20px">
-                        <i class="bi bi-bag text-theme"></i>
-                    </div>
-                    <div class="flex-1 flex-wrap ps-3">
-                        <div class="mb-1 text-white">NEW ORDER RECEIVED ($1,299)</div>
-                        <div class="small">JUST NOW</div>
-                    </div>
-                    <div class="ps-2 fs-16px">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </a>
-                <a href="#" class="d-flex align-items-center py-10px dropdown-item text-wrap">
-                    <div class="fs-20px w-20px">
-                        <i class="bi bi-person-circle text-theme"></i>
-                    </div>
-                    <div class="flex-1 flex-wrap ps-3">
-                        <div class="mb-1 text-white">3 NEW ACCOUNT CREATED</div>
-                        <div class="small">2 MINUTES AGO</div>
-                    </div>
-                    <div class="ps-2 fs-16px">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </a>
-                <a href="#" class="d-flex align-items-center py-10px dropdown-item text-wrap">
-                    <div class="fs-20px w-20px">
-                        <i class="bi bi-gear text-theme"></i>
-                    </div>
-                    <div class="flex-1 flex-wrap ps-3">
-                        <div class="mb-1 text-white">SETUP COMPLETED</div>
-                        <div class="small">3 MINUTES AGO</div>
-                    </div>
-                    <div class="ps-2 fs-16px">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </a>
-                <a href="#" class="d-flex align-items-center py-10px dropdown-item text-wrap">
-                    <div class="fs-20px w-20px">
-                        <i class="bi bi-grid text-theme"></i>
-                    </div>
-                    <div class="flex-1 flex-wrap ps-3">
-                        <div class="mb-1 text-white">WIDGET INSTALLATION DONE</div>
-                        <div class="small">5 MINUTES AGO</div>
-                    </div>
-                    <div class="ps-2 fs-16px">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </a>
-                <a href="#" class="d-flex align-items-center py-10px dropdown-item text-wrap">
-                    <div class="fs-20px w-20px">
-                        <i class="bi bi-credit-card text-theme"></i>
-                    </div>
-                    <div class="flex-1 flex-wrap ps-3">
-                        <div class="mb-1 text-white">PAYMENT METHOD ENABLED</div>
-                        <div class="small">10 MINUTES AGO</div>
-                    </div>
-                    <div class="ps-2 fs-16px">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </a>
-                <hr class="bg-white-transparent-5 mb-0 mt-2" />
+                <div class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">
+                    No record found
+                </div>
+                <hr class="bg-white-transparent-5 mb-0 mt-0" />
                 <div class="py-10px mb-n2 text-center">
                     <a href="#" class="text-decoration-none fw-bold">SEE ALL</a>
                 </div>
@@ -169,17 +111,19 @@
         <div class="menu-item dropdown dropdown-mobile-full">
             <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
                 <div class="menu-img online">
-                    <img src="assets/img/user/profile.jpg" alt="Profile" height="60" />
+                    <div class="d-flex align-items-center justify-content-center w-100 h-100 bg-white bg-opacity-25 text-white text-opacity-50 rounded-circle overflow-hidden">
+                        <i class="bi bi-person-fill fs-32px mb-n3"></i>
+                    </div>
                 </div>
                 <div class="menu-text d-sm-block d-none">username@account.com</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
-                <a class="dropdown-item d-flex align-items-center" href="profile.html">PROFILE <i class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="email_inbox.html">INBOX <i class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="calendar.html">CALENDAR <i class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="settings.html">SETTINGS <i class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">PROFILE <i class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">INBOX <i class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">CALENDAR <i class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">SETTINGS <i class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex align-items-center" href="page_login.html">LOGOUT <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">LOGOUT <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
             </div>
         </div>
     </div>
