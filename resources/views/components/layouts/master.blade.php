@@ -19,6 +19,7 @@
 
     <!-- core-css -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    @stack('css')
 {{--    <link href="assets/css/vendor.css" rel="stylesheet" />--}}
 
     <script>
@@ -47,5 +48,6 @@
 
 <!-- BEGIN core-js -->
 <script src="{{ asset('js/app.js') }}"></script>
+@stack('js')
 </body>
 </html>

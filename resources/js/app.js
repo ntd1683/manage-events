@@ -1,7 +1,6 @@
-import './bootstrap';
-import main from './main'
+import './bootstrap'
 
-window.$ = window.jQuery = require('jquery');
-window.Popper = require('popper.js');
-window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js');
-require('bootstrap');
+window.$ = window.jQuery = require('jquery')
+window.Popper = require('popper.js')
+window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js')
+require('bootstrap')
