@@ -44,7 +44,7 @@
 					</div>
 					<button type="submit" class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">Log In</button>
 					<div class="text-center text-white text-opacity-50">
-						Don't have an account yet? <a href="page_register.html">Sign up</a>.
+						Don't have an account yet? <a href="Register">Sign up</a>.
 					</div>
 				</form>
 			</div>
