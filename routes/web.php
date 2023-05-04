@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
+Route::get('/Forget_Password', function () {
+    return view('Forget_Password');
+})->name('Forget_Password');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
