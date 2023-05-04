@@ -17,7 +17,6 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           name="viewport" />
 
-    <!-- core-css -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     @stack('css')
 {{--    <link href="assets/css/vendor.css" rel="stylesheet" />--}}
@@ -46,7 +45,25 @@
     <x-layouts.partials.scroll-top/>
 </div>
 
-<!-- BEGIN core-js -->
+<!-- Toast -->
+<x-toast status="success" title="Success" time="1s ago" />
+<x-toast status="error" title="Error" time="1s ago" class="border-danger"/>
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <x-toast status="error" title="Error" time="1s ago" class="border-danger">
+            {{ $error }}
+        </x-toast>
+    @endforeach
+@endif
+
+@if (session()->has('success'))
+    <x-toast status="success" title="Success" time="1s ago">
+        {{session()->get('success')}}
+    </x-toast>
+@endif
+<!-- Toast -->
+
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('js')
 </body>
