@@ -18,17 +18,17 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/index', function () {
-    return view('index');
+    return view('index'); 
 })->name('index');
 
-Route::get('/Forget_Password', function () {
-    return view('Forget_Password');
-})->name('Forget_Password');
+Route::get('/forgot-password', function () {
+    return view('forgot-password');
+})->name('forgot-password');
 
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/Register', function () {
-    return view('Register');
-})->name('Register');
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
