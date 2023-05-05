@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::group([
     Route::post('register', [AuthController::class, 'processRegister'])->name('processRegister');
     Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
 });
+
+Route::get('google-spreadsheet-api', [GoogleController::class, 'index']);
 
 Route::group([
      'middleware' => CheckLoginMiddleware::class,
