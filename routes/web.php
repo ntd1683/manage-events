@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,14 +22,6 @@ Route::get('/index', function () {
     return view('index');
 })->name('index');
 
-Route::get('/Forget_Password', function () {
-    return view('Forget_Password');
-})->name('Forget_Password');
-
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
-Route::get('/Register', function () {
-    return view('Register');
-})->name('Register');
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
