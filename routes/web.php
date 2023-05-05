@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\CheckLoginMiddleware;
+use App\Http\Middleware\CheckLogoutMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group([
-    'middleware' => CheckLoginMiddleware::class,
+    'middleware' => CheckLogoutMiddleware::class,
 ], function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'processLogin'])->name('processLogin');
     Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'processRegister'])->name('processRegister');
     Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
 });
 

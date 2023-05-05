@@ -1,9 +1,9 @@
-
 <!-- BEGIN #header -->
 <div id="header" class="app-header">
     <!-- BEGIN desktop-toggler -->
     <div class="desktop-toggler">
-        <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed" data-dismiss-class="app-sidebar-toggled" data-toggle-target=".app">
+        <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-collapsed"
+                data-dismiss-class="app-sidebar-toggled" data-toggle-target=".app">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -13,7 +13,8 @@
 
     <!-- BEGIN mobile-toggler -->
     <div class="mobile-toggler">
-        <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-mobile-toggled" data-toggle-target=".app">
+        <button type="button" class="menu-toggler" data-toggle-class="app-sidebar-mobile-toggled"
+                data-toggle-target=".app">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -24,10 +25,9 @@
     <!-- BEGIN brand -->
     <div class="brand">
         <a href="#" class="brand-logo">
-					<span class="brand-img">
-						<span class="brand-img-text text-theme">H</span>
-					</span>
-            <span class="brand-text">HUD ADMIN</span>
+            <span class="brand-img">
+                <span class="brand-img-text text-theme">{{ auth()->user()->key_level }}</span>
+            </span>
         </a>
     </div>
     <!-- END brand -->
@@ -99,10 +99,11 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end mt-1 w-300px fs-11px pt-1">
                 <h6 class="dropdown-header fs-10px mb-1">NOTIFICATIONS</h6>
-                <div class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">
+                <div
+                    class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">
                     No record found
                 </div>
-                <hr class="bg-white-transparent-5 mb-0 mt-0" />
+                <hr class="bg-white-transparent-5 mb-0 mt-0"/>
                 <div class="py-10px mb-n2 text-center">
                     <a href="#" class="text-decoration-none fw-bold">SEE ALL</a>
                 </div>
@@ -111,19 +112,25 @@
         <div class="menu-item dropdown dropdown-mobile-full">
             <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
                 <div class="menu-img online">
-                    <div class="d-flex align-items-center justify-content-center w-100 h-100 bg-white bg-opacity-25 text-white text-opacity-50 rounded-circle overflow-hidden">
-                        <i class="bi bi-person-fill fs-32px mb-n3"></i>
+                    <div
+                        class="d-flex align-items-center justify-content-center w-100 h-100 bg-white bg-opacity-25 text-white text-opacity-50 rounded-circle overflow-hidden">
+                        <img src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name }}">
                     </div>
                 </div>
-                <div class="menu-text d-sm-block d-none">username@account.com</div>
+                <div class="menu-text d-sm-block d-none">{{ auth()->user()->email }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
-                <a class="dropdown-item d-flex align-items-center" href="#">PROFILE <i class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">INBOX <i class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">CALENDAR <i class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">SETTINGS <i class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">PROFILE <i
+                        class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">INBOX <i
+                        class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">CALENDAR <i
+                        class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="#">SETTINGS <i
+                        class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">LOGOUT <i class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">LOGOUT <i
+                        class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
             </div>
         </div>
     </div>
@@ -134,10 +141,11 @@
         <div class="menu-search-container">
             <div class="menu-search-icon"><i class="bi bi-search"></i></div>
             <div class="menu-search-input">
-                <input type="text" class="form-control form-control-lg" placeholder="Search menu..." />
+                <input type="text" class="form-control form-control-lg" placeholder="Search menu..."/>
             </div>
             <div class="menu-search-icon">
-                <a href="#" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"><i class="bi bi-x-lg"></i></a>
+                <a href="#" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"><i
+                        class="bi bi-x-lg"></i></a>
             </div>
         </div>
     </form>

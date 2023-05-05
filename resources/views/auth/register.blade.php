@@ -3,33 +3,34 @@
     <div class="register">
         <!-- BEGIN register-content -->
         <div class="register-content">
-            <form action="index.html" method="POST" name="register_form">
+            <form action="{{ route('processRegister') }}" method="POST" name="register_form">
+                @csrf
                 <h1 class="text-center">{{ __('Sign Up') }}</h1>
                 <p class="text-white text-opacity-50 text-center">{{ __('One Admin ID is all you need to access all the Admin
                     services.') }}</p>
                 <div class="mb-3">
                     <label class="form-label" for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control form-control-lg bg-white bg-opacity-5"
-                           placeholder="{{ __('e.g John Smith') }}" name="name" id="name"/>
+                           placeholder="{{ __('e.g John Smith') }}" name="name" id="name" value="{{ old('name') }}"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="email">{{ __('Email Address ') }}<span class="text-danger">*</span></label>
                     <input type="text" class="form-control form-control-lg bg-white bg-opacity-5"
-                           placeholder="username@address.com" name="email" id="email"/>
+                           placeholder="username@address.com" name="email" id="email" value="{{ old('email')}}"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="password">{{ __('Password') }} <span class="text-danger">*</span></label>
                     <input type="password" class="form-control form-control-lg bg-white bg-opacity-5" name="password" id="password"/>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="confirm_password">{{ __('Confirm Password ') }}<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control form-control-lg bg-white bg-opacity-5" name="confirm_password" id="confirm_password"/>
+                    <label class="form-label" for="password_confirmation">{{ __('Confirm Password ') }}<span class="text-danger">*</span></label>
+                    <input type="password" class="form-control form-control-lg bg-white bg-opacity-5" name="password_confirmation" id="password_confirmation"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="gender">Gender <span class="text-danger">*</span></label>
                     <select class="form-select form-select-lg bg-white bg-opacity-5" name="gender" id="gender">
-                        <option>Female</option>
-                        <option>Male</option>
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
                     </select>
                 </div>
                 <div class="mb-3">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserLevelEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -31,7 +32,7 @@ class User extends Authenticatable
         'phone',
         'email',
         'level',
-        'avatar_url',
+        'avatar',
         'gender',
         'password',
         'remember_token',
@@ -59,11 +60,20 @@ class User extends Authenticatable
     protected function avatarUrl(): Attribute
     {
         return Attribute::get(function () {
-            if (! $this->avatar_url) {
-                return 'https://ui-avatars.com/api/?background=random&name=' . urlencode($this->name);
+            if ($this->avatar === null) {
+                $name = explode(' ', $this->name);
+                return 'https://ui-avatars.com/api/?background=random&name=' . urlencode(end($name));
             }
 
-            return Storage::url($this->avatar_url);
+            return Storage::url($this->avatar);
         })->shouldCache();
+    }
+
+    protected function keyLevel(): Attribute
+    {
+        return Attribute::get(function () {
+            $value = $this->level ?? 0;
+            return UserLevelEnum::getKeyByValue($value);
+        });
     }
 }

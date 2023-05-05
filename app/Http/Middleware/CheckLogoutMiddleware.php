@@ -16,10 +16,10 @@ class CheckLogoutMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()) {
+        if(Auth::check()) {
             return redirect()->back()->withErrors('you are logged in !');
         }
-        
+
         return $next($request);
     }
 }
