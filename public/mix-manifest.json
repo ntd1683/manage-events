@@ -1,5 +1,6 @@
 {
     "/js/main.js": "/js/main.js",
     "/js/app.js": "/js/app.js",
+    "/js/scan-qrcode.js": "/js/scan-qrcode.js",
     "/css/styles.css": "/css/styles.css"
 }
