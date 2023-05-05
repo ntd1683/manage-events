@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CheckLoginMiddleware;
+use App\Http\Middleware\CheckLogoutMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,23 +15,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group([
+    'middleware' => CheckLogoutMiddleware::class,
+], function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'processLogin'])->name('processLogin');
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'processRegister'])->name('processRegister');
+    Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
+});
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
-Route::get('/index', function () {
-    return view('index'); 
-})->name('index');
-
-Route::get('/forgot-password', function () {
-    return view('forgot-password');
-})->name('forgot-password');
-
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+Route::group([
+     'middleware' => CheckLoginMiddleware::class,
+], function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/', function () {
+        return view('index');
+    })->name('index');
+});
