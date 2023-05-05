@@ -1,27 +1,4 @@
-# Archi Elite Marketplace
-
-## Repaire development environment
-
-- Apache, Nginx or another web serivces work with PHP
-- PHP 8.1 or later
-- PHP extentions required:
-    - BCMath
-    - Ctype
-    - cURL
-    - DOM
-    - Fileinfo
-    - JSON
-    - Mbstring
-    - OpenSSL
-    - PCRE
-    - PDO
-    - Tokenizer
-    - XML
-- PHP Composer
-- NodeJS 16.0 or later (for theme development)
-- MySQL 8.0 or later
-- Redis Server (for queues system)
-- Docker (if using develop via Docker)
+# Manage Events
 
 > This project support Docker environment by Laravel Sail. If you're using Laravel Valet, it's ok.
 
