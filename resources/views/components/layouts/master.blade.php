@@ -46,14 +46,17 @@
 </div>
 
 <!-- Toast -->
-<x-toast status="success" title="Success" time="1s ago" />
-<x-toast status="error" title="Error" time="1s ago" class="border-danger"/>
-
 @if ($errors->any())
     @foreach ($errors->all() as $error)
         <x-toast status="error" title="Error" time="1s ago" class="border-danger">
             {{ $error }}
         </x-toast>
+
+        <script>
+            window.addEventListener('load', () => {
+                $('.toast-error').toast('show');
+            });
+        </script>
     @endforeach
 @endif
 
@@ -61,6 +64,22 @@
     <x-toast status="success" title="Success" time="1s ago">
         {{session()->get('success')}}
     </x-toast>
+    <script>
+        window.addEventListener('load', () => {
+            $('.toast-success').toast('show');
+        });
+    </script>
+@endif
+
+@if (session()->has('error'))
+    <x-toast status="error" title="Error" time="1s ago">
+        {{session()->get('error')}}
+    </x-toast>
+    <script>
+        window.addEventListener('load', () => {
+            $('.toast-error').toast('show');
+        });
+    </script>
 @endif
 <!-- Toast -->
 
