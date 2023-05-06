@@ -14,13 +14,14 @@
                     <input type="text" class="form-control form-control-lg bg-white bg-opacity-5" name="email" id="email"
                            placeholder="{{ __('Please Enter Email...') }}" value="{{ old('email') }}"/>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     <div class="d-flex">
                         <label class="form-label" for="password">{{ __('Password') }}<span class="text-danger">*</span></label>
                         <a href="{{ route('forgot-password') }}" class="ms-auto text-white text-decoration-none text-opacity-50">{{ __('Forgot
                             password?') }}</a>
                     </div>
-                    <input type="password" class="form-control form-control-lg bg-white bg-opacity-5" name="password" id="password"/>
+                    <i class=" togglePassword bi bi-eye position-absolute" aria-hidden="true" style="bottom : 4px; right:15px; font-size: 1.4em; color: gray; "></i>
+                    <input type="password" class=" input-password form-control form-control-lg bg-white bg-opacity-5" name="password" id="password"/>
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
@@ -37,4 +38,24 @@
         <!-- END login-content -->
     </div>
     <!-- END login -->
+    @push('js')
+    <script>
+       const togglePassword = document.querySelector('.togglePassword');
+       const password = document.querySelector('.input-password');
+        password.addEventListener('click', function(){
+            
+        })
+
+    //    togglePassword.addEventListener("click",function(){
+    //         const type = password.getAttribute("type") == "password" ? " text" : "password";
+    //         password.setAttribute("type", type);
+    //         // toggle the eye icon 
+    //         togglePassword.classList.toggle('bi-eye');
+    //         togglePassword.classList.toggle('bi-eye-slash');
+
+    //    });
+
+    
+    </script>
+    @endpush
 </x-layouts.guest>
