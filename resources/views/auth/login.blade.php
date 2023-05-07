@@ -38,24 +38,4 @@
         <!-- END login-content -->
     </div>
     <!-- END login -->
-    @push('js')
-    <script>
-       const togglePassword = document.querySelector('.togglePassword');
-       const password = document.querySelector('.input-password');
-        password.addEventListener('click', function(){
-            
-        })
-
-    //    togglePassword.addEventListener("click",function(){
-    //         const type = password.getAttribute("type") == "password" ? " text" : "password";
-    //         password.setAttribute("type", type);
-    //         // toggle the eye icon 
-    //         togglePassword.classList.toggle('bi-eye');
-    //         togglePassword.classList.toggle('bi-eye-slash');
-
-    //    });
-
-    
-    </script>
-    @endpush
 </x-layouts.guest>
