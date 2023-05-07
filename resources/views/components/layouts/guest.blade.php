@@ -61,5 +61,8 @@
     <!-- Toast -->
 
 	<script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="{{ asset('js/guest.js') }}"></script>
+    @stack('js')
 </body>
 </html>
