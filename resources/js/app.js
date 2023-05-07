@@ -1,6 +1,8 @@
 import './bootstrap'
 import './main'
 import '@fortawesome/fontawesome-free/js/all.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 
 window.$ = window.jQuery = require('jquery')
 window.Popper = require('popper.js')
