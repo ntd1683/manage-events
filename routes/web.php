@@ -26,7 +26,9 @@ Route::group([
     Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
 });
 
-Route::get('google-spreadsheet-api', [GoogleController::class, 'index']);
+Route::prefix('google')->name('google.')->group(function () {
+    Route::get('', [GoogleController::class, 'index'])->name('import');
+});
 
 Route::group([
      'middleware' => CheckLoginMiddleware::class,
