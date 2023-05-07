@@ -28,11 +28,11 @@
     {{ Breadcrumbs::render('index') }}
 
         <h1 class="page-header">
-            Starter Page <small>page header description goes here...</small>
+            {{ __('Starter Page') }} <small>{{ __('page header description goes here...') }}</small>
         </h1>
 
         <p>
-            Start build your page here
+            {{ __(' Start build your page here') }}
         </p>
     <div id="reader" width="600px" class="bg-gray-800 rounded"></div>
     <!-- END #content -->
