@@ -8,8 +8,8 @@ const togglePassword = document.querySelectorAll('.togglePassword');
                         const type = password[j].getAttribute("type") === "password" ? "text" : "password";
                         password[j].setAttribute("type", type);
                         // toggle the eye icon 
-                        togglePassword[i].classList.toggle('bi-eye');
                         togglePassword[i].classList.toggle('bi-eye-slash');
+                        togglePassword[i].classList.toggle('bi-eye');
                     }
                 }
             })
