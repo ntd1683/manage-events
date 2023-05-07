@@ -21,20 +21,20 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="password">{{ __('Password') }} <span class="text-danger">*</span></label>
                     <div class="form-group">
-                        <i class="togglePassword bi bi-eye position-absolute invisible" aria-hidden="true" style="bottom : 4px; right:15px; font-size: 1.4em; color: gray; "></i>    
-                        <input type="password" id='password' class=" input-password form-control form-control-lg bg-white bg-opacity-5" name="password" id="password" aria-label="password"/>
+                        <i class="togglePassword bi bi-eye position-absolute invisible fs-4" aria-hidden="true" style="bottom : 5px; right:15px; color: gray; cursor:pointer; "></i>    
+                        <input type="password" id="password" class="input-password form-control form-control-lg bg-white bg-opacity-5" name="password" aria-label="password"/>
                     </div> 
                 </div>
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="password_confirmation">{{ __('Confirm Password ') }}<span class="text-danger">*</span></label>
-                    <i class="togglePassword bi bi-eye position-absolute invisible" aria-hidden="true" style="bottom : 4px; right:15px; font-size: 1.4em; color: gray; "></i>  
-                    <input type="password" id="password_confirmation" class=" input-password form-control form-control-lg bg-white bg-opacity-5" name="password_confirmation" id="password_confirmation"/>
+                    <i class="togglePassword bi bi-eye position-absolute invisible fs-4 " aria-hidden="true" style="bottom : 5px; right:15px; color: gray; cursor: pointer;"></i>  
+                    <input type="password" id="password_confirmation" class="input-password form-control form-control-lg bg-white bg-opacity-5" name="password_confirmation" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="gender">Gender <span class="text-danger">*</span></label>
+                    <label class="form-label" for="gender">{{ __('Gender ') }}<span class="text-danger">*</span></label>
                     <select class="form-select form-select-lg bg-white bg-opacity-5" name="gender" id="gender">
-                        <option class =" bg-dark bg-opacity-5 "  value="0" >Female</option>
-                        <option  class =" bg-dark bg-opacity-5 " value="1">Male</option>
+                        <option class =" bg-white bg-opacity-5"  value="0" >{{ __('Female') }}</option>
+                        <option  class =" bg-white bg-opacity-50" value="1">{{ __('Male') }}</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -62,7 +62,7 @@
        const password = document.querySelectorAll('.input-password');
 
        for (let i = 0; i < togglePassword.length; i++){
-            togglePassword[i].addEventListener("click" , function(){
+            togglePassword[i].addEventListener("click" , () => {
                 for(let j = 0; j < password.length; j++){
                     if(i === j){
                         const type = password[j].getAttribute("type") === "password" ? "text" : "password";
@@ -74,7 +74,7 @@
                 }
             })
        };
-       
+       // show icon hide/unhide password 
        for(let i = 0 ; i < password.length; i++){
             password[i].addEventListener("click" , function(){
                 for(let j = 0; j < togglePassword.length; j++){
@@ -85,25 +85,6 @@
                 }
             })
         };
-        
-        // hide icon hide/unhide password 
-        // window.addEventListener('click', function(){
-        //     let password = ${'#password'};
-        //     let confirm_password = ${'#confirm_password'};
-        //     let icon = ${'.togglePassword'}; 
-        //     if(password.hasClass('visible')){
-        //         if(!document.getElementById('password')){
-        //             icon.removeClass('visible');
-        //             icon.classList.add('invisible');
-        //         }
-        //     }
-        //     if(confirm_password.hasClass('visible')){
-        //         if(!document.getElementById('confirm_password')){
-        //             icon.removeClass('visible');
-        //             icon.classList.add('invisible');
-        //         }
-        //     }
-        // });
     </script>
     @endpush
 </x-layouts.guest>
