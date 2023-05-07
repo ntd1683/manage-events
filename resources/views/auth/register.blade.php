@@ -21,13 +21,13 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="password">{{ __('Password') }} <span class="text-danger">*</span></label>
                     <div class="form-group">
-                        <i class="togglePassword bi bi-eye position-absolute invisible fs-4" aria-hidden="true" style="bottom : 5px; right:15px; color: gray; cursor:pointer; "></i>    
+                        <i class="togglePassword bi bi-eye position-absolute fs-4 text-gray-400" aria-hidden="true" style="bottom : 5px; right:15px; cursor:pointer; "></i>
                         <input type="password" id="password" class="input-password form-control form-control-lg bg-white bg-opacity-5" name="password" aria-label="password"/>
-                    </div> 
+                    </div>
                 </div>
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="password_confirmation">{{ __('Confirm Password ') }}<span class="text-danger">*</span></label>
-                    <i class="togglePassword bi bi-eye position-absolute invisible fs-4 " aria-hidden="true" style="bottom : 5px; right:15px; color: gray; cursor: pointer;"></i>  
+                    <i class="togglePassword bi bi-eye position-absolute fs-4 text-gray-400" aria-hidden="true" style="bottom : 5px; right:15px; cursor: pointer;"></i>
                     <input type="password" id="password_confirmation" class="input-password form-control form-control-lg bg-white bg-opacity-5" name="password_confirmation" />
                 </div>
                 <div class="mb-3">
