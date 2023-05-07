@@ -20,7 +20,7 @@
                         <a href="{{ route('forgot-password') }}" class="ms-auto text-white text-decoration-none text-opacity-50">{{ __('Forgot
                             password?') }}</a>
                     </div>
-                    <i class=" togglePassword bi bi-eye position-absolute" aria-hidden="true" style="bottom : 4px; right:15px; font-size: 1.4em; color: gray; "></i>
+                    <i class=" togglePassword bi bi-eye-slash position-absolute" aria-hidden="true" style="bottom : 4px; right:15px; font-size: 1.4em; color: gray; "></i>
                     <input type="password" class=" input-password form-control form-control-lg bg-white bg-opacity-5" name="password" id="password"/>
                 </div>
                 <div class="mb-3">
