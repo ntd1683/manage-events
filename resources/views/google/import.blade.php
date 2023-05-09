@@ -10,17 +10,17 @@
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">{{ __('FORMS')}}</a></li>
-                            <li class="breadcrumb-item active">{{ __('FORM ELEMENTS')}}</li>
+                            <li class="breadcrumb-item"><a href="#">{{ __('FORMS') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('FORM ELEMENTS') }}</li>
                         </ul>
 
-                        <h1 class="page-header">{{ __('Form Google')}}</h1>
+                        <h1 class="page-header">{{ __('Form Google') }}</h1>
 
                         <hr class="mb-4" />
 
                         <!-- BEGIN #formControls -->
                         <div id="formControls" class="mb-5">
-                            <h4>{{ __('Form Google')}}</h4>
+                            <h4>{{ __('Form Google') }}</h4>
                             <div class="card">
                                 <div class="card-body pb-2">
                                     <form action="{{ route('api.google-spreadsheet') }}" method="Get">
@@ -69,7 +69,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <x-forms.buttons.primary type="submit">{{ __('Submit')}}</x-forms.buttons.primary>
+                                            <x-forms.buttons.primary type="submit">{{ __('Submit') }}</x-forms.buttons.primary>
                                         </div>
                                     </form>
                                 </div>
@@ -88,7 +88,7 @@
                     <div class="col-xl-3">
                         <!-- BEGIN #sidebar-bootstrap -->
                         <x-layouts.partials.menu-container>
-                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">{{ __('Form controls')}}</a>
+                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">{{ __('Form controls') }}</a>
                         </x-layouts.partials.menu-container>
                         <!-- END #sidebar-bootstrap -->
                     </div>

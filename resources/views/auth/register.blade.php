@@ -15,7 +15,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="email">{{ __('Email Address') }}<span class="text-danger">*</span></label>
                     <input type="text" class="form-control form-control-lg bg-white bg-opacity-5"
-                           placeholder="{{ __('username@address.com') }}" name="email" id="email" value="{{ old('email')}}"/>
+                           placeholder="username@address.com" name="email" id="email" value="{{ old('email')}}"/>
                 </div>
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="password">{{ __('Password') }} <span class="text-danger">*</span></label>

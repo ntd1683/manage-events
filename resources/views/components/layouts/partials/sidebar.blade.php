@@ -8,13 +8,13 @@
             <div @class(['menu-item', 'active' => request()->routeIs('index')]) >
                 <a href="{{ route('index') }}" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-house-door"></i></span>
-                    <span class="menu-text">{{ __('Home')}}</span>
+                    <span class="menu-text">{{ __('Home') }}</span>
                 </a>
             </div>
             <div @class(['menu-item', 'active' => request()->routeIs('google.import')]) >
                 <a href="{{ route('google.import') }}" class="menu-link">
                     <span class="menu-icon"><i class="fa-brands fa-google"></i></span>
-                    <span class="menu-text">{{ __('Google Sheet Import')}}</span>
+                    <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                 </a>
             </div>
         </div>
