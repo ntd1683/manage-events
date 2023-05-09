@@ -23,7 +23,7 @@
                             <h4>{{ __('Form Google') }}</h4>
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('api.google-spreadsheet') }}" method="Get">
+                                    <form action="{{ route('api.google-spreadsheet') }}" method="get">
                                         <div class="row">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="sheet_id">{{ __('Link Google Sheet: ') }}</label>

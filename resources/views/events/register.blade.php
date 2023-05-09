@@ -15,64 +15,48 @@
                         </ul>
 
                         <h1 class="page-header">
-                            Form Google
+                        {{ __('Register Event') }}
                         </h1>
 
                         <hr class="mb-4" />
 
                         <!-- BEGIN #formControls -->
                         <div id="formControls" class="mb-5">
-                            <h4>Form Google</h4>
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('api.google-spreadsheet') }}" method="Get">
+                                    <form action="{{ route('api.google-spreadsheet') }}" method="get">
                                         <div class="row">
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="sheet_id">{{ __('Link Google Sheet: ') }}</label>
-                                                <input type="text" class="form-control" id="sheet_id" value="{{ old('sheet_id') }}" name="sheet_id"
-                                                       placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxx/edit#gid=866183761"/>
+                                                <label class="form-label" for="title_id">{{ __('Title:') }}</label>
+                                                <input type="text" class="form-control" id="title_id" value="{{ old('title_id') }}" name="title_id"
+                                                       placeholder="{{ __('title') }}"/>
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="sheet_tab_name">{{ __('Name Tab Google Sheet: ') }}</label>
-                                                <input type="text" class="form-control" id="sheet_tab_name" value="{{ old('sheet_tab_name') }}" name="sheet_tab_name"
-                                                       placeholder="{{ __('SHEET 1') }}"/>
+                                                <label class="form-label" for="subtitle_name">{{ __('Subtitle:') }}</label>
+                                                <input type="text" class="form-control" id="Subtitle_name" value="{{ old('subtitle_name') }}" name="subtitle_name"
+                                                       placeholder="{{ __('subtitle') }}"/>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="name">{{ __('Name of column name: ') }}</label>
-                                                <input type="text" class="form-control" id="name" value="{{ old('name') }}" name="name"
-                                                       placeholder="name"/>
+                                                <label class="form-label" for="author">{{ __('Author:') }}</label>
+                                                <input type="text" class="form-control" id="author" value="{{ old('author') }}" name="author"
+                                                       placeholder="{{ __('author name') }}"/>
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="code_student">{{ __('Name of column code student: ') }}</label>
-                                                <input type="text" class="form-control" id="code_student" value="{{ old('code_student') }}" name="code_student"
-                                                       placeholder="code_student"/>
+                                                <label class="form-label" for="description">{{ __('Description:') }}</label>
+                                                <input type="text" class="form-control" id="description" value="{{ old('description') }}" name="description"
+                                                       placeholder="{{ __('description') }}"/>
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="class">{{ __('Name of column code class: ') }}</label>
-                                                <input type="text" class="form-control" id="class" value="{{ old('class') }}" name="class"
-                                                       placeholder="class"/>
+                                                <label class="form-label" for="content">{{ __('Content:') }}</label>
+                                                <textarea name="conent" id="content" class="form-control" value="{{ old('content') }}" cols="30" rows="5"placeholder="{{ __('content') }}"></textarea>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="faculty">{{ __('Name of column faculty: ') }}</label>
-                                                <input type="text" class="form-control" id="faculty" value="{{ old('faculty') }}" name="faculty"
-                                                       placeholder="faculty"/>
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="phone">{{ __('Name of column phone: ') }}</label>
-                                                <input type="text" class="form-control" id="phone" value="{{ old('phone') }}" name="phone"
-                                                       placeholder="phone"/>
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="email">{{ __('Name of column email: ') }}</label>
-                                                <input type="text" class="form-control" id="email" value="{{ old('email') }}" name="email"
-                                                       placeholder="email"/>
-                                            </div>
+                                          
                                         </div>
                                         <div class="text-center">
                                             <x-forms.buttons.primary type="submit">
-                                                Submit
+                                                {{ __('Submit') }}
                                             </x-forms.buttons.primary>
                                         </div>
                                     </form>
@@ -92,7 +76,7 @@
                     <div class="col-xl-3">
                         <!-- BEGIN #sidebar-bootstrap -->
                         <x-layouts.partials.menu-container>
-                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">Form controls</a>
+                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">{{ __('Register Event') }}</a>
                         </x-layouts.partials.menu-container>
                         <!-- END #sidebar-bootstrap -->
                     </div>
