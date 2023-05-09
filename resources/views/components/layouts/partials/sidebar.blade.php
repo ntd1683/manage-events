@@ -9,8 +9,15 @@
                 <a href="index.html" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-house-door"></i></span>
                     <span class="menu-text">Home</span>
-                </a>
+                </a>  
             </div>
+            <div @class(['menu-item','active' => request()->routeIs('register-event.form-register')]) >
+                <a href="{{ route('events.register') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-file-text-fill"></i></span>
+                    <span class="menu-text">{{ __('Register Event ') }} </span>
+                </a>     
+            </div>
+                     
         </div>
         <!-- END menu -->
     </div>
