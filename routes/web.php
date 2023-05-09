@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
@@ -24,6 +25,10 @@ Route::group([
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'processRegister'])->name('processRegister');
     Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
+});
+
+Route::prefix('google')->name('google.')->group(function () {
+    Route::get('', [GoogleController::class, 'index'])->name('import');
 });
 
 Route::group([

@@ -23,7 +23,7 @@
 
     <!-- Toast -->
 
-    @if ($errors->any())
+    @if (isset($errors) && $errors->any())
         @foreach ($errors->all() as $error)
             <x-toast status="error" title="Error" time="1s ago" class="border-danger">
                 {{ $error }}
