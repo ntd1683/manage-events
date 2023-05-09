@@ -51,19 +51,19 @@
                                 <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                                 <i class="bi bi-envelope h2 opacity-5 d-block my-1"></i>
                             </div>
-                            <div class="fw-500 fs-10px text-white">INBOX</div>
+                            <div class="fw-500 fs-10px text-white">{{ __('INBOX') }}</div>
                         </a>
                     </div>
                     <div class="col-4">
                         <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-hdd-network h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">DISK DRIVE</div>
+                            <div class="fw-500 fs-10px text-white">{{ __('DISK DRIVE') }}</div>
                         </a>
                     </div>
                     <div class="col-4">
                         <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-calendar4 h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">CALENDAR</div>
+                            <div class="fw-500 fs-10px text-white">{{ __('CALENDAR') }}</div>
                         </a>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     <div class="col-4">
                         <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-terminal h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">TERMINAL</div>
+                            <div class="fw-500 fs-10px text-white">{{ __('TERMINAL') }}</div>
                         </a>
                     </div>
                     <div class="col-4">
@@ -80,13 +80,13 @@
                                 <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                                 <i class="bi bi-sliders h2 opacity-5 d-block my-1"></i>
                             </div>
-                            <div class="fw-500 fs-10px text-white">SETTINGS</div>
+                            <div class="fw-500 fs-10px text-white">{{ __('SETTINGS') }}</div>
                         </a>
                     </div>
                     <div class="col-4">
                         <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div><i class="bi bi-collection-play h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">LIBRARY</div>
+                            <div class="fw-500 fs-10px text-white">{{ __('LIBRARY') }}</div>
                         </a>
                     </div>
                 </div>
@@ -98,14 +98,11 @@
                 <div class="menu-badge bg-theme"></div>
             </a>
             <div class="dropdown-menu dropdown-menu-end mt-1 w-300px fs-11px pt-1">
-                <h6 class="dropdown-header fs-10px mb-1">NOTIFICATIONS</h6>
-                <div
-                    class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">
-                    No record found
-                </div>
+                <h6 class="dropdown-header fs-10px mb-1">{{ __('NOTIFICATIONS') }}</h6>
+                <div class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">{{ __('No record found')}}</div>
                 <hr class="bg-white-transparent-5 mb-0 mt-0"/>
                 <div class="py-10px mb-n2 text-center">
-                    <a href="#" class="text-decoration-none fw-bold">SEE ALL</a>
+                    <a href="#" class="text-decoration-none fw-bold">{{ __('SEE ALL') }}</a>
                 </div>
             </div>
         </div>
@@ -120,16 +117,16 @@
                 <div class="menu-text d-sm-block d-none">{{ auth()->user()->email }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
-                <a class="dropdown-item d-flex align-items-center" href="#">PROFILE <i
+                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('PROFILE') }} <i
                         class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">INBOX <i
+                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('INBOX') }}<i
                         class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">CALENDAR <i
+                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('CALENDAR') }}<i
                         class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">SETTINGS <i
+                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('SETTINGS') }}<i
                         class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">LOGOUT <i
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">{{ __('LOGOUT') }}<i
                         class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
             </div>
         </div>
