@@ -69,7 +69,6 @@
             transform: translateY(-2px);
         }
 
-
         .logo {
             display: block;
             margin: 0 auto;
@@ -81,11 +80,12 @@
 <body>
 <div class="container">
     <img class="logo" src="{{ config('app.logo') }}" alt="Logo">
-    <h1>{{ __('Congratulations on Successful Registration!') }}</h1>
-    <p>{{ __('Dear') }} {{ $user->name }},</p>
-    <p>{{ __('Thank you for registering with us. Your account has been successfully created and is now ready to use.') }}</p>
-    <p>{{ __('We are excited to have you on board and look forward to providing you with the best possible experience.') }}</p>
-    <a href="{{ config('app.url')  }}" class="btn">{{ __('Visit Our Website') }}</a>
+    {{ $slot }}
+    <br>
+    <br>
+    <br>
+    <p>{{ __('Cheers,') }}</p>
+    <p>{{ config('app.name') }}</p>
 </div>
 </body>
 </html>

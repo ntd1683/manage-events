@@ -3,7 +3,7 @@
     <div class="register">
         <!-- BEGIN register-content -->
         <div class="register-content">
-            <form action="{{ route('processRegister') }}" method="POST" name="register_form">
+            <form action="{{ route('processRegister') }}" method="POST">
                 @csrf
                 <h1 class="text-center">{{ __('Sign Up') }}</h1>
                 <p class="text-white text-opacity-50 text-center">{{ __('One Admin ID is all you need to access all the Admin services.') }}</p>

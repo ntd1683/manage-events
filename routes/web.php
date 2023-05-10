@@ -21,9 +21,15 @@ Route::group([
 ], function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'processLogin'])->name('processLogin');
+
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'processRegister'])->name('processRegister');
-    Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgot-password');
+
+    Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+    Route::post('forgot-password', [AuthController::class, 'processForgotPassword'])->name('processForgotPassword');
+
+    Route::get('reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
+    Route::post('reset-password', [AuthController::class, 'processResetPassword'])->name('processResetPassword');
 });
 
 Route::prefix('google')->name('google.')->group(function () {

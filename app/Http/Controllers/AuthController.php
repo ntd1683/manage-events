@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserRegisterEvent;
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ProcessResetPasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -11,7 +14,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -41,6 +43,12 @@ class AuthController extends Controller
         return redirect()
             ->back()
             ->with('error', 'Email or password incorrect');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Log out successfully!');
     }
 
     public function register(): View
@@ -73,59 +81,42 @@ class AuthController extends Controller
         return view('auth.forgot-password');
     }
 
-    public function logout()
+    public function processForgotPassword(ForgotPasswordRequest $request): RedirectResponse
     {
-        Auth::logout();
-        return redirect()->route('login')->with('success', 'Log out successfully!');
-    }
+        $token = 'user_' . Str::random(15);
 
-    public function processForgotPassword(Request $request)
-    {
-        $request->validate([
-            'email' =>'required|email|exists:users',
-        ],[
-            'email.email'=>'Vui lòng nhập lại địa chỉ email',
-            'email.required'=>'Vui lòng nhập lại địa chỉ email',
-            'email.exists'=>'Vui lòng nhập lại địa chỉ email',
-        ]);
-        $token = 'user_' . Str::random(10);
-        User::Where(['email' =>$request->get('email')])->update(['token'=>$token]);
-        $user = User::Where(['email' =>$request->get('email')])->first();
-        Mail::send('admin.auth.send_mail',compact('user'),function ($email) use ($user) {
-            $email->subject('Nhà Xe Thu Đức - Lấy lại mật khẩu');
+        $user = User::Where(['email' => $request->get('email')])->first();
+        $user->update(['remember_token' => $token]);
+
+        Mail::send('email.reset-password',compact('user'),function ($email) use ($user) {
+            $email->subject(trans('Manage Events - Reset Password'));
             $email->to($user->email,$user->name);
         });
-        return redirect()->route('admin.login')->with('success','Vui lòng kiểm tra email để đổi mật khẩu !!!');
+
+        return redirect()->route('login')
+            ->with('success',trans('Please check your email to reset your password'));
     }
 
-    public function resetPassword(Request $request)
+    public function resetPassword(ResetPasswordRequest $request): View | RedirectResponse
     {
         $token = $request->token;
 
-        $user = User::Where(['token' =>$token])->first();
-        if(!$user){
-            return redirect()->route('admin.login')->with('error','Lỗi không xác định vui lòng thử lại sau');
+        $user = User::Where(['remember_token' => $token])->first();
+        if(!$user) {
+            return redirect()->route('login')
+                ->withErrors(trans('Unknown error please try again later'));
         }
-        return view('admin.auth.reset_password',['token' =>$token]);
+        return view('auth.reset-password', ['token' => $token]);
     }
 
-    public function processResetPassword(Request $request)
+    public function processResetPassword(ProcessResetPasswordRequest $request)
     {
-        $request->validate([
-            'password'=>'required',
-            'confirm_password'=>'required|same:password',
-            'token'=>'required',
-        ],[
-            'password.required'=>'Mật khẩu không được bỏ trống',
-            'confirm_password.required'=>'Mật khẩu nhập không được bỏ trống',
-            'confirm_password.same'=>'Mật khẩu nhập không giống nhau',
-            'token.required'=>'Lỗi không xác định vui lòng thử lại',
-        ]);
         $password = Hash::make($request->get('password'));
-        User::where(['token'=>$request->get('token')])->update([
-            'password'=>$password,
-            'token'=>null,
+        User::where(['remember_token' => $request->get('token')])->update([
+            'password' => $password,
+            'remember_token' => null,
+            'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
-        return redirect()->route('admin.login')->with('success','Đổi mật khẩu thành công !!!');
+        return redirect()->route('login')->with('success','Change Password Successfully !!!');
     }
 }
