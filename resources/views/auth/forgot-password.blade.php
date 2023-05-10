@@ -3,7 +3,8 @@
     <div class="login">
         <!-- BEGIN login-content -->
         <div class="login-content">
-            <form action="index.html" method="POST" name="login_form">
+            <form action="{{ route('processForgotPassword') }}" method="POST">
+                @csrf
                 <h1 class="text-center">{{ __('CAN\'T SIGN IN?') }}</h1>
                 <div class="text-white text-opacity-50 text-center mb-4">
                     {{ __('Forgot password? Need help remembering? You can request a reminder be sent to your linked email
