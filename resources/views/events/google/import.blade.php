@@ -12,7 +12,10 @@
 
                         {{ Breadcrumbs::render('google') }}
 
-                        <h1 class="page-header">{{ __('Form Google') }}</h1>
+                        <div class="d-flex justify-content-between">
+                            <h1 class="page-header">{{ __('Form Google') }}</h1>
+                            <x-forms.buttons.warning type="submit" data-bs-toggle="modal" data-bs-target="#modalCoverExample" id="button_how_to_use">{{ __('How to use') }}</x-forms.buttons.warning>
+                        </div>
 
                         <hr class="mb-4" />
 
@@ -98,4 +101,23 @@
         <!-- END row -->
     </div>
     <!-- END container -->
+
+    <x-modal id="modalCoverExample" title="{{ __('How to use')}}">
+        <p>{{ __('This is link') }}: </p>
+        <img src="{{ asset('images/google/link.png') }}" alt="{{ __('Link Google Sheet') }}" style="height: 23px;width: auto;">
+        <p>{{ __('This is tab') }}: </p>
+        <img src="{{ asset('images/google/tab.png') }}" alt="{{ __('Name Tab Google Sheet') }}:" style="height: 30px;width: auto;">
+        <p>{{ __('This is name column') }}: </p>
+        <img src="{{ asset('images/google/column.png') }}" alt="{{ __('Name of column') }}" style="height: 20px;width: 100%;">
+        <x-slot:buttons>
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{ __('Close') }}</button>
+        </x-slot:buttons>
+    </x-modal>
+    @push('js')
+        <script>
+            window.addEventListener('load', () => {
+                $('#button_how_to_use').click();
+            });
+        </script>
+    @endpush
 </x-layouts.master>

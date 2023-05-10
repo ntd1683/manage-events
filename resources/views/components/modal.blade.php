@@ -1,9 +1,10 @@
 @props([
     'title' => '',
     'action' => '',
-    'method' => 'get'
+    'method' => 'get',
+    'buttons' => '',
 ])
-<div class="modal modal-cover fade" id="modalCoverExample" style="display: block;opacity: 1;">
+<div {{ $attributes->merge(["class" => "modal modal-cover fade"]) }}>
     <div class="modal-dialog">
         <div class="modal-content border border-gray-400">
             <div class="modal-header border-bottom border-gray-400">
@@ -15,8 +16,9 @@
                     {{ $slot }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <button type="submit" class="btn btn-outline-theme">{{ __('Save changes') }}</button>
+                    {{ $buttons }}
+{{--                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{ __('Close') }}</button>--}}
+{{--                    <button type="submit" class="btn btn-outline-theme">{{ __('Save changes') }}</button>--}}
                 </div>
             </form>
         </div>
