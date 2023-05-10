@@ -39,6 +39,7 @@ Route::group([
     Route::prefix('events')->name('events.')->group(function () {
         Route::get('register-event', [EventController::class, 'register'])->name('register');
     });
+
     Route::get('/', function () {
         return view('index');
     })->name('index');
