@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: #000;
-            font-family: "Courier New", Courier, monospace;
+            background-color: #f6f6f6;
+            font-family: Arial, sans-serif;
             font-size: 16px;
             line-height: 1.5;
-            color: #0f0;
+            color: #333333;
             padding: 0;
             margin: 0;
         }
@@ -19,6 +19,9 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             animation-name: slidein;
             animation-duration: 0.5s;
@@ -35,56 +38,54 @@
             }
         }
 
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333333;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #3e8e41;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+
         .logo {
             display: block;
             margin: 0 auto;
             max-width: 200px;
             height: auto;
         }
-
-        .title {
-            font-size: 48px;
-            margin-bottom: 30px;
-            color: #f00;
-            text-transform: uppercase;
-        }
-
-        .text {
-            margin-bottom: 20px;
-            color: #0f0;
-            text-align: justify;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #f00;
-            color: #000;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 30px;
-            border: none;
-            box-shadow: 0 2px 5px rgba(255, 0, 0, 0.3);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn:hover {
-            background-color: #000;
-            box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
-            transform: translateY(-2px);
-            color: #fff;
-        }
-
     </style>
 </head>
 <body>
 <div class="container">
     <img class="logo" src="{{ config('app.logo') }}" alt="Logo">
-    <h1 class="title">Congratulations on Successful Registration!</h1>
-    <p class="text">Hello {{ $user->name }}, your account has been successfully hacked.</p>
-    <p class="text">We have obtained all your private information and will use it to our advantage.</p>
-    <a href="{{ config('app.url') }}" class="btn">Visit Our Website</a>
+    <h1>{{ __('Congratulations on Successful Registration!') }}</h1>
+    <p>{{ __('Dear') }} {{ $user->name }},</p>
+    <p>{{ __('Thank you for registering with us. Your account has been successfully created and is now ready to use.') }}</p>
+    <p>{{ __('We are excited to have you on board and look forward to providing you with the best possible experience.') }}</p>
+    <a href="{{ config('app.url')  }}" class="btn">{{ __('Visit Our Website') }}</a>
 </div>
 </body>
 </html>

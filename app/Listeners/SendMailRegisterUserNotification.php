@@ -24,11 +24,11 @@ class SendMailRegisterUserNotification
      */
     public function handle(UserRegisterEvent $event): void
     {
-//        $user = $event->user;
-//        Mail::send('admin.staff.send_mail',compact('user'),function ($email) use ($user) {
-//            $email->subject('Nhà Xe Thu Đức - Lấy lại mật khẩu');
-//            $email->to($user->email,$user->name);
-//        });
-        Notification::send($event->user, new UserRegisterNotificationMail($event->user));
+        $user = $event->user;
+        Mail::send('vendor.notifications.email', compact('user'), function ($email) use ($user) {
+            $email->subject('Manage Events - Create Account Successfully');
+            $email->to($user->email,$user->name);
+        });
+//        Notification::send($event->user, new UserRegisterNotificationMail($event->user));
     }
 }
