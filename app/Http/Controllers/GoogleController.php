@@ -8,6 +8,6 @@ class GoogleController extends Controller
 {
     public function index()
     {
-        return view('google.import');
+        return view('events.google.import');
     }
 }

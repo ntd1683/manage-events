@@ -9,13 +9,11 @@
                 <div class="row">
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">FORMS</a></li>
-                            <li class="breadcrumb-item active">FORM ELEMENTS</li>
-                        </ul>
+
+                        {{ Breadcrumbs::render('create_event') }}
 
                         <h1 class="page-header">
-                        {{ __('Register Event') }}
+                        {{ __('Create Event') }}
                         </h1>
 
                         <hr class="mb-4" />
@@ -52,7 +50,7 @@
                                                 <label class="form-label" for="content">{{ __('Content:') }}</label>
                                                 <textarea name="conent" id="content" class="form-control" value="{{ old('content') }}" cols="30" rows="5"placeholder="{{ __('content') }}"></textarea>
                                             </div>
-                                          
+
                                         </div>
                                         <div class="text-center">
                                             <x-forms.buttons.primary type="submit">

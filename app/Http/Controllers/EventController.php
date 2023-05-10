@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class EventController extends Controller
 {
-    public function register() 
+    public function create(): View
     {
-        return view('events.register');
+        return view('events.create');
     }
     //
 }

@@ -9,10 +9,8 @@
                 <div class="row">
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">{{ __('FORMS') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('FORM ELEMENTS') }}</li>
-                        </ul>
+
+                        {{ Breadcrumbs::render('google') }}
 
                         <h1 class="page-header">{{ __('Form Google') }}</h1>
 
@@ -20,7 +18,6 @@
 
                         <!-- BEGIN #formControls -->
                         <div id="formControls" class="mb-5">
-                            <h4>{{ __('Form Google') }}</h4>
                             <div class="card">
                                 <div class="card-body pb-2">
                                     <form action="{{ route('api.google-spreadsheet') }}" method="get">

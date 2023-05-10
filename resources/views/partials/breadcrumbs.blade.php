@@ -1,5 +1,5 @@
 @unless ($breadcrumbs->isEmpty())
-        <ul class="breadcrumb fs-3">
+        <ul class="breadcrumb fs-5">
             @foreach ($breadcrumbs as $breadcrumb)
 
                 @if ($breadcrumb->url && !$loop->last)
