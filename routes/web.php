@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,11 @@ Route::group([
      'middleware' => CheckLoginMiddleware::class,
 ], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::get('register-event', [EventController::class, 'register'])->name('register');
+    });
+
     Route::get('/', function () {
         return view('index');
     })->name('index');

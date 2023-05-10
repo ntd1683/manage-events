@@ -17,6 +17,12 @@
                     <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                 </a>
             </div>
+            <div @class(['menu-item', 'active' => request()->routeIs('events.register')]) >
+                <a href="{{ route('events.register') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-file-medical-fill"></i></span>
+                    <span class="menu-text">{{ __('Register Event') }}</span>
+                </a>
+            </div>
         </div>
         <!-- END menu -->
     </div>
