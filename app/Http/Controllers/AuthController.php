@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegisterEvent;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
-use ArchiElite\Core\Support\HttpResponse;
-use ArchiElite\Marketplace\Models\Author;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -51,15 +50,22 @@ class AuthController extends Controller
 
     public function processRegister(StoreUserRequest $request): RedirectResponse
     {
-        $user = User::create([
-            ...$request->validated(),
-            'password' => Hash::make($request->input('password')),
-        ]);
+        try{
+            $user = User::create([
+                ...$request->validated(),
+                'password' => Hash::make($request->input('password')),
+            ]);
 
-        Auth::login($user, true);
+            Auth::login($user, true);
 
-        return redirect()->route('index')
-            ->with('success', 'Create new user successfully!');
+            UserRegisterEvent::dispatch($user);
+
+            return redirect()->route('index')
+                ->with('success', 'Create new user successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withErrors($e->getMessage());
+        }
     }
 
     public function forgotPassword(): View
@@ -70,7 +76,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Log out successfully!');
     }
 
     public function processForgotPassword(Request $request)

@@ -12,12 +12,12 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string', 'email', 'unique:users'],
             'password' => ['required', 'confirmed', Password::defaults()],
             'gender' => [
                 'required',
-                Rule::in(['1', '0'])
-                ],
+                Rule::in(['1', '0']),
+            ],
         ];
     }
 }
