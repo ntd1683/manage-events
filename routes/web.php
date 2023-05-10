@@ -35,7 +35,10 @@ Route::group([
      'middleware' => CheckLoginMiddleware::class,
 ], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('register-event', [EventController::class, 'register'])->name('events.register');
+
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::get('register-event', [EventController::class, 'register'])->name('register');
+    });
     Route::get('/', function () {
         return view('index');
     })->name('index');
