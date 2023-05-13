@@ -22,37 +22,35 @@
                         <div id="formControls" class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('api.google-spreadsheet') }}" method="get">
+                                    <form action="{{ route('events.store') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="row">
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="title_id">{{ __('Title:') }}</label>
-                                                <input type="text" class="form-control" id="title_id" value="{{ old('title_id') }}" name="title_id"
-                                                       placeholder="{{ __('title') }}"/>
+                                                <x-forms.inputs.label for="title">{{ __('Title') }}</x-forms.inputs.label>
+                                                <x-forms.inputs.text id="title" value="{{ old('title') }}" name="title" placeholder="{{ __('title') }}" />
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="subtitle_name">{{ __('Subtitle:') }}</label>
-                                                <input type="text" class="form-control" id="Subtitle_name" value="{{ old('subtitle_name') }}" name="subtitle_name"
-                                                       placeholder="{{ __('subtitle') }}"/>
+                                                <x-forms.inputs.label for="subtitle">{{ __('Subtitle') }}</x-forms.inputs.label>
+                                                <x-forms.inputs.text id="subtitle" value="{{ old('subtitle') }}" name="subtitle" placeholder="{{ __('subtitle') }}" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="author">{{ __('Author:') }}</label>
-                                                <input type="text" class="form-control" id="author" value="{{ old('author') }}" name="author"
-                                                       placeholder="{{ __('author name') }}"/>
+                                                <x-forms.inputs.label for="description">{{ __('Description') }}</x-forms.inputs.label>
+                                                <x-forms.inputs.text id="description" value="{{ old('description') }}" name="description" placeholder="{{ __('description') }}" />
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="description">{{ __('Description:') }}</label>
-                                                <input type="text" class="form-control" id="description" value="{{ old('description') }}" name="description"
-                                                       placeholder="{{ __('description') }}"/>
+                                                <x-forms.inputs.label for="content">{{ __('Content') }}</x-forms.inputs.label>
+                                                <x-forms.inputs.textarea name="content" id="content" placeholder="{{ __('content') }}">{{ old('content') }}</x-forms.inputs.textarea>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="content">{{ __('Content:') }}</label>
-                                                <textarea name="conent" id="content" class="form-control" value="{{ old('content') }}" cols="30" rows="5"placeholder="{{ __('content') }}"></textarea>
-                                            </div>
-
                                         </div>
-                                        <div class="text-center">
+                                        <div class="row">
+                                            <div class="form-group mb-3">
+                                                <x-forms.inputs.label>{{ __('QR Code') }}</x-forms.inputs.label>
+                                                <x-forms.inputs.image name="qr_code" value="{{ old('qr_code') }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
                                             <x-forms.buttons.primary type="submit">
                                                 {{ __('Submit') }}
                                             </x-forms.buttons.primary>

@@ -47,6 +47,7 @@
 
 <!-- Toast -->
 @if ($errors->any())
+    {{ dd(1) }}
     @foreach ($errors->all() as $error)
         <x-toast status="error" title="Error" time="1s ago" class="border-danger">
             {{ $error }}
@@ -72,6 +73,7 @@
 @endif
 
 @if (session()->has('error'))
+    {{ dd(2) }}
     <x-toast status="error" title="Error" time="1s ago">
         {{session()->get('error')}}
     </x-toast>
