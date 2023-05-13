@@ -20,4 +20,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('google-spreadsheet', [GoogleController::class, 'upload'])->name('google-spreadsheet');
-

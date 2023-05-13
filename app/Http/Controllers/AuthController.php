@@ -29,9 +29,9 @@ class AuthController extends Controller
 
         $arr = $request->validated();
 
-        if(Auth::attempt($arr,$remember)) {
+        if (Auth::attempt($arr, $remember)) {
             $user = User::query()
-                ->where('email',$request->get('email'))
+                ->where('email', $request->get('email'))
                 ->firstOrFail();
             Auth::login($user, $remember);
 
@@ -58,7 +58,7 @@ class AuthController extends Controller
 
     public function processRegister(StoreUserRequest $request): RedirectResponse
     {
-        try{
+        try {
             $user = User::create([
                 ...$request->validated(),
                 'password' => Hash::make($request->input('password')),
@@ -88,13 +88,13 @@ class AuthController extends Controller
         $user = User::Where(['email' => $request->get('email')])->first();
         $user->update(['remember_token' => $token]);
 
-        Mail::send('email.reset-password',compact('user'),function ($email) use ($user) {
+        Mail::send('email.reset-password', compact('user'), function ($email) use ($user) {
             $email->subject(trans('Manage Events - Reset Password'));
-            $email->to($user->email,$user->name);
+            $email->to($user->email, $user->name);
         });
 
         return redirect()->route('login')
-            ->with('success',trans('Please check your email to reset your password'));
+            ->with('success', trans('Please check your email to reset your password'));
     }
 
     public function resetPassword(ResetPasswordRequest $request): View | RedirectResponse
@@ -102,7 +102,7 @@ class AuthController extends Controller
         $token = $request->token;
 
         $user = User::Where(['remember_token' => $token])->first();
-        if(!$user) {
+        if (!$user) {
             return redirect()->route('login')
                 ->withErrors(trans('Unknown error please try again later'));
         }
@@ -117,6 +117,6 @@ class AuthController extends Controller
             'remember_token' => null,
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
-        return redirect()->route('login')->with('success','Change Password Successfully !!!');
+        return redirect()->route('login')->with('success', 'Change Password Successfully !!!');
     }
 }

@@ -36,7 +36,7 @@ class GoogleController extends Controller
         $phone = $request->get('phone') ?: 'phone';
         $email = $request->get('email') ?: 'email';
 
-        foreach($data as $key => $value){
+        foreach ($data as $key => $value) {
             $tmp = [
                 'name' => $value[$name],
                 'code_student' => $value[$code_student],

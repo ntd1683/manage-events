@@ -16,8 +16,8 @@ class CheckLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guest()) {
-            return redirect()->route('login')->withErrors( 'User are not login !!!');
+        if (Auth::guest()) {
+            return redirect()->route('login')->withErrors('User are not login !!!');
         }
 
         return $next($request);

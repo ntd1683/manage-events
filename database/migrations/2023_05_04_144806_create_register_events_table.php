@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('code_student', 11)->nullable();
             $table->string('class')->nullable();
             $table->string('faculty')->nullable();
-            $table->string('phone',13)->nullable();
+            $table->string('phone', 13)->nullable();
             $table->string('email')->unique();
             $table->bigInteger('event_id')->nullable();
             $table->integer('type')->nullable();

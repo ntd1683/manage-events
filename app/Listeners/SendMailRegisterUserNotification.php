@@ -26,7 +26,7 @@ class SendMailRegisterUserNotification
         $user = $event->user;
         Mail::send('email.register', compact('user'), function ($email) use ($user) {
             $email->subject('Manage Events - Create Account Successfully');
-            $email->to($user->email,$user->name);
+            $email->to($user->email, $user->name);
         });
     }
 }
