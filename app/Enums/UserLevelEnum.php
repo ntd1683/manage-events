@@ -4,7 +4,6 @@ namespace App\Enums;
 
 use BenSampo\Enum\Enum;
 
-
 final class UserLevelEnum extends Enum
 {
     public const MEMBER = 0;
@@ -13,7 +12,7 @@ final class UserLevelEnum extends Enum
     public const MANAGER = 3;
     public const BOSS = 4;
 
-    public static function getArrayView():array
+    public static function getArrayView(): array
     {
         return [
             'Member' => self::MEMBER,
@@ -24,8 +23,8 @@ final class UserLevelEnum extends Enum
         ];
     }
 
-    public static function getKeyByValue($value):string
+    public static function getKeyByValue($value): string
     {
-        return array_search($value,self::getArrayView(),true);
+        return array_search($value, self::getArrayView(), true);
     }
 }
