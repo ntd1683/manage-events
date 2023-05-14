@@ -8,7 +8,7 @@
         <label class="btn btn-outline-info">
             {{ __('Upload') }}
             <input type="file" class="uploadFile img" value="{{ $value }}"
-                   style="width: 0;height: 0;overflow: hidden;" name="{{ $name }}">
+                   style="width: 0;height: 0;overflow: hidden;" name="{{ $name }}" accept="image/png, image/jpeg, image/jpg">
         </label>
     </div>
 </div>

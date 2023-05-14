@@ -21,7 +21,7 @@ class EventController extends Controller
         $media_id = null;
         if ($request->hasFile('qr_code')) {
             $qr = $request->file('qr_code');
-            $name = 'qr_' . Str::random(5);
+            $name = 'qr_' . Str::random(5) . '.' . $qr->extension();
             $path = $qr->storeAs('images', $name, 'public');
 
             $media = Media::create([
