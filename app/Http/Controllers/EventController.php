@@ -16,6 +16,11 @@ class EventController extends Controller
         return view('events.create');
     }
 
+    public function index(): View
+    {
+        return view('events.index');
+    }
+
     public function store(StoreRequestEvent $request): RedirectResponse
     {
         $media_id = null;

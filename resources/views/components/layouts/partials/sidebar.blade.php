@@ -34,6 +34,14 @@
                             <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                         </a>
                     </div>
+                    <div @class(['menu-item','active' => request()->routeIs('events.index')])>
+                        <a href="{{ route('events.index') }}" class="menu-link" style="padding-left:0;">
+                            <span class="menu-icon" style="margin-right: 30px">
+                                <i class="fa-brand fa-google"></i>
+                            </span>
+                            <span class="menu-text">{{ __('Index') }}</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
