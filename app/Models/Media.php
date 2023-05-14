@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Media extends Model
 {
-    protected $table = 'medias';
-
     use HasFactory;
     use SoftDeletes;
 

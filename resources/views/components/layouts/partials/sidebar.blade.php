@@ -36,6 +36,14 @@
                     </div>
                 </div>
             </div>
+            @if(auth()->user()->level === 4)
+                <div @class(['menu-item', 'active' => request()->routeIs('media.index')]) >
+                    <a href="{{ route('media.index') }}" class="menu-link">
+                        <span class="menu-icon"><i class="fa-solid fa-photo-film"></i></span>
+                        <span class="menu-text">{{ __('Media') }}</span>
+                    </a>
+                </div>
+            @endif
         </div>
         <!-- END menu -->
     </div>

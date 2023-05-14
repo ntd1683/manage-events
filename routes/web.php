@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\MediaController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
@@ -44,6 +45,8 @@ Route::group([
         Route::post('edit/{event}', [EventController::class, 'edit'])->name('edit');
         Route::get('google-sheet-import', [GoogleController::class, '__invoke'])->name('google.import');
     });
+
+    Route::resource('media', MediaController::class);
 
     Route::get('/', function () {
         return view('index');
