@@ -23,11 +23,20 @@
                         <div id="formControls" class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('api.google-spreadsheet') }}" method="get">
+                                    <form action="{{ route('api.google-spreadsheet') }}" onsubmit="return false" id="form">
+                                        <input type="hidden" name="token" value="{{ auth()->user()->remember_token }}">
                                         <div class="row">
+                                            <x-forms.inputs.label for="event_id">{{ __('Select Event') }}</x-forms.inputs.label>
+                                            @csrf
+                                            <select class="form-control form-select mb-3" name="event_id" id="select_event">
+                                                <option value="-1">{{ __('Choose Event Import') }}</option>
+                                                @foreach($events as $event)
+                                                    <option value="{{ $event->id }}" @selected($event_id == $event->id) >{{ $event->title }}</option>
+                                                @endforeach
+                                            </select>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="sheet_id">{{ __('Link Google Sheet: ') }}</label>
-                                                <input type="text" class="form-control" id="sheet_id" value="{{ old('sheet_id') }}" name="sheet_id"
+                                                <input type="text" class="form-control" id="sheet_id" value="{{ old('sheet') }}" name="sheet"
                                                        placeholder="https://docs.google.com/spreadsheets/d/xxxxxxxx/edit#gid=866183761"/>
                                             </div>
                                             <div class="form-group mb-3">
@@ -69,7 +78,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <x-forms.buttons.primary type="submit">{{ __('Submit') }}</x-forms.buttons.primary>
+                                            <x-forms.buttons.primary type="button" disabled id="button_submit">{{ __('Submit') }}</x-forms.buttons.primary>
                                         </div>
                                     </form>
                                 </div>
@@ -83,6 +92,7 @@
                         </div>
                         <!-- END #formControls -->
                     </div>
+
                     <!-- END col-9-->
                     <!-- BEGIN col-3 -->
                     <div class="col-xl-3">
@@ -110,13 +120,70 @@
         <p>{{ __('This is name column') }}: </p>
         <img src="{{ asset('images/google/column.png') }}" alt="{{ __('Name of column') }}" style="height: 20px;width: 100%;">
         <x-slot:buttons>
-            <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{ __('Close') }}</button>
+            <button type="button" class="btn btn-default text-white" data-bs-dismiss="modal">{{ __('Close') }}</button>
         </x-slot:buttons>
     </x-modal>
+
+    <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_error" id="button_error" class="opacity-0">{{ __('Error') }}</x-forms.buttons.warning>
+    <x-modal id="modal_error" title="{{ __('Error') }}">
+
+        <x-slot:buttons>
+            <button type="button" class="btn btn-default text-white" data-bs-dismiss="modal">{{ __('Close') }}</button>
+        </x-slot:buttons>
+    </x-modal>
+
+    <x-toast status="success" title="Success" time="1s ago">
+    </x-toast>
+
+    <x-toast status="error" title="Error" time="1s ago">
+    </x-toast>
+
     @push('js')
         <script>
             window.addEventListener('load', () => {
                 $('#button_how_to_use').click();
+
+                let select_event = $('#select_event');
+
+                function disabledButton() {
+                    if(select_event.val() == -1){
+                        $('#button_submit').prop('disabled', true);
+                    } else {
+                        $('#button_submit').prop('disabled', false);
+                    }
+                }
+
+                disabledButton();
+                select_event.on('change', () => {
+                    disabledButton();
+                })
+
+                $('#button_submit').on('click', () => {
+                    let url = $('#form').attr('action');
+
+                    $.ajax({
+                        method: 'GET',
+                        url: url,
+                        data: $("#form").serialize(),
+                        success: function (data) {
+                            let error;
+
+                            $.each(data.data, (index, value) => {
+                                error += `<p>${value}</p>`;
+                            })
+
+                            $('#modal_error').find('.modal-body').html(error);
+                            $('#button_error').click();
+
+                            $('.message-success').text('Import successfully');
+                            $('.toast-success').toast('show');
+                        },
+                        error: function (data) {
+                            $('.message-error').text(data.message + ' ' + data.responseJSON.message);
+                            $('.toast-error').toast('show');
+                        }
+                    });
+                })
             });
         </script>
     @endpush

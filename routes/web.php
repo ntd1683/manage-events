@@ -42,7 +42,7 @@ Route::group([
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::post('edit/{event}', [EventController::class, 'edit'])->name('edit');
-        Route::get('events/google-sheet-import', [GoogleController::class, 'index'])->name('google.import');
+        Route::get('google-sheet-import', [GoogleController::class, '__invoke'])->name('google.import');
     });
 
     Route::get('/', function () {
