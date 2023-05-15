@@ -16,6 +16,7 @@ mix
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/guest.js', 'public/js')
     .js('resources/js/scan-qrcode.js', 'public/js')
+    .js('resources/js/google.js', 'public/js')
     .sass('resources/scss/styles.scss', 'public/css')
     .disableNotifications()
     .webpackConfig(require('./webpack.config'));

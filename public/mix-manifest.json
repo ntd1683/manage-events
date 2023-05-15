@@ -3,5 +3,6 @@
     "/js/app.js": "/js/app.js",
     "/js/guest.js": "/js/guest.js",
     "/js/scan-qrcode.js": "/js/scan-qrcode.js",
+    "/js/google.js": "/js/google.js",
     "/css/styles.css": "/css/styles.css"
 }
