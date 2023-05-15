@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>HUD | Login</title>
+	<title>{{ option('site_name', config('app.name')) }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="{{ Storage::url(option('site_favicon')) }}">
 
 	<link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 

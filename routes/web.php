@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\SettingController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
@@ -39,6 +40,7 @@ Route::group([
 ], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+//    Event
     Route::prefix('events')->name('events.')->group(function () {
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::post('store', [EventController::class, 'store'])->name('store');
@@ -47,6 +49,10 @@ Route::group([
     });
 
     Route::resource('media', MediaController::class);
+
+//  Setting
+    Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
 
     Route::get('/', function () {
         return view('index');

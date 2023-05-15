@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRequestEvent;
+use App\Http\Requests\StoreEventRequest;
 use App\Models\Event;
 use App\Models\Media;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +16,7 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function store(StoreRequestEvent $request): RedirectResponse
+    public function store(StoreEventRequest $request): RedirectResponse
     {
         $media_id = null;
         if ($request->hasFile('qr_code')) {

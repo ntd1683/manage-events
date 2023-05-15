@@ -75,7 +75,7 @@
                         </a>
                     </div>
                     <div class="col-4">
-                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="{{ route('setting.index') }}" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div class="position-relative">
                                 <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                                 <i class="bi bi-sliders h2 opacity-5 d-block my-1"></i>
@@ -123,7 +123,7 @@
                         class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
                 <a class="dropdown-item d-flex align-items-center" href="#">{{ __('CALENDAR') }}<i
                         class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('SETTINGS') }}<i
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('setting.index') }}">{{ __('SETTINGS') }}<i
                         class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">{{ __('LOGOUT') }}<i

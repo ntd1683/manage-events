@@ -3,7 +3,7 @@
     'name' => '',
 ])
 <div class="imgUp">
-    <img src="{{ asset('images/default.png') }}" alt="{{ $name }}" class="imagePreview" style="width:13rem; height:auto">
+    <img src="{{ $value == '' ? asset('images/default.png') : Storage::url($value) }}" alt="{{ $name }}" {{ $attributes->merge(['class' => 'imagePreview']) }} style="width:13rem; height:auto">
     <div class="margin-top-5" style="margin-left:4rem;">
         <label class="btn btn-outline-info">
             {{ __('Upload') }}

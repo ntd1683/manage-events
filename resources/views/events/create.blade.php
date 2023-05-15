@@ -47,7 +47,7 @@
                                         <div class="row">
                                             <div class="form-group mb-3">
                                                 <x-forms.inputs.label>{{ __('QR Code') }}</x-forms.inputs.label>
-                                                <x-forms.inputs.image name="qr_code" value="{{ old('qr_code') }}"/>
+                                                <x-forms.inputs.image name="qr_code" value="{{ old('qr_code') }}" class="rounded-3"/>
                                             </div>
                                         </div>
                                         <div class="text-end">
