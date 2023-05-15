@@ -37,7 +37,7 @@ class SettingController extends Controller
 
         if ($request->hasFile('site_favicon')) {
             $fileFavicon = $request->file('site_favicon');
-            $nameFileFavicon = 'logo_' . Str::random(5) . '.' . $fileFavicon->extension();
+            $nameFileFavicon = 'favicon_' . Str::random(5) . '.' . $fileFavicon->extension();
             $filePathFavicon = $fileFavicon->storeAs('images', $nameFileFavicon, 'public');
 
             optionSave('site_favicon', $filePathFavicon);

@@ -5,11 +5,13 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 
-class StoreEventRequest extends FormRequest
+class UpdateEventRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return auth()->check();
+        $validationData = parent::validationData();
+
+        return auth()->user()->level === 4 || auth()->user()->id === $validationData['author'];
     }
 
     public function rules(): array

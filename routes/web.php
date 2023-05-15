@@ -44,7 +44,9 @@ Route::group([
     Route::prefix('events')->name('events.')->group(function () {
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::post('store', [EventController::class, 'store'])->name('store');
-        Route::post('edit/{event}', [EventController::class, 'edit'])->name('edit');
+        Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
+        Route::post('update/{event}', [EventController::class, 'update'])->name('update');
+        Route::delete('delete/{event}', [EventController::class, 'destroy'])->name('destroy');
         Route::get('google-sheet-import', [GoogleController::class, '__invoke'])->name('google.import');
     });
 
