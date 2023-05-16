@@ -13,6 +13,10 @@ use Illuminate\View\View;
 
 class EventController extends Controller
 {
+    public function adminIndex(): View
+    {
+        return view('events.admin-index');
+    }
     public function create(): View
     {
         return view('events.create');
