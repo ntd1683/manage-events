@@ -25,7 +25,7 @@
                                     <div class="container">
                                         <div class="row">
                                             @foreach($events as $event)
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6 pb-2">
                                                     <div class="card">
                                                         <div class="card-body pb-2">
                                                             @if($event->media)
