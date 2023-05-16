@@ -25,34 +25,24 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <div class="card">
-                                                    <img src="\\wsl.localhost\Ubuntu\home\huynguyen\manage-events\public\images\anh-dai-dien-FB-200.jpg" class="card-img-top" alt="Waterfall" />
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ __('Title') }}</h5>
-                                                        <a href="#!" class="btn btn-primary">{{ __('Register') }}</a>
+                                                @foreach($events as $event)
+                                                    <div class="card">
+                                                        <div class="card-body pb-2">
+                                                            @if($event->media)
+                                                            <img src="{{ $event->media }}" class="card-img-top" alt="Waterfall" />
+                                                            @endif
+                                                            <h5 class="card-title">{{ $event->title }}</h5>
+                                                            <a href="#" class="btn btn-primary">{{ __('Register') }}</a>
+                                                        </div>
+
+                                                        <div class="card-arrow">
+                                                            <div class="card-arrow-top-left"></div>
+                                                            <div class="card-arrow-top-right"></div>
+                                                            <div class="card-arrow-bottom-left"></div>
+                                                            <div class="card-arrow-bottom-right"></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 d-none d-lg-block">
-                                                <div class="card">
-                                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/182.webp" class="card-img-top" alt="Sunset Over the Sea" />
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ __('Title') }}</h5>
-                                                        <a href="#!" class="btn btn-primary">{{ __('Register') }}</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 d-none d-lg-block">
-                                                <div class="card">
-                                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/183.webp" class="card-img-top" alt="Sunset over the Sea" />
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">{{ __('Title') }}</h5>
-                                                        <p class="card-text">
-                                                        {{ __('Description') }}
-                                                        </p>
-                                                        <a href="#!" class="btn btn-primary">{{ __('Register') }}</a>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +50,7 @@
                             </div>
                         </div>
                         <!-- END col-9-->
-                    </div> 
+                    </div>
                     <!-- BEGIN col-3 -->
                     <div class="col-xl-3">
                         <!-- BEGIN #sidebar-bootstrap -->
