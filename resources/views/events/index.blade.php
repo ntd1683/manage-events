@@ -24,8 +24,8 @@
                                 <div class="carousel-item active">
                                     <div class="container">
                                         <div class="row">
+                                            @foreach($events as $event)
                                             <div class="col-lg-4">
-                                                @foreach($events as $event)
                                                     <div class="card">
                                                         <div class="card-body pb-2">
                                                             @if($event->media)
@@ -42,8 +42,8 @@
                                                             <div class="card-arrow-bottom-right"></div>
                                                         </div>
                                                     </div>
-                                                @endforeach
                                             </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
