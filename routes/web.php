@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\MediaController;
@@ -51,11 +52,17 @@ Route::group([
         Route::get('google-sheet-import', [GoogleController::class, '__invoke'])->name('google.import');
     });
 
+
     Route::resource('media', MediaController::class);
 
 //  Setting
     Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
+
+    Route::prefix('ajax')->group(function () {
+        Route::get('events', [AjaxEventController::class , 'index'])->name('ajax.events.index');
+        Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('ajax.events.destroy');
+    });
 
     Route::get('/', function () {
         return view('index');

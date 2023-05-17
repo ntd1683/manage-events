@@ -52,6 +52,10 @@
                                             </div>
                                         </div>
                                         <div class="text-end">
+                                            <x-forms.buttons.danger type="button" class="me-2 btn-delete">
+                                                    {{ __('Delete') }}
+                                            </x-forms.buttons.danger>
+
                                             <x-forms.buttons.primary type="submit">
                                                 {{ __('Submit') }}
                                             </x-forms.buttons.primary>
@@ -85,6 +89,14 @@
         </div>
         <!-- END row -->
     </div>
+
+    <form action="{{ route('events.destroy', $event) }}" method="post" class="form-delete">
+        @csrf
+        @method('DELETE')
+        <x-forms.buttons.danger type="submit" class="opacity-0">
+            {{ __('Delete') }}
+        </x-forms.buttons.danger>
+    </form>
     <!-- END container -->
     @if(! $event->google_sheet)
         <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal" id="button_google" class="opacity-0">{{ __('click') }}</x-forms.buttons.warning>
@@ -99,6 +111,12 @@
             <script>
                 window.addEventListener('load', () => {
                     $('#button_google').click();
+                    $('.btn-delete').on('click', () => {
+                        let confirm_delete = confirm("Are you sure you want to delete?");
+                        if (confirm_delete === true) {
+                            $('.form-delete').submit();
+                        }
+                    })
                 });
             </script>
         @endpush

@@ -34,6 +34,14 @@
                             <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                         </a>
                     </div>
+                    <div @class(['menu-item', 'active' => request()->routeIs('events.admin.index')]) >
+                        <a href="{{ route('events.admin.index') }}" class="menu-link" style="padding-left: 0;" >
+                            <span class="menu-icon" style="margin-right: 3px;" >
+                                <i class="fa-solid fa-chart-line"></i>
+                            </span>
+                            <span class="menu-text">{{ __('Analytics Events') }}</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             @if(auth()->user()->level === 4)
