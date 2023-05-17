@@ -59,9 +59,9 @@ Route::group([
     Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
 
-    Route::prefix('ajax')->group(function () {
-        Route::get('events', [AjaxEventController::class , 'index'])->name('ajax.events.index');
-        Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('ajax.events.destroy');
+    Route::prefix('ajax')->name('ajax.')->group(function () {
+        Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
+        Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
     });
 
     Route::get('/', function () {

@@ -20,7 +20,11 @@ return new class extends Migration
             $table->bigInteger('author');
             $table->string('google_sheet')->nullable();
             $table->bigInteger('media_id')->nullable();
-            $table->timestamps();
+            $table->boolean('published')->default(false);
+            $table->boolean('accepted')->default(false);
+            $table->date('happened_at')->default(date('Y-m-d'));
+            $table->timestamp('publish_at')->nullable();
+            $table->timestamp('accepted_at')->nullable();
         });
     }
 

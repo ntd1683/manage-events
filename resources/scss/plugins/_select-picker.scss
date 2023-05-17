@@ -5,7 +5,7 @@ body {
 		border: $form-select-border-width solid $form-select-border-color;
 		background-color: $form-select-bg;
 		border-radius: $border-radius;
-		
+
 		& > .pc-element {
 			margin: $form-select-padding-y 0 0 $form-select-padding-x;
 			padding: rem(2px) rem(10px) !important;
@@ -13,12 +13,12 @@ body {
 			background: rgba($white, .3);
 			color: $input-color;
 			border-radius: 30px;
-			
+
 			&:hover {
 				background: $gray-100;
 				color: $gray-800;
 			}
-			
+
 			& .pc-close {
 				position: relative;
 				margin: 0;
@@ -26,7 +26,7 @@ body {
 				color: $white;
 				opacity: .5;
 				font-size: rem(12px);
-				
+
 				@include fontawesome();
 				@if $enable-rtl {
 					margin-right: $spacer * 0.5;
@@ -35,7 +35,7 @@ body {
 					margin-left: $spacer * 0.5;
 					right: 0;
 				}
-	
+
 				&:after {
 					content: '\f00d' !important;
 				}
@@ -45,7 +45,7 @@ body {
 			}
 			& + .pc-select {
 				padding-top: $form-select-padding-y;
-				
+
 				& .pc-element {
 					margin-top: -$form-select-padding-y;
 				}
@@ -56,7 +56,7 @@ body {
 			width: 100%;
 			max-width: 100%;
 			min-width: initial;
-			
+
 			& .pc-element {
 				display: block;
 				margin: 0;
@@ -71,7 +71,7 @@ body {
 				appearance: none;
 				border: none;
 				padding: $form-select-padding-y $form-select-indicator-padding $form-select-padding-y $form-select-padding-x;
-				
+
 				@include font-size($form-select-font-size);
 			}
 			& .pc-list {
@@ -81,7 +81,7 @@ body {
 				border: $dropdown-border-width solid $dropdown-border-color;
 				box-shadow: $dropdown-box-shadow;
 				border-radius: $dropdown-border-radius;
-				
+
 				& input[type=search] {
 					display: block;
 					width: calc(100% - 20px);
@@ -97,7 +97,7 @@ body {
 					appearance: none;
 					transition: $input-transition;
 					border-radius: $border-radius;
-					
+
 					@include font-size($input-font-size);
 
 					&:focus {
@@ -108,13 +108,13 @@ body {
 						box-shadow: $input-focus-box-shadow;
 					}
 				}
-				
+
 				& ul {
 					& > li {
 						padding: $dropdown-item-padding-y $dropdown-item-padding-x;
 						background: none;
 						color: $dropdown-link-color;
-						
+
 						&:nth-child(even) {
 							background: none;
 						}

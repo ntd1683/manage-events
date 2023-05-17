@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Ajax;
 use App\Http\Controllers\Controller;
 use App\Http\Trait\ResponseTrait;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
@@ -15,12 +17,22 @@ class AjaxEventController extends Controller
 
     public function index()
     {
-        return DataTables::of(Event::query())
+        $events = Event::query()->published();
+        return DataTables::of($events)
             ->editColumn('title', function ($object) {
-                return Str::limit($object->title, 28);
+                return [
+                    'title' => $object->title,
+                    'value' =>  Str::limit($object->title, 28),
+                ];
             })
             ->editColumn('subtitle', function ($object) {
-                return Str::limit($object->subtitle, 20);
+                return [
+                    'title' => $object->subtitle,
+                    'value' =>  Str::limit($object->subtitle, 20),
+                ];
+            })
+            ->editColumn('happened_at', function ($object) {
+                return Carbon::parse($object->happened_at)->format('d-m-Y');
             })
             ->addColumn('destroy', function ($object) {
                 return route('ajax.events.destroy', $object);
@@ -33,7 +45,7 @@ class AjaxEventController extends Controller
                     $query->where('name', $keyword);
                 }
             })
-            ->make(true);
+        ->make(true);
     }
 
     public function destroy(Event $event): JsonResponse

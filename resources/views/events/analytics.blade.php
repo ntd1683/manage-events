@@ -22,7 +22,7 @@
                             <hr class="mb-4" />
 
                             <!-- BEGIN #datatable -->
-                            <div id="datatable" class="mb-5">
+                            <div id="table" class="mb-5">
                                 <p>{{ __('All events you\'ve created') }}</p>
                                 <div class="card">
                                     <div class="card-body">
@@ -32,8 +32,8 @@
                                                 <th>#</th>
                                                 <th>{{ __('Title') }}</th>
                                                 <th>{{ __('Subtitle') }}</th>
-{{--                                                <th>Published</th>--}}
-{{--                                                <th>Ex</th>--}}
+                                                <th>{{ __('Happened At') }}</th>
+                                                <th>{{ __('Accepted') }}</th>
                                                 <th>{{ __('Edit') }}</th>
                                                 <th>{{ __('Destroy') }}</th>
                                             </tr>
@@ -56,7 +56,7 @@
                             <!-- BEGIN #sidebar-bootstrap -->
                             <nav id="sidebar-bootstrap" class="navbar navbar-sticky d-none d-xl-block">
                                 <nav class="nav">
-                                    <a class="nav-link" href="#datatable" data-toggle="scroll-to">Datatable</a>
+                                    <a class="nav-link" href="#table" data-toggle="scroll-to">{{ __('Table') }}</a>
                                 </nav>
                             </nav>
                             <!-- END #sidebar-bootstrap -->
@@ -93,8 +93,35 @@
                         ajax: '{!! route('ajax.events.index') !!}',
                         columns: [
                             {data: 'id', name: 'id'},
-                            {data: 'title', name: 'title'},
-                            {data: 'subtitle', name: 'subtitle'},
+                            {
+                                data: 'title',
+                                render: function (data, type, row, meta) {
+                                    return `<p title="${data.title}">${data.value}</p>`;
+                                }
+                            },
+                            {
+                                data: 'subtitle',
+                                render: function (data, type, row, meta) {
+                                    return `<p title="${data.title}">${data.value}</p>`;
+                                }
+                            },
+                            {
+                                data: 'happened_at',
+                                render: function (data, type, row, meta) {
+                                    return `<p title="${data}">${data}</p>`;
+                                }
+                            },
+                            {
+                                data: 'accepted',
+                                orderable: false,
+                                render: function (data, type, row, meta) {
+                                    if(data === 1) {
+                                        return `<span><i class="fa-solid fa-check me-1 text-theme"></i>Accepted</span>`;
+                                    } else {
+                                        return `<span><i class="fa-solid fa-xmark me-1 text-red"></i>Accepted</span>`;
+                                    }
+                                }
+                            },
                             {
                                 data: 'edit',
                                 orderable: false,
