@@ -12,33 +12,30 @@
                     <div class="row">
                         <!-- BEGIN col-9 -->
                         <div class="col-xl-10">
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">TABLES</a></li>
-                                <li class="breadcrumb-item active">TABLE PLUGINS</li>
-                            </ul>
+
+                            {{ Breadcrumbs::render('analytics') }}
 
                             <h1 class="page-header">
-                                Table Plugins <small>page header description goes here...</small>
+                                {{ __('All Events') }}
                             </h1>
 
                             <hr class="mb-4" />
 
                             <!-- BEGIN #datatable -->
                             <div id="datatable" class="mb-5">
-                                <h4>Datatable</h4>
-                                <p>DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table. Please read the <a href="https://datatables.net/" target="_blank">official documentation</a> for the full list of options.</p>
+                                <p>{{ __('All events you\'ve created') }}</p>
                                 <div class="card">
                                     <div class="card-body">
                                         <table id="datatableDefault" class="table text-nowrap w-100">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Title</th>
-                                                <th>Subtitle</th>
+                                                <th>{{ __('Title') }}</th>
+                                                <th>{{ __('Subtitle') }}</th>
 {{--                                                <th>Published</th>--}}
 {{--                                                <th>Ex</th>--}}
-                                                <th>Edit</th>
-                                                <th>Destroy</th>
+                                                <th>{{ __('Edit') }}</th>
+                                                <th>{{ __('Destroy') }}</th>
                                             </tr>
                                             </thead>
                                         </table>

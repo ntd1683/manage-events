@@ -13,9 +13,9 @@ use Illuminate\View\View;
 
 class EventController extends Controller
 {
-    public function adminIndex(): View
+    public function analytics(): View
     {
-        return view('events.admin-index');
+        return view('events.analytics');
     }
     public function create(): View
     {

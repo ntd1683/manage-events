@@ -18,12 +18,12 @@
                     <span class="menu-caret"><b class="caret"></b></span>
                 </a>
                 <div class="menu-submenu" @if(substr(Request()->route()->getPrefix(), 1) === 'events') style="display: block;" @endif >
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
-                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;" >
+                    <div @class(['menu-item', 'active' => request()->routeIs('events.analytics')]) >
+                        <a href="{{ route('events.analytics') }}" class="menu-link" style="padding-left: 0;" >
                             <span class="menu-icon" style="margin-right: 3px;" >
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-chart-line"></i>
                             </span>
-                            <span class="menu-text">{{ __('Create') }}</span>
+                            <span class="menu-text">{{ __('Analytics') }}</span>
                         </a>
                     </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.google.import')]) >
@@ -34,12 +34,12 @@
                             <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                         </a>
                     </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.admin.index')]) >
-                        <a href="{{ route('events.admin.index') }}" class="menu-link" style="padding-left: 0;" >
+                    <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
+                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;" >
                             <span class="menu-icon" style="margin-right: 3px;" >
-                                <i class="fa-solid fa-chart-line"></i>
+                                <i class="fa-solid fa-plus"></i>
                             </span>
-                            <span class="menu-text">{{ __('Analytics Events') }}</span>
+                            <span class="menu-text">{{ __('Create') }}</span>
                         </a>
                     </div>
                 </div>

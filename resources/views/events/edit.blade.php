@@ -10,7 +10,7 @@
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
 
-                        {{ Breadcrumbs::render('create_event') }}
+                        {{ Breadcrumbs::render('edit_event', $event) }}
 
                         <h1 class="page-header">
                         {{ __('Create Event') }}

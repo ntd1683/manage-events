@@ -43,7 +43,7 @@ Route::group([
 
 //    Event
     Route::prefix('events')->name('events.')->group(function () {
-        Route::get('admin/index', [EventController::class, 'adminIndex'])->name('admin.index');
+        Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
