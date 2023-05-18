@@ -4,8 +4,8 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './sidebar-scrollspy'
 
-
 window.$ = window.jQuery = require('jquery')
+
 window.Popper = require('popper.js')
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle.js')
 require('bootstrap')

@@ -4,7 +4,7 @@
 		padding: rem(6px) rem(12px) rem(12px);
 		z-index: $zindex-dropdown !important;
 		border-radius: 0;
-		
+
 		&:before,
 		&:after {
 			display: none;
@@ -15,7 +15,7 @@
 	& .next {
 		padding: rem(10px);
 		min-width: rem(40px);
-		
+
 		&:hover {
 			background: none !important;
 			color: var(--bs-theme);
@@ -28,7 +28,7 @@
 		max-width: rem(30px);
 		padding: rem(5px) 0;
   	text-align: center;
-		
+
 		&:before {
 			font-family: Font Awesome\ 5 Free,Font Awesome\ 5 Pro,FontAwesome !important;
 			font-weight: 900;
@@ -43,7 +43,7 @@
 	& .next {
 		&:before {
 			content: '\f061';
-			
+
 			@if $enable-rtl {
 				left: 0;
 			} @else {
@@ -54,7 +54,7 @@
   & .prev {
 		&:before {
 			content: '\f060';
-			
+
 			@if $enable-rtl {
 				right: 0;
 			} @else {
@@ -81,7 +81,7 @@
 	& .datepicker-days {
 		& table {
 			width: 100%;
-			
+
 			& thead {
 				& tr {
 					& th {
@@ -105,10 +105,13 @@
 						border: 1px solid $dropdown-border-color;
 						color: $gray-300;
 						width: 14%;
-						
+
 						&.old {
 							color: $gray-800;
 						}
+                        &.disabled {
+                            color: #545454 !important;
+                        }
 						&.new {
 							color: $gray-500;
 						}
@@ -125,7 +128,7 @@
 							color: var(--bs-black);
 							text-shadow: none;
 							position: relative;
-							
+
 							&:before,
 							&:after {
 								content: '';
@@ -134,7 +137,7 @@
 								bottom: -1px;
 								background: var(--bs-theme);
 								width: 1px;
-								
+
 								@if $enable-rtl {
 									right: -1px;
 								} @else {
@@ -146,7 +149,7 @@
 								top: -1px;
 								width: auto;
 								height: 1px;
-								
+
 								@if $enable-rtl {
 									left: -1px;
 								} @else {
@@ -159,7 +162,7 @@
 				& tr {
 					& td {
 						&:first-child {
-						
+
 						}
 					}
 				}
@@ -175,7 +178,7 @@
 				& tr {
 					& td {
 						padding-top: rem(3px);
-						
+
 						& span {
 							width: 25%;
 							margin: 0;
@@ -185,7 +188,7 @@
 							font-size: $font-size-base * .9;
 							margin: 0 -1px -1px 0;
 							color: $gray-100;
-							
+
 							&:hover,
 							&.focused {
 								color: var(--bs-black) !important;

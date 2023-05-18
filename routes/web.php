@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\MediaController;
@@ -42,6 +43,7 @@ Route::group([
 
 //    Event
     Route::prefix('events')->name('events.')->group(function () {
+        Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
@@ -50,11 +52,17 @@ Route::group([
         Route::get('google-sheet-import', [GoogleController::class, '__invoke'])->name('google.import');
     });
 
+
     Route::resource('media', MediaController::class);
 
 //  Setting
     Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
+
+    Route::prefix('ajax')->name('ajax.')->group(function () {
+        Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
+        Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
+    });
 
     Route::get('/', function () {
         return view('index');

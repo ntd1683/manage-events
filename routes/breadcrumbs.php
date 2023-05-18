@@ -18,7 +18,17 @@ Breadcrumbs::for('create_event', function (BreadcrumbTrail $trail) {
     $trail->push(trans('Create'), route('events.create'));
 });
 
+Breadcrumbs::for('edit_event', function (BreadcrumbTrail $trail, $route) {
+    $trail->parent('events');
+    $trail->push(trans('Edit'), route('events.edit', $route));
+});
+
 Breadcrumbs::for('google', function (BreadcrumbTrail $trail) {
     $trail->parent('events');
     $trail->push(trans('Google Sheet Import'), route('events.google.import'));
+});
+
+Breadcrumbs::for('analytics', function (BreadcrumbTrail $trail) {
+    $trail->parent('events');
+    $trail->push(trans('Analytics Events'), route('events.analytics'));
 });
