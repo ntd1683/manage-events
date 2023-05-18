@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use App\Models\Media;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -24,6 +25,7 @@ class EventController extends Controller
 
     public function store(StoreEventRequest $request): RedirectResponse
     {
+        $happenedAt = Carbon::parse($request->get('happenedAt'));
         $media_id = null;
         if ($request->hasFile('qr_code')) {
             $qr = $request->file('qr_code');
@@ -39,11 +41,26 @@ class EventController extends Controller
             $media_id = $media->id;
         }
 
-        Event::create([
+        $event = Event::create([
             ...$request->validated(),
             'author' => auth()->user()->id,
             'media_id' => $media_id,
+            'happenedAt' => $happenedAt,
         ]);
+
+        if($request->get('published')) {
+            $event->publish();
+        } else {
+            $event->published = 0;
+            $event->save();
+        }
+
+        if($request->get('accepted') && auth()->user()->level === 4) {
+            $event->accept();
+        } else {
+            $event->accepted = 0;
+            $event->save();
+        }
 
         return redirect()->route('events.index')->with('success', 'Thêm sự kiện thành công.');
     }
@@ -88,6 +105,20 @@ class EventController extends Controller
         $data['author'] = $request->get('author');
 
         $event->update($data);
+
+        if($request->get('published')) {
+            $event->publish();
+        } else {
+            $event->published = 0;
+            $event->save();
+        }
+
+        if($request->get('accepted') === 1 && auth()->user()->level === 4) {
+            $event->accept();
+        } else if($request->get('accepted') === 0 && auth()->user()->level === 4){
+            $event->accepted = 0;
+            $event->save();
+        }
 
         return redirect()->route('events.index')->with('success', 'Update Event Successfully');
     }

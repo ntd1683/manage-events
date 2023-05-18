@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Support\Carbon;
 
 class Event extends Model
 {
@@ -29,10 +30,6 @@ class Event extends Model
 
     public function publish(): void
     {
-        if (!$this->accepted) {
-            throw new Exception('Listing is not accepted yet');
-        }
-
         $this->publish_at = now();
 
         $this->published = true;
@@ -46,7 +43,7 @@ class Event extends Model
 
         $this->accepted_at = now();
 
-        if (!$this->publish_at || $this->publish_at->isPast()) {
+        if (!$this->publish_at || Carbon::parse($this->publish_at)->isPast()) {
             $this->publish();
         }
 

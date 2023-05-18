@@ -88,19 +88,4 @@
             </script>
         @endpush
     @endif
-    @push('js')
-        <script src="{{ asset('js/form-plugin.js') }}"></script>
-            <script>
-                window.addEventListener('load', () => {
-                    $('#publish_at').datepicker({
-                        autoclose: true,
-                        format: 'dd-mm-yy'
-                    });
-                    $('#happened_at').datepicker({
-                        autoclose: true,
-                        format: 'dd-mm-yy'
-                    });
-                })
-            </script>
-    @endpush
 </x-layouts.master>

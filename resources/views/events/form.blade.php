@@ -26,9 +26,12 @@
 </div>
 <div class="row">
     <div class="form-group mb-3">
-        <x-forms.inputs.label for="publish_at">{{ __('Publish At') }}</x-forms.inputs.label>
-        <x-forms.inputs.datepicker id="publish_at" value="{{ old('publish_at', $event->publish_at) }}" name="publish_at"
-                                   placeholder="{{ __('d-m-Y') }}"/>
+        <x-forms.inputs.label for="publish_at">{{ __('Publish') }}</x-forms.inputs.label>
+        <!-- inline checkbox -->
+        <div class="form-check">
+            <x-forms.inputs.checkbox id="published" value="1" name="published"
+                                     :checked="old('published', $event->published)">{{ __('Publish') }}</x-forms.inputs.checkbox>
+        </div>
     </div>
     <div class="form-group mb-3">
         <x-forms.inputs.label for="happened_at">{{ __('Happened At') }}</x-forms.inputs.label>
@@ -36,13 +39,23 @@
                                    value="{{ old('happened_at', \Illuminate\Support\Carbon::parse($event->happened_at)->format('d-m-Y')) }}"
                                    name="happened_at" placeholder="{{ __('d-m-Y') }}"/>
     </div>
-    @if(auth()->user()->level === 4)
+    @if(auth()->user()->level === 4 && $event->published)
         <div class="form-group mb-3">
-            <x-forms.inputs.label for="accepted">{{ __('Accept') }}</x-forms.inputs.label>
+            <x-forms.inputs.label class="me-5">{{ __('Accept') }}</x-forms.inputs.label>
             <!-- inline checkbox -->
-            <div class="form-check">
-                <x-forms.inputs.checkbox id="accepted" value="1" name="accepted"
-                                         :checked="old('accepted', $event->accepted)">{{ __('Accept') }}</x-forms.inputs.checkbox>
+            <div class="form-check form-check-inline">
+                <x-forms.inputs.radio id="accepted"
+                                      value="1"
+                                      name="accepted"
+                                      :checked="old('accepted', $event->accepted)"
+                >{{ __('Accept') }}</x-forms.inputs.radio>
+            </div>
+            <div class="form-check form-check-inline">
+                <x-forms.inputs.radio id="no_accepted"
+                                      value="0"
+                                      name="accepted"
+                                      :checked="old('accepted', $event->accepted)"
+                >{{ __('No Accept') }}</x-forms.inputs.radio>
             </div>
         </div>
     @endif
@@ -63,4 +76,17 @@
     <x-forms.buttons.primary type="submit">
         {{ __('Submit') }}
     </x-forms.buttons.primary>
+
+        @push('js')
+            <script src="{{ asset('js/form-plugin.js') }}"></script>
+            <script>
+                window.addEventListener('load', () => {
+                    $("#happened_at").datepicker({
+                            startDate: new Date(),
+                            autoclose: true,
+                            format: 'dd-mm-yyyy',
+                    });
+                })
+            </script>
+        @endpush
 </div>
