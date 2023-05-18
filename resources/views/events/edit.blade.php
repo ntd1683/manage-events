@@ -16,7 +16,7 @@
                         {{ Breadcrumbs::render('edit_event', $event) }}
 
                         <h1 class="page-header">
-                        {{ __('Create Event') }}
+                        {{ __('Edit Event') }}
                         </h1>
 
                         <hr class="mb-4" />

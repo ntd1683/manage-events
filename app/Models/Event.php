@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Exception;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
 {
@@ -26,6 +28,10 @@ class Event extends Model
         'accepted',
         'publish_at',
         'accepted_at',
+    ];
+
+    protected $appends = [
+        'number_participants',
     ];
 
     public function publish(): void
@@ -70,5 +76,12 @@ class Event extends Model
             ->accepted()
             ->where('published', false)
             ->where('publish_at', '<=', now());
+    }
+
+    protected function numberParticipants(): Attribute
+    {
+        return Attribute::get(function () {
+            return RegisterEvent::query()->where('event_id', $this->id)->count();
+        });
     }
 }

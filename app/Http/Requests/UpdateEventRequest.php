@@ -12,7 +12,7 @@ class UpdateEventRequest extends FormRequest
     {
         $validationData = parent::validationData();
 
-        return auth()->user()->level === 4 || auth()->user()->id === $validationData['author'];
+        return auth()->user()->level === 4 || auth()->user()->id == $validationData['author'];
     }
 
     public function rules(): array

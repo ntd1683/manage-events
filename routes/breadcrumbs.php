@@ -32,3 +32,8 @@ Breadcrumbs::for('analytics', function (BreadcrumbTrail $trail) {
     $trail->parent('events');
     $trail->push(trans('Analytics Events'), route('events.analytics'));
 });
+
+Breadcrumbs::for('scan-qrcode', function (BreadcrumbTrail $trail) {
+    $trail->parent('events');
+    $trail->push(trans('Attendant Events'), route('events.scanQrCode'));
+});

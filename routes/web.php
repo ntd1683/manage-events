@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\SettingController;
@@ -41,9 +42,12 @@ Route::group([
 ], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::get('/', [DashboardController::class, '__invoke'])->name('index');
+
 //    Event
     Route::prefix('events')->name('events.')->group(function () {
         Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
+        Route::get('attendant-events', [EventController::class, 'scanQrCode'])->name('scanQrCode');
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
@@ -63,8 +67,4 @@ Route::group([
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
     });
-
-    Route::get('/', function () {
-        return view('index');
-    })->name('index');
 });

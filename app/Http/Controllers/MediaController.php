@@ -13,7 +13,7 @@ class MediaController extends Controller
      */
     public function index(): View
     {
-        $media_type = Media::query()->pluck('type');
+        $media_type = Media::query()->pluck('type')->unique();
         $media = Media::query()->orderByDesc('created_at')->get();
         return view('media.index', compact('media_type', 'media'));
     }

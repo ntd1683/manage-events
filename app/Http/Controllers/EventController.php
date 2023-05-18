@@ -18,6 +18,12 @@ class EventController extends Controller
     {
         return view('events.analytics');
     }
+
+    public function scanQrCode(): View
+    {
+        return view('events.scan-qr');
+    }
+
     public function create(): View
     {
         return view('events.create');

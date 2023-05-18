@@ -33,6 +33,8 @@
                                                 <th>{{ __('Title') }}</th>
                                                 <th>{{ __('Subtitle') }}</th>
                                                 <th>{{ __('Happened At') }}</th>
+                                                <th>{{ __('Number Participants') }}</th>
+                                                <th>{{ __('Published') }}</th>
                                                 <th>{{ __('Accepted') }}</th>
                                                 <th>{{ __('Edit') }}</th>
                                                 <th>{{ __('Destroy') }}</th>
@@ -109,6 +111,18 @@
                                 data: 'happened_at',
                                 render: function (data, type, row, meta) {
                                     return `<p title="${data}">${data}</p>`;
+                                }
+                            },
+                            {data: 'number_participants', name: 'number_participants'},
+                            {
+                                data: 'published',
+                                orderable: false,
+                                render: function (data, type, row, meta) {
+                                    if(data === 1) {
+                                        return `<span><i class="fa-solid fa-check me-1 text-theme"></i>Published</span>`;
+                                    } else {
+                                        return `<span><i class="fa-solid fa-xmark me-1 text-red"></i>Published</span>`;
+                                    }
                                 }
                             },
                             {

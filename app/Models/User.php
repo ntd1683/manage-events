@@ -86,9 +86,9 @@ class User extends Authenticatable
         return $this->hasMany(Event::class, 'author');
     }
 
-    public function getOldListings(): Collection
+    public function getOldEvents()
     {
-        return $this->listings()
+        return $this->events()
             ->published()
             ->accepted()
             ->where('publish_at', '<=', now()->subMonth())

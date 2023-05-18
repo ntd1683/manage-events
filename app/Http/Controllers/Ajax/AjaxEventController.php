@@ -17,7 +17,7 @@ class AjaxEventController extends Controller
 
     public function index()
     {
-        $events = Event::query()->published();
+        $events = Event::query()->where('author', auth()->user()->id);
         return DataTables::of($events)
             ->editColumn('title', function ($object) {
                 return [

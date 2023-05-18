@@ -8,7 +8,7 @@
             <div @class(['menu-item', 'active' => request()->routeIs('index')]) >
                 <a href="{{ route('index') }}" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-house-door"></i></span>
-                    <span class="menu-text">{{ __('Home') }}</span>
+                    <span class="menu-text">{{ __('Dashboard')}}</span>
                 </a>
             </div>
             <div @class(['menu-item has-sub', 'active expand' => substr(Request()->route()->getPrefix(), 1) === 'events' ])>
@@ -18,6 +18,14 @@
                     <span class="menu-caret"><b class="caret"></b></span>
                 </a>
                 <div class="menu-submenu" @if(substr(Request()->route()->getPrefix(), 1) === 'events') style="display: block;" @endif >
+                    <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
+                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;" >
+                            <span class="menu-icon" style="margin-right: 3px;" >
+                                <i class="fa-solid fa-plus"></i>
+                            </span>
+                            <span class="menu-text">{{ __('Create') }}</span>
+                        </a>
+                    </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.analytics')]) >
                         <a href="{{ route('events.analytics') }}" class="menu-link" style="padding-left: 0;" >
                             <span class="menu-icon" style="margin-right: 3px;" >
@@ -34,12 +42,12 @@
                             <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                         </a>
                     </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
-                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;" >
+                    <div @class(['menu-item', 'active' => request()->routeIs('events.scanQrCode')]) >
+                        <a href="{{ route('events.scanQrCode') }}" class="menu-link" style="padding-left: 0;" >
                             <span class="menu-icon" style="margin-right: 3px;" >
-                                <i class="fa-solid fa-plus"></i>
+                                <i class="fa-solid fa-qrcode"></i>
                             </span>
-                            <span class="menu-text">{{ __('Create') }}</span>
+                            <span class="menu-text">{{ __('Attendant Events') }}</span>
                         </a>
                     </div>
                 </div>

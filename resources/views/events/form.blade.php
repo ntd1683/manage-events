@@ -1,6 +1,12 @@
 @csrf
 <input type="hidden" name="author" value="{{ $event->author }}"/>
 <div class="row">
+    @if($event->id != null)
+        <div class="form-group mb-3">
+            <x-forms.inputs.label for="number_participants">{{ __('Number Of Participants') }}</x-forms.inputs.label>
+            <x-forms.inputs.readonly id="number_participants" value="{{ old('number_participants', $event->number_participants) }}" />
+        </div>
+    @endif
     <div class="form-group mb-3">
         <x-forms.inputs.label for="title">{{ __('Title') }}</x-forms.inputs.label>
         <x-forms.inputs.text id="title" value="{{ old('title', $event->title) }}" name="title"

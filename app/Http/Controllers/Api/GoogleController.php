@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImportGoogleSheet;
 use App\Http\Trait\ResponseTrait;
+use App\Models\Event;
 use App\Models\RegisterEvent;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
@@ -62,6 +63,9 @@ class GoogleController extends Controller
                     $listError[] = 'Line ' . $key + 1 . ': ' . $message;
                 } else {
                     try {
+                        Event::query()
+                            ->where('id', $request->get('event_id'))
+                            ->update(['google_sheet' => $request->get('sheet')]);
                         $tmp['event_id'] = $request->get('event_id');
                         RegisterEvent::insert($tmp);
                     } catch (\Exception $e) {
