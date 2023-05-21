@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\SettingController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
@@ -38,15 +42,30 @@ Route::group([
 ], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::get('/', [DashboardController::class, '__invoke'])->name('index');
+
+//    Event
     Route::prefix('events')->name('events.')->group(function () {
+        Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
+        Route::get('attendant-events', [EventController::class, 'scanQrCode'])->name('scanQrCode');
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::get('index', [EventController::class, 'index'])->name('index');
         Route::post('store', [EventController::class, 'store'])->name('store');
-        Route::post('edit/{event}', [EventController::class, 'edit'])->name('edit');
-        Route::get('events/google-sheet-import', [GoogleController::class, 'index'])->name('google.import');
+        Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
+        Route::post('update/{event}', [EventController::class, 'update'])->name('update');
+        Route::delete('delete/{event}', [EventController::class, 'destroy'])->name('destroy');
+        Route::get('google-sheet-import', [GoogleController::class, '__invoke'])->name('google.import');
     });
 
-    Route::get('/', function () {
-        return view('index');
-    })->name('index');
+
+    Route::resource('media', MediaController::class);
+
+//  Setting
+    Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
+
+    Route::prefix('ajax')->name('ajax.')->group(function () {
+        Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
+        Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
+    });
 });

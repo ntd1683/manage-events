@@ -15,7 +15,7 @@ trait ResponseTrait
         ]);
     }
 
-    public function errorResponse($message = '', $status = 400): JsonResponse
+    public function  errorResponse($message = '', $status = 400): JsonResponse
     {
         return response()->json([
             'success' => false,

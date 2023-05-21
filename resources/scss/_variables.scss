@@ -1,10 +1,10 @@
 /*
-   01. Color system 
+   01. Color system
    02. RTL setting
    03. Body setting
    04. Spacer setting
    05. Font & headings settings
-   06. Box shadow settings 
+   06. Box shadow settings
    07. Border-radius settings
    08. Grid settings
    09. App - Header settings
@@ -40,7 +40,7 @@
 */
 
 
-// 01. Color system 
+// 01. Color system
 
 $white:        #FFFFFF !default;
 $gray-500:     #617a86 !default;
@@ -72,6 +72,7 @@ $light:        $gray-100 !default;
 $primary:      $blue !default;
 $warning:      $orange !default;
 $danger:       $red !default;
+$error:       $red !default;
 $success:      $teal !default;
 $info:         $cyan !default;
 $secondary:    $gray-400 !default;
@@ -154,7 +155,7 @@ $line-height-lg:                          2 !default;
 
 
 
-// 06. Box shadow settings 
+// 06. Box shadow settings
 
 $box-shadow:                              0 .5rem 1rem rgba($white, .075) !default;
 $box-shadow-sm:                           0 .125rem .25rem rgba($white, .035) !default;

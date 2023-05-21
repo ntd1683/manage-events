@@ -13,13 +13,14 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['h-full no-js', $themeMode])>
 <head>
     <meta charset="utf-8" />
-    <title>HUD</title>
+    <title>{{ option('site_name', config('app.name')) }}</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           name="viewport" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon" href="{{ Storage::url(option('site_favicon')) }}">
 
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     @stack('css')
-{{--    <link href="assets/css/vendor.css" rel="stylesheet" />--}}
 
     <script>
         window.App = {{ Js::from([
@@ -47,7 +48,6 @@
 
 <!-- Toast -->
 @if ($errors->any())
-    {{ dd(1) }}
     @foreach ($errors->all() as $error)
         <x-toast status="error" title="Error" time="1s ago" class="border-danger">
             {{ $error }}
@@ -63,7 +63,7 @@
 
 @if (session()->has('success'))
     <x-toast status="success" title="Success" time="1s ago">
-        {{session()->get('success')}}
+        {{ session()->get('success') }}
     </x-toast>
     <script>
         window.addEventListener('load', () => {
@@ -73,9 +73,8 @@
 @endif
 
 @if (session()->has('error'))
-    {{ dd(2) }}
     <x-toast status="error" title="Error" time="1s ago">
-        {{session()->get('error')}}
+        {{ session()->get('error') }}
     </x-toast>
     <script>
         window.addEventListener('load', () => {

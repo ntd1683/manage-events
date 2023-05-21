@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\Media;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class EventSeeder extends Seeder
@@ -13,6 +14,7 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
+        $userId = User::query()->first()->id;
         $arr = [];
         $faker = \Faker\Factory::create('vi_VN');
         for ($i = 1; $i <= 10; $i++) {
@@ -26,7 +28,7 @@ class EventSeeder extends Seeder
                 'subtitle' => $faker->realText(50),
                 'description' => $faker->realText(),
                 'content' => $faker->realText(),
-                'author' => 24,
+                'author' => $userId,
                 'media_id' => $media->id,
             ];
         }

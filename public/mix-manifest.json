@@ -3,5 +3,10 @@
     "/js/app.js": "/js/app.js",
     "/js/guest.js": "/js/guest.js",
     "/js/scan-qrcode.js": "/js/scan-qrcode.js",
+    "/js/google.js": "/js/google.js",
+    "/js/datatable.js": "/js/datatable.js",
+    "/js/form-plugin.js": "/js/form-plugin.js",
+    "/css/datatable.css": "/css/datatable.css",
+    "/css/form-plugin.css": "/css/form-plugin.css",
     "/css/styles.css": "/css/styles.css"
 }

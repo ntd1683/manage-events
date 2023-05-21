@@ -25,15 +25,11 @@
         </style>
     @endpush
     <!-- BEGIN #content -->
-    {{ Breadcrumbs::render('index') }}
+    {{ Breadcrumbs::render('scan-qrcode') }}
 
-        <h1 class="page-header">
-            {{ __('Starter Page') }} <small>{{ __('page header description goes here...') }}</small>
-        </h1>
-
-        <p>
-            {{ __('Start build your page here') }}
-        </p>
+    <h1 class="page-header">
+        {{ __('Scan QR CODE') }} <small>{{ __('Attendance list of students') }}</small>
+    </h1>
     <div id="reader" width="600px" class="bg-gray-800 rounded"></div>
     <!-- END #content -->
     @push('js')
