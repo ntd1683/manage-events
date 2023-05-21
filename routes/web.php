@@ -49,6 +49,7 @@ Route::group([
         Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
         Route::get('attendant-events', [EventController::class, 'scanQrCode'])->name('scanQrCode');
         Route::get('create', [EventController::class, 'create'])->name('create');
+        Route::get('index', [EventController::class, 'index'])->name('index');
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
         Route::post('update/{event}', [EventController::class, 'update'])->name('update');

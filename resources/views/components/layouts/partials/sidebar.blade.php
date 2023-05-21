@@ -18,6 +18,14 @@
                     <span class="menu-caret"><b class="caret"></b></span>
                 </a>
                 <div class="menu-submenu" @if(substr(Request()->route()->getPrefix(), 1) === 'events') style="display: block;" @endif >
+                    <div @class(['menu-item','active' => request()->routeIs('events.index')])>
+                        <a href="{{ route('events.index') }}" class="menu-link" style="padding-left:0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
+                                <i class="bi bi-file-medical-fill"></i>
+                            </span>
+                            <span class="menu-text">{{ __('Index') }}</span>
+                        </a>
+                    </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
                         <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;" >
                             <span class="menu-icon" style="margin-right: 3px;" >

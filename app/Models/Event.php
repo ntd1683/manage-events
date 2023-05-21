@@ -32,6 +32,7 @@ class Event extends Model
 
     protected $appends = [
         'number_participants',
+        'media',
     ];
 
     public function publish(): void
@@ -83,5 +84,16 @@ class Event extends Model
         return Attribute::get(function () {
             return RegisterEvent::query()->where('event_id', $this->id)->count();
         });
+    }
+
+    protected function media(): Attribute
+    {
+        return Attribute::get(function () {
+            $media = '';
+            if($this->media_id) {
+                $media = Media::query()->where('id', $this->media_id)->first()->url;
+            }
+            return $media;
+        })->shouldCache();
     }
 }

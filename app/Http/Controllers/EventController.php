@@ -14,6 +14,12 @@ use Illuminate\View\View;
 
 class EventController extends Controller
 {
+    public function index(): View
+    {
+        $events = Event::query()->get();
+        return view('events.index', compact('events'));
+    }
+
     public function analytics(): View
     {
         return view('events.analytics');
