@@ -29,12 +29,28 @@
                                                     <div class="card">
                                                         <div class="card-body pb-2">
                                                             @if($event->media)
-                                                            <img src="{{ $event->media }}" class="card-img-top" alt="Waterfall" />
+                                                                <div style="height:230px;"
+                                                                     class="d-flex align-items-center justify-content-center">
+                                                                    <img src="{{ $event->media }}"
+                                                                         class="card-img-top h-100 img-fluid"
+                                                                         alt="Waterfall" style="width: auto;"/>
+                                                                </div>
+                                                            @else
+                                                                <div style="height:230px"
+                                                                     class="d-flex align-items-center">
+                                                                    <p title="{{ $event->description }}">{{ $event->description }}</p>
+                                                                </div>
                                                             @endif
-                                                            <h5 class="card-title">{{ $event->title }}</h5>
-                                                            <a href="#" class="btn btn-primary">{{ __('Register') }}</a>
+                                                            <hr>
+                                                            <div>
+                                                                <a href="#" class="text-decoration-none">
+                                                                    <h5 class="card-title"
+                                                                        title="{{ 'Detail' . $event->title }}">{{ Str::limit($event->title, 22) }}</h5>
+                                                                </a>
+                                                                <x-forms.buttons.primary data-bs-toggle="modal"
+                                                                                         data-bs-target="#modal_register">{{ __('Register') }}</x-forms.buttons.primary>
+                                                            </div>
                                                         </div>
-
                                                         <div class="card-arrow">
                                                             <div class="card-arrow-top-left"></div>
                                                             <div class="card-arrow-top-right"></div>
@@ -68,4 +84,11 @@
         <!-- END row -->
     </div>
     <!-- END container -->
+    <x-modal id="modal_register" title="{{ __('Register Event')}}">
+        <p>{{ __('Are you sure you want to register for the event?') }}</p>
+        <x-slot:buttons>
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{ __('Close') }}</button>
+            <button type="button" class="btn btn-outline-theme" id="submit_form">{{ __('Yes') }}</button>
+        </x-slot:buttons>
+    </x-modal>
 </x-layouts.master>
