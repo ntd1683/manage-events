@@ -28,12 +28,12 @@
                                         <div class="row">
                                             <x-forms.inputs.label for="event_id">{{ __('Select Event') }}</x-forms.inputs.label>
                                             @csrf
-                                            <select class="form-control form-select mb-3" name="event_id" id="select_event">
+                                            <x-forms.inputs.select class="mb-3" name="event_id" id="select_event">
                                                 <option value="-1">{{ __('Choose Event Import') }}</option>
                                                 @foreach($events as $event)
                                                     <option value="{{ $event->id }}" @selected($event_id == $event->id) >{{ $event->title }}</option>
                                                 @endforeach
-                                            </select>
+                                            </x-forms.inputs.select>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="sheet_id">{{ __('Link Google Sheet: ') }}</label>
                                                 <input type="text" class="form-control" id="sheet_id" value="{{ old('sheet') }}" name="sheet"

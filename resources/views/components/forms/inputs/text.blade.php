@@ -1,1 +1,1 @@
-<input type="text" {{ $attributes->merge(["class" => "form-control"]) }} {{ $attributes }}/>
+<input type="text" {{ $attributes->merge(["class" => "form-control"]) }}/>

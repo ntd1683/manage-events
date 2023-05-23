@@ -24,6 +24,24 @@
                             <!-- BEGIN #datatable -->
                             <div id="table" class="mb-5">
                                 <p>{{ __('All events you\'ve created') }}</p>
+                                <div class="filter d-flex justify-content-between mb-2">
+                                    <x-forms.inputs.select class="me-2" id="select_user">
+                                        <option value="1">{{ __('Admin') }}</option>
+                                        <option value="0" selected>{{ __('User') }}</option>
+                                    </x-forms.inputs.select>
+
+                                    <x-forms.inputs.select class="me-2" id="select_accept">
+                                        <option value="0" selected>{{ __('ALL') }}</option>
+                                        <option value="2">{{ __('Accepted') }}</option>
+                                        <option value="1">{{ __('No Accepted') }}</option>
+                                    </x-forms.inputs.select>
+
+                                    <x-forms.inputs.select id="select_publish">
+                                        <option value="0" selected>{{ __('ALL') }}</option>
+                                        <option value="2">{{ __('Publish') }}</option>
+                                        <option value="1">{{ __('No Publish') }}</option>
+                                    </x-forms.inputs.select>
+                                </div>
                                 <div class="card">
                                     <div class="card-body">
                                         <table id="datatableDefault" class="table text-nowrap w-100">
@@ -92,7 +110,16 @@
                         dom: "<'row mb-3'<'col-md-4 mb-3 mb-md-0'l><'col-md-8 text-right'<'d-flex justify-content-end'fB>>>t<'row align-items-center'<'mr-auto col-md-6 mb-3 mb-md-0 mt-n2 'i><'mb-0 col-md-6'p>>",
                         lengthMenu: [ 10, 20, 30, 40, 50 ],
                         responsive: true,
-                        ajax: '{!! route('ajax.events.index') !!}',
+                        ajax: {
+                            "url": "{!! route('ajax.events.index') !!}",
+                            "data": function ( d ) {
+                                return $.extend( {}, d, {
+                                    "select_user": $('#select_user').val(),
+                                    "select_accept": $('#select_accept').val(),
+                                    "select_publish": $('#select_publish').val()
+                                } );
+                            }
+                        },
                         columns: [
                             {data: 'id', name: 'id'},
                             {
@@ -119,20 +146,19 @@
                                 orderable: false,
                                 render: function (data, type, row, meta) {
                                     if(data === 1) {
-                                        return `<span><i class="fa-solid fa-check me-1 text-theme"></i>Published</span>`;
+                                        return `<span><i class="fa-solid fa-check me-1 text-theme"></i>{{ __('Published') }}</span>`;
                                     } else {
-                                        return `<span><i class="fa-solid fa-xmark me-1 text-red"></i>Published</span>`;
+                                        return `<span><i class="fa-solid fa-xmark me-1 text-red"></i>{{ __('Published') }}</span>`;
                                     }
                                 }
                             },
                             {
                                 data: 'accepted',
-                                orderable: false,
                                 render: function (data, type, row, meta) {
                                     if(data === 1) {
-                                        return `<span><i class="fa-solid fa-check me-1 text-theme"></i>Accepted</span>`;
+                                        return `<span data-order=${data}><i class="fa-solid fa-check me-1 text-theme"></i>{{ __('Accepted') }}</span>`;
                                     } else {
-                                        return `<span><i class="fa-solid fa-xmark me-1 text-red"></i>Accepted</span>`;
+                                        return `<span><i class="fa-solid fa-xmark me-1 text-red"></i>{{ __('Accepted') }}</span>`;
                                     }
                                 }
                             },
@@ -162,13 +188,23 @@
                             { extend: 'csv', className: 'btn btn-outline-default btn-sm' }
                         ],
                     });
-
                 };
 
                 $(document).ready(function () {
                     handleRenderTableData();
                 });
 
+                $('#select_user').on('change', () => {
+                    table.ajax.reload();
+                });
+
+                $('#select_accept').on('change', () => {
+                    table.ajax.reload();
+                });
+
+                $('#select_publish').on('change', () => {
+                    table.ajax.reload();
+                });
 
                 $(document).on('click','.btn-delete',function(){
                     let confirm_delete = confirm("Are you sure you want to delete?");

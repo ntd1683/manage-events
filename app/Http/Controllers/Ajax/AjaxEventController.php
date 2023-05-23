@@ -7,6 +7,7 @@ use App\Http\Trait\ResponseTrait;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -15,9 +16,23 @@ class AjaxEventController extends Controller
 {
     use ResponseTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::query()->where('author', auth()->user()->id);
+        $selectUser = $request->select_user ?: 0;
+        $selectAccept = $request->select_accept ?: -1;
+        $selectPublish = $request->select_publish ?: -1;
+        $events = Event::query()
+            ->when($selectUser === 0 || auth()->user()->level !== 4, function($query) use($selectUser) {
+                $query->where('author', auth()->user()->id);
+            })
+            ->when(in_array($selectAccept, [1,2] ), function($query) use($selectAccept) {
+                $selectAccept = $selectAccept == 1 ? 0 : 1;
+                $query->where('accepted', $selectAccept);
+            })
+            ->when(in_array($selectPublish, [1,2] ), function($query) use($selectPublish) {
+                $selectPublish = $selectPublish == 1 ? 0 : 1;
+                $query->where('published', $selectPublish);
+            });
         return DataTables::of($events)
             ->editColumn('title', function ($object) {
                 return [
@@ -42,7 +57,12 @@ class AjaxEventController extends Controller
             })
             ->filterColumn('title', function ($query, $keyword) {
                 if ($keyword !== 'null') {
-                    $query->where('name', $keyword);
+                    $query->where('title', $keyword);
+                }
+            })
+            ->filterColumn('author', function ($query, $keyword) {
+                if ($keyword !== 'null') {
+                    $query->where('title', $keyword);
                 }
             })
         ->make(true);
