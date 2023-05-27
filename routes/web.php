@@ -69,6 +69,7 @@ Route::group([
 
     Route::prefix('ajax')->name('ajax.')->group(function () {
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
+        Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
         Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
         Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
         Route::post('google-spreadsheet', [AjaxGoogleController::class, 'import'])->name('google-spreadsheet');

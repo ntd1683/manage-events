@@ -19,6 +19,7 @@ mix
     .js('resources/js/google.js', 'public/js')
     .js('resources/js/datatable.js', 'public/js')
     .js('resources/js/form-plugin.js', 'public/js')
+    .js('resources/js/event.js', 'public/js')
     .sass('resources/scss/styles.scss', 'public/css')
     .sass('resources/scss/datatable.scss', 'public/css')
     .sass('resources/scss/form-plugin.scss', 'public/css')

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Ajax;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Ajax\AjaxStoreEventRequest;
 use App\Http\Trait\ResponseTrait;
 use App\Models\Event;
+use App\Models\RegisterEvent;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -66,6 +68,36 @@ class AjaxEventController extends Controller
                 }
             })
         ->make(true);
+    }
+
+    public function store(AjaxStoreEventRequest $request): JsonResponse
+    {
+        try {
+            $user = auth()->user();
+
+            $registerEvent = RegisterEvent::query()
+                ->where('code_student', $user->code_student)
+                ->where('event_id', $request->get('event_id'))
+                ->first();
+
+            if($registerEvent) {
+                return $this->errorResponse(trans('You have already registered for the event'));
+            }
+
+            RegisterEvent::create([
+                'name' => $user->name,
+                'code_student' => $user->code_student,
+                'class' => $user->class,
+                'faculty' => $user->faculty,
+                'phone' => $user->phone,
+                'email' => $user->email,
+                'event_id' => $request->get('event_id'),
+            ]);
+
+            return $this->successResponse([], trans('Registered Successfully'));
+        } catch (\Exception $e) {
+            return $this->errorResponse(trans('Unknown error, please try again later'));
+        }
     }
 
     public function destroy(Event $event): JsonResponse

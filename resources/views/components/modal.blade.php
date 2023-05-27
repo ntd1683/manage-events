@@ -3,7 +3,8 @@
     'action' => '',
     'method' => 'get',
     'buttons' => '',
-    'onsubmit' => ''
+    'onsubmit' => '',
+    'formId' => '',
 ])
 <div {{ $attributes->merge(["class" => "modal modal-cover fade"]) }}>
     <div class="modal-dialog">
@@ -12,7 +13,7 @@
                 <h5 class="modal-title">{{ $title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form action="{{ $action }}" method="{{ $method }}" @if($onsubmit) return false; @endif>
+            <form action="{{ $action }}" method="{{ $method }}" @if($onsubmit)onsubmit="return false;" @endif @if($formId)id="{{ $formId }}" @endif>
                 <div class="modal-body">
                     {{ $slot }}
                 </div>

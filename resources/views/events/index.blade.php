@@ -31,7 +31,7 @@
                                                             @if($event->media)
                                                                 <div style="height:230px;"
                                                                      class="d-flex align-items-center justify-content-center">
-                                                                    <img src="{{ $event->media }}"
+                                                                    <img src="{{ Storage::url($event->media) }}"
                                                                          class="card-img-top h-100 img-fluid"
                                                                          alt="{{ $event->title }}" style="width: auto;"/>
                                                                 </div>
@@ -48,7 +48,10 @@
                                                                         title="{{ 'Detail' . $event->title }}">{{ Str::limit($event->title, 22) }}</h5>
                                                                 </a>
                                                                 <x-forms.buttons.primary data-bs-toggle="modal"
-                                                                                         data-bs-target="#modal_register">{{ __('Register') }}</x-forms.buttons.primary>
+                                                                                         data-bs-target="#modal_register"
+                                                                                         data-event-id="{{ $event->id }}"
+                                                                                         class="button-register"
+                                                                >{{ __('Register') }}</x-forms.buttons.primary>
                                                             </div>
                                                         </div>
                                                         <div class="card-arrow">
@@ -84,11 +87,19 @@
         <!-- END row -->
     </div>
     <!-- END container -->
-    <x-modal id="modal_register" title="{{ __('Register Event')}}">
+    <x-modal id="modal_register" title="{{ __('Register Event')}}" action="{{ route('ajax.events.store') }}"
+             onsubmit="return false;" formId="form">
         <p>{{ __('Are you sure you want to register for the event?') }}</p>
         <x-slot:buttons>
-            <button type="button" class="btn btn-default" data-bs-dismiss="modal">{{ __('Close') }}</button>
-            <button type="button" class="btn btn-outline-theme" id="submit_form">{{ __('Yes') }}</button>
+            <x-forms.buttons.default type="button" data-bs-dismiss="modal" id="button_close_modal">
+                {{ __('Close') }}
+            </x-forms.buttons.default>
+            <x-forms.buttons.primary type="button" id="submit_form">
+                {{ __('Yes') }}
+            </x-forms.buttons.primary>
         </x-slot:buttons>
     </x-modal>
+    @push('js')
+        <script src="{{ asset('js/event.js') }}"></script>
+    @endpush
 </x-layouts.master>
