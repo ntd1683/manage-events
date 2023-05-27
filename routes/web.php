@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Ajax\AjaxEventController;
+use App\Http\Controllers\Ajax\AjaxGoogleController;
 use App\Http\Controllers\Ajax\AjaxScanQrCodeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -70,5 +71,6 @@ Route::group([
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
         Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
+        Route::post('google-spreadsheet', [AjaxGoogleController::class, 'import'])->name('google-spreadsheet');
     });
 });

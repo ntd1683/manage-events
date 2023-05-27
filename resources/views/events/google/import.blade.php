@@ -23,8 +23,7 @@
                         <div id="formControls" class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('api.google-spreadsheet') }}" onsubmit="return false" id="form">
-                                        <input type="hidden" name="token" value="{{ auth()->user()->remember_token }}">
+                                    <form action="{{ route('ajax.google-spreadsheet') }}" onsubmit="return false" id="form">
                                         <div class="row">
                                             <x-forms.inputs.label for="eventId">{{ __('Select Event') }}</x-forms.inputs.label>
                                             @csrf

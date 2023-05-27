@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
         let url = $('#form').attr('action');
 
         $.ajax({
-            method: 'GET',
+            method: 'POST',
             url: url,
             data: $("#form").serialize(),
             success: function (data) {

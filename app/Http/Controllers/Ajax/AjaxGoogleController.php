@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Ajax;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ImportGoogleSheet;
@@ -10,9 +10,8 @@ use App\Models\RegisterEvent;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Revolution\Google\Sheets\Facades\Sheets;
-use Illuminate\Http\Request;
 
-class GoogleController extends Controller
+class AjaxGoogleController extends Controller
 {
     use ResponseTrait;
 

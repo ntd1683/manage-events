@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\GoogleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('google-spreadsheet', [GoogleController::class, 'import'])->name('google-spreadsheet');
