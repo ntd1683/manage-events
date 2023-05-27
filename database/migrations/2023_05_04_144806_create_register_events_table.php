@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('class')->nullable();
             $table->string('faculty')->nullable();
             $table->string('phone', 13)->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->bigInteger('event_id')->nullable();
             $table->integer('type')->nullable();
             $table->timestamps();

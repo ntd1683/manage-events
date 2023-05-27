@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('subtitle')->nullable();
             $table->string('description')->nullable();
-            $table->string('content')->nullable();
+            $table->text('content')->nullable();
             $table->bigInteger('author');
             $table->string('google_sheet')->nullable();
             $table->bigInteger('media_id')->nullable();

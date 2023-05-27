@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Ajax\AjaxEventController;
+use App\Http\Controllers\Ajax\AjaxScanQrCodeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
@@ -47,9 +48,10 @@ Route::group([
 //    Event
     Route::prefix('events')->name('events.')->group(function () {
         Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
-        Route::get('attendant-events', [EventController::class, 'scanQrCode'])->name('scanQrCode');
+        Route::get('scan-qrcode', [EventController::class, 'scanQrCode'])->name('scanQrCode');
         Route::get('create', [EventController::class, 'create'])->name('create');
-        Route::get('index', [EventController::class, 'index'])->name('index');
+        Route::get('/', [EventController::class, 'index'])->name('index');
+        Route::get('show/{event}', [EventController::class, 'show'])->name('show');
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::get('edit/{event}', [EventController::class, 'edit'])->name('edit');
         Route::post('update/{event}', [EventController::class, 'update'])->name('update');
@@ -67,5 +69,6 @@ Route::group([
     Route::prefix('ajax')->name('ajax.')->group(function () {
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
+        Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
     });
 });

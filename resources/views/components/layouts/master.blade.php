@@ -61,10 +61,10 @@
     @endforeach
 @endif
 
-@if (session()->has('success'))
     <x-toast status="success" title="Success" time="1s ago">
         {{ session()->get('success') }}
     </x-toast>
+@if (session()->has('success'))
     <script>
         window.addEventListener('load', () => {
             $('.toast-success').toast('show');
@@ -72,10 +72,11 @@
     </script>
 @endif
 
-@if (session()->has('error'))
     <x-toast status="error" title="Error" time="1s ago">
         {{ session()->get('error') }}
     </x-toast>
+
+@if (session()->has('error'))
     <script>
         window.addEventListener('load', () => {
             $('.toast-error').toast('show');

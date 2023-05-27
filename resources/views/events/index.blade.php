@@ -13,7 +13,7 @@
                         {{ Breadcrumbs::render('create_event') }}
 
                         <h1 class="page-header">
-                        {{ __('Create Event') }}
+                        {{ __('Event') }}
                         </h1>
 
                         <hr class="mb-4" />
@@ -33,7 +33,7 @@
                                                                      class="d-flex align-items-center justify-content-center">
                                                                     <img src="{{ $event->media }}"
                                                                          class="card-img-top h-100 img-fluid"
-                                                                         alt="Waterfall" style="width: auto;"/>
+                                                                         alt="{{ $event->title }}" style="width: auto;"/>
                                                                 </div>
                                                             @else
                                                                 <div style="height:230px"
@@ -43,7 +43,7 @@
                                                             @endif
                                                             <hr>
                                                             <div>
-                                                                <a href="#" class="text-decoration-none">
+                                                                <a href="{{ route("events.show", $event) }}" class="text-decoration-none">
                                                                     <h5 class="card-title"
                                                                         title="{{ 'Detail' . $event->title }}">{{ Str::limit($event->title, 22) }}</h5>
                                                                 </a>

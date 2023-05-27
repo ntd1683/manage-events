@@ -26,12 +26,12 @@
                                     <form action="{{ route('api.google-spreadsheet') }}" onsubmit="return false" id="form">
                                         <input type="hidden" name="token" value="{{ auth()->user()->remember_token }}">
                                         <div class="row">
-                                            <x-forms.inputs.label for="event_id">{{ __('Select Event') }}</x-forms.inputs.label>
+                                            <x-forms.inputs.label for="eventId">{{ __('Select Event') }}</x-forms.inputs.label>
                                             @csrf
                                             <x-forms.inputs.select class="mb-3" name="event_id" id="select_event">
                                                 <option value="-1">{{ __('Choose Event Import') }}</option>
                                                 @foreach($events as $event)
-                                                    <option value="{{ $event->id }}" @selected($event_id == $event->id) >{{ $event->title }}</option>
+                                                    <option value="{{ $event->id }}" @selected($eventId == $event->id) >{{ $event->title }}</option>
                                                 @endforeach
                                             </x-forms.inputs.select>
                                             <div class="form-group mb-3">

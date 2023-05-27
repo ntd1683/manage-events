@@ -10,6 +10,7 @@ class RegisterEvent extends Model
     use HasFactory;
 
     protected $table = 'register_events';
+    public $timestamps = true;
 
     protected $fillable = [
         'name',

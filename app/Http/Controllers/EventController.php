@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use App\Models\Media;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -25,9 +27,19 @@ class EventController extends Controller
         return view('events.analytics');
     }
 
-    public function scanQrCode(): View
+    public function scanQrCode(Request $request): View
     {
-        return view('events.scan-qr');
+        $events = Event::query()
+            ->where('author', auth()->user()->id)
+            ->published()
+            ->accepted()
+            ->where('happened_at', '=' , today('Asia/Jakarta'))
+            ->get();
+
+
+        $eventId = $request->get('event_id') ?: -1;
+
+        return view('events.scan-qr', compact('events', 'eventId'));
     }
 
     public function create(): View
@@ -75,6 +87,22 @@ class EventController extends Controller
         }
 
         return redirect()->route('events.index')->with('success', 'Thêm sự kiện thành công.');
+    }
+
+    public function show(Event $event): View | RedirectResponse
+    {
+        if(auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
+            return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
+        }
+
+        $media = '';
+
+        if($event->media_id){
+            $media = Media::query()->where('id', $event->media_id)->first();
+            $media = $media->url;
+        }
+
+        return view('events.show', compact('event', 'media'));
     }
 
     public function edit(Event $event): View | RedirectResponse

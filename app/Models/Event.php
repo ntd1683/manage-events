@@ -71,6 +71,11 @@ class Event extends Model
         $query->where('accepted', true);
     }
 
+    public function scopeHappened(Builder $query)
+    {
+        $query->where('happened_at', now());
+    }
+
     public function scopeShouldPublish(Builder $query)
     {
         $query
