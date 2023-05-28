@@ -94,11 +94,11 @@ class Event extends Model
     protected function media(): Attribute
     {
         return Attribute::get(function () {
-            $media = '';
+            $mediaUrl = '';
             if($this->media_id) {
-                $media = Media::query()->where('id', $this->media_id)->first()->url;
+                $mediaUrl = Media::query()->where('id', $this->media_id)->first()->url;
             }
-            return $media;
+            return $mediaUrl;
         })->shouldCache();
     }
 }

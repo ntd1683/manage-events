@@ -45,7 +45,7 @@
                                    value="{{ old('happened_at', \Illuminate\Support\Carbon::parse($event->happened_at)->format('d-m-Y')) }}"
                                    name="happened_at" placeholder="{{ __('d-m-Y') }}"/>
     </div>
-    @if(auth()->user()->level === 4 && $event->published)
+    @if(auth()->user()->level === 4 && $event->id)
         <div class="form-group mb-3">
             <x-forms.inputs.label class="me-5">{{ __('Accept') }}</x-forms.inputs.label>
             <!-- inline checkbox -->

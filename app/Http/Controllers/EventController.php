@@ -81,7 +81,6 @@ class EventController extends Controller
         if($request->get('accepted') && auth()->user()->level === 4) {
             $event->accept();
         } else {
-            $event->accepted = 0;
             $event->save();
         }
 

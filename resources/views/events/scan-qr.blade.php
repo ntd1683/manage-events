@@ -35,6 +35,12 @@
     <div class="mb-3">
         <form action="{{ route('ajax.scan-qrcode') }}" method="post" onsubmit="return false" id="form">
             @csrf
+            @foreach($events as $event)
+                @if($event->media)
+                <input type="text" class="d-none" id="media_{{ $event->id }}"
+                       value="{{ Storage::url($event->media) }}">
+                @endif
+            @endforeach
             <x-forms.inputs.label>{{ __('Select Event') }}</x-forms.inputs.label>
             <x-forms.inputs.select name="event_id" id="select_event">
                 <option value="-1">{{ __('Choose Event In Progress') }}</option>
@@ -49,8 +55,21 @@
     <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_success" id="button_success"
                              class="opacity-0">{{ __('Success') }}</x-forms.buttons.warning>
     <x-modal id="modal_success" title="{{ __('Success') }}">
-        <div>
-            <p>{{ __('Successfully added') }}</p>
+        <div class="text-center">
+            <h3>{{ __('Successfully added') }}</h3>
+        </div>
+        <x-slot:buttons>
+            <button type="button" class="btn btn-default text-white" data-bs-dismiss="modal">{{ __('Close') }}</button>
+        </x-slot:buttons>
+    </x-modal>
+
+    <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_error" id="button_error"
+                             class="opacity-0">{{ __('Error') }}</x-forms.buttons.warning>
+    <x-modal id="modal_error" title="{{ __('Error') }}">
+        <div class="text-center">
+            <h3>{{ __('Register through google form') }}</h3>
+            <p id="text_error" class="mb-2"></p>
+            <img src="" id="img_error" style="width: 70%;">
         </div>
         <x-slot:buttons>
             <button type="button" class="btn btn-default text-white" data-bs-dismiss="modal">{{ __('Close') }}</button>

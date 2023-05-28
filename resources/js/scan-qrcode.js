@@ -20,6 +20,14 @@ function onScanSuccess(decodedText, decodedResult) {
             $('#button_success').click();
         },
         error: function (data) {
+            let eventId = selectEvent.val();
+            let media = $('#media_' + eventId).val();
+            if(media) {
+                $('#text_error').text(data.responseJSON.message);
+                $('#img_error').attr('src', media);
+                $('#button_error').click();
+            }
+
             $('.message-error').text(data.responseJSON.message);
             $('.toast-error').toast('show');
         }
