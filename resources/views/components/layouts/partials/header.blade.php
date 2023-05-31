@@ -24,7 +24,7 @@
 
     <!-- BEGIN brand -->
     <div class="brand">
-        <a href="#" class="brand-logo">
+        <a href="{{ route('index') }}" class="brand-logo">
             <span class="brand-img">
                 <span class="brand-img-text text-theme">{{ auth()->user()->key_level }}</span>
             </span>
@@ -75,7 +75,7 @@
                         </a>
                     </div>
                     <div class="col-4">
-                        <a href="{{ route('setting.index') }}" class="dropdown-item text-decoration-none p-3 bg-none">
+                        <a href="{{ route('setting') }}" class="dropdown-item text-decoration-none p-3 bg-none">
                             <div class="position-relative">
                                 <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
                                 <i class="bi bi-sliders h2 opacity-5 d-block my-1"></i>
@@ -114,16 +114,16 @@
                         <img src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name }}">
                     </div>
                 </div>
-                <div class="menu-text d-sm-block d-none">{{ auth()->user()->email }}</div>
+                <div class="menu-text d-sm-block d-none">{{ auth()->user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
-                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('PROFILE') }} <i
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">{{ __('PROFILE') }} <i
                         class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
                 <a class="dropdown-item d-flex align-items-center" href="#">{{ __('INBOX') }}<i
                         class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
                 <a class="dropdown-item d-flex align-items-center" href="#">{{ __('CALENDAR') }}<i
                         class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('setting.index') }}">{{ __('SETTINGS') }}<i
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('setting') }}">{{ __('SETTINGS') }}<i
                         class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">{{ __('LOGOUT') }}<i

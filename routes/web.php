@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\Ajax\AjaxGoogleController;
+use App\Http\Controllers\Ajax\AjaxProfileController;
 use App\Http\Controllers\Ajax\AjaxScanQrCodeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
@@ -43,6 +45,7 @@ Route::group([
      'middleware' => CheckLoginMiddleware::class,
 ], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('verify-email', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
 
     Route::get('/', [DashboardController::class, '__invoke'])->name('index');
 
@@ -64,14 +67,22 @@ Route::group([
     Route::resource('media', MediaController::class);
 
 //  Setting
-    Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::get('setting', [SettingController::class, 'index'])->name('setting');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
 
+//    Profile
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('profile', [ProfileController::class, 'store'])->name('profile.store');
+
+//    Ajax
     Route::prefix('ajax')->name('ajax.')->group(function () {
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
         Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
         Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
         Route::post('google-spreadsheet', [AjaxGoogleController::class, 'import'])->name('google-spreadsheet');
+        Route::post('profile/avatar', [AjaxProfileController::class , 'uploadAvatar'])->name('profile.avatar');
+        Route::post('profile/change-password', [AjaxProfileController::class , 'changePassword'])->name('profile.changePassword');
+        Route::post('profile/verify-email', [AjaxProfileController::class , 'verifyEmail'])->name('profile.verifyEmail');
     });
 });

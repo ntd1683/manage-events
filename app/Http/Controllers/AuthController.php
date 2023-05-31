@@ -8,8 +8,10 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProcessResetPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\VerifyEmailRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -118,5 +120,13 @@ class AuthController extends Controller
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
         return redirect()->route('login')->with('success', 'Change Password Successfully !!!');
+    }
+
+    public function verifyEmail(VerifyEmailRequest $request) {
+        User::where(['remember_token' => $request->get('token')])->update([
+            'email_verified_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()->route('index')->with('success', 'Verify Email Successfully !!!');
     }
 }
