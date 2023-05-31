@@ -19,7 +19,7 @@ class SettingController extends Controller
     {
         optionSave('site_name', $request->get('site_name'));
 
-        if(option('site_logo')){
+        if (option('site_logo')) {
             Storage::disk('public')->delete(option('site_logo'));
         }
 
@@ -31,7 +31,7 @@ class SettingController extends Controller
             optionSave('site_logo', $filePathLogo);
         }
 
-        if(option('site_favicon')){
+        if (option('site_favicon')) {
             Storage::disk('public')->delete(option('site_favicon'));
         }
 

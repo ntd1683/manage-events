@@ -24,14 +24,14 @@ class AjaxEventController extends Controller
         $selectAccept = $request->select_accept ?: -1;
         $selectPublish = $request->select_publish ?: -1;
         $events = Event::query()
-            ->when($selectUser === 0 || auth()->user()->level !== 4, function($query) use($selectUser) {
+            ->when($selectUser === 0 || auth()->user()->level !== 4, function ($query) use ($selectUser) {
                 $query->where('author', auth()->user()->id);
             })
-            ->when(in_array($selectAccept, [1,2] ), function($query) use($selectAccept) {
+            ->when(in_array($selectAccept, [1,2]), function ($query) use ($selectAccept) {
                 $selectAccept = $selectAccept == 1 ? 0 : 1;
                 $query->where('accepted', $selectAccept);
             })
-            ->when(in_array($selectPublish, [1,2] ), function($query) use($selectPublish) {
+            ->when(in_array($selectPublish, [1,2]), function ($query) use ($selectPublish) {
                 $selectPublish = $selectPublish == 1 ? 0 : 1;
                 $query->where('published', $selectPublish);
             });
@@ -80,7 +80,7 @@ class AjaxEventController extends Controller
                 ->where('event_id', $request->get('event_id'))
                 ->first();
 
-            if($registerEvent) {
+            if ($registerEvent) {
                 return $this->errorResponse(trans('You have already registered for the event'));
             }
 
@@ -102,7 +102,7 @@ class AjaxEventController extends Controller
 
     public function destroy(Event $event): JsonResponse
     {
-        if(auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
+        if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
             return $this->errorResponse('You do not have permission to delete this event !');
         }
 

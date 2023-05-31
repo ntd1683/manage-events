@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 class AjaxScanQrCodeController extends Controller
 {
     use ResponseTrait;
+
     public function __invoke(ScanQrCodeRequest $request): JsonResponse
     {
         if (! $request->ajax()) {
@@ -25,7 +26,7 @@ class AjaxScanQrCodeController extends Controller
                 ->where('code_student', $qrcode)
                 ->where('event_id', $eventId)
                 ->first();
-            if($registerEvent) {
+            if ($registerEvent) {
                 EventAttendance::create([
                     'event_id' => $eventId,
                     'register_event_id' => $registerEvent->id,
@@ -35,7 +36,7 @@ class AjaxScanQrCodeController extends Controller
             }
 
             return $this->errorResponse('Students who have not registered to participate');
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorResponse(trans('This student has been enrolled'));
         }
     }

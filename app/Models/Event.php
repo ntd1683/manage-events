@@ -59,7 +59,7 @@ class Event extends Model
 
     public function scopePublished(Builder $query)
     {
-        if(auth()->user()->level === 4) {
+        if (auth()->user()->level === 4) {
             $query->where('published', true);
         } else {
             $query->where('published', true)->where('author', auth()->user()->id);
@@ -95,7 +95,7 @@ class Event extends Model
     {
         return Attribute::get(function () {
             $mediaUrl = '';
-            if($this->media_id) {
+            if ($this->media_id) {
                 $mediaUrl = Media::query()->where('id', $this->media_id)->first()->url;
             }
             return $mediaUrl;

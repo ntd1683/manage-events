@@ -122,7 +122,8 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Change Password Successfully !!!');
     }
 
-    public function verifyEmail(VerifyEmailRequest $request) {
+    public function verifyEmail(VerifyEmailRequest $request)
+    {
         User::where(['remember_token' => $request->get('token')])->update([
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);

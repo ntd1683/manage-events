@@ -17,9 +17,10 @@ class AjaxProfileController extends Controller
 {
     use ResponseTrait;
 
-    public function uploadAvatar(AjaxUploadAvatarRequest $request) {
+    public function uploadAvatar(AjaxUploadAvatarRequest $request)
+    {
         try {
-            if(auth()->user()->avatar) {
+            if (auth()->user()->avatar) {
                 Storage::disk('public')->delete(auth()->user()->avatar);
             }
 
@@ -36,12 +37,13 @@ class AjaxProfileController extends Controller
         }
     }
 
-    public function changePassword(AjaxChangePasswordRequest $request) {
+    public function changePassword(AjaxChangePasswordRequest $request)
+    {
         try {
             $password = $request->get('old_password');
             $checkPassword = Hash::check($password, auth()->user()->password);
 
-            if(! $checkPassword) {
+            if (! $checkPassword) {
                 return $this->errorResponse(trans('Invalid old password, please try again later'));
             }
 
@@ -55,8 +57,9 @@ class AjaxProfileController extends Controller
         }
     }
 
-    public function verifyEmail(Request $request) {
-        if(auth()->user()->email_verified_at) {
+    public function verifyEmail(Request $request)
+    {
+        if (auth()->user()->email_verified_at) {
             return $this->errorResponse(trans('Email has been confirmed'));
         }
 

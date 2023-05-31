@@ -17,7 +17,7 @@ class AjaxGoogleController extends Controller
 
     public function import(ImportGoogleSheet $request): JsonResponse
     {
-        try{
+        try {
             $listError = [];
             $sheet = $request->get('sheet');
             $arr =  explode('/', $sheet);

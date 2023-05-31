@@ -32,7 +32,7 @@ class EventController extends Controller
             ->where('author', auth()->user()->id)
             ->published()
             ->accepted()
-            ->where('happened_at', '=' , today('Asia/Jakarta'))
+            ->where('happened_at', '=', today('Asia/Jakarta'))
             ->get();
 
 
@@ -71,14 +71,14 @@ class EventController extends Controller
             'happenedAt' => $happenedAt,
         ]);
 
-        if($request->get('published')) {
+        if ($request->get('published')) {
             $event->publish();
         } else {
             $event->published = 0;
             $event->save();
         }
 
-        if($request->get('accepted') && auth()->user()->level === 4) {
+        if ($request->get('accepted') && auth()->user()->level === 4) {
             $event->accept();
         } else {
             $event->save();
@@ -89,13 +89,13 @@ class EventController extends Controller
 
     public function show(Event $event): View | RedirectResponse
     {
-        if(auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
+        if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
             return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
         }
 
         $media = '';
 
-        if($event->media_id){
+        if ($event->media_id) {
             $media = Media::query()->where('id', $event->media_id)->first();
             $media = $media->url;
         }
@@ -105,13 +105,13 @@ class EventController extends Controller
 
     public function edit(Event $event): View | RedirectResponse
     {
-        if(auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
+        if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
             return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
         }
 
         $media = '';
 
-        if($event->media_id){
+        if ($event->media_id) {
             $media = Media::query()->where('id', $event->media_id)->first();
             $media = $media->url;
         }
@@ -123,7 +123,7 @@ class EventController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('qr_code')) {
-            if($event->media_id){
+            if ($event->media_id) {
                 $media = Media::query()->where('id', $event->media_id)->first();
                 Storage::disk('public')->delete($media->url);
             }
@@ -144,16 +144,16 @@ class EventController extends Controller
 
         $event->update($data);
 
-        if($request->get('published')) {
+        if ($request->get('published')) {
             $event->publish();
         } else {
             $event->published = 0;
             $event->save();
         }
 
-        if($request->get('accepted') === 1 && auth()->user()->level === 4) {
+        if ($request->get('accepted') === 1 && auth()->user()->level === 4) {
             $event->accept();
-        } else if($request->get('accepted') === 0 && auth()->user()->level === 4){
+        } elseif ($request->get('accepted') === 0 && auth()->user()->level === 4) {
             $event->accepted = 0;
             $event->save();
         }
@@ -163,7 +163,7 @@ class EventController extends Controller
 
     public function destroy(Event $event): RedirectResponse
     {
-        if(auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
+        if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
             return redirect()->route('events.index')->withErrors('You do not have permission to delete this event !');
         }
 

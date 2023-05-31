@@ -1,4 +1,5 @@
 <?php
+
 $event = new \App\Models\Event();
 $media = '';
 ?>
