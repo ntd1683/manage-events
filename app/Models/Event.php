@@ -28,6 +28,7 @@ class Event extends Model
         'accepted',
         'publish_at',
         'accepted_at',
+        'happened_at',
     ];
 
     protected $appends = [

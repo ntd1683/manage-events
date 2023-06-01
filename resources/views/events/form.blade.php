@@ -1,4 +1,7 @@
 @csrf
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/form-plugin.css') }}">
+@endpush
 <input type="hidden" name="author" value="{{ $event->author }}"/>
 <div class="row">
     @if($event->id != null)
@@ -26,7 +29,7 @@
     </div>
     <div class="form-group mb-3">
         <x-forms.inputs.label for="content">{{ __('Content') }}</x-forms.inputs.label>
-        <x-forms.inputs.textarea name="content" id="content"
+        <x-forms.inputs.textarea class="summernote" name="content" id="content"
                                  placeholder="{{ __('content') }}">{{ old('content', $event->content) }}</x-forms.inputs.textarea>
     </div>
 </div>
@@ -85,14 +88,5 @@
 
         @push('js')
             <script src="{{ asset('js/form-plugin.js') }}"></script>
-            <script>
-                window.addEventListener('load', () => {
-                    $("#happened_at").datepicker({
-                            startDate: new Date(),
-                            autoclose: true,
-                            format: 'dd-mm-yyyy',
-                    });
-                })
-            </script>
         @endpush
 </div>

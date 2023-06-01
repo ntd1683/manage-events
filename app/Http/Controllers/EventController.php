@@ -101,6 +101,8 @@ class EventController extends Controller
             $media = $media->url;
         }
 
+        $event->happened_at = Carbon::parse($event->happened_at)->format('d-m-Y');
+
         return view('events.show', compact('event', 'media'));
     }
 
@@ -142,6 +144,8 @@ class EventController extends Controller
         }
 
         $data['author'] = $request->get('author');
+
+        $data['happened_at'] = Carbon::createFromFormat('d-m-Y', $request->get('happened_at'))->format('Y-m-d');
 
         $event->update($data);
 

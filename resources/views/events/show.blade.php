@@ -23,13 +23,15 @@
                                 <div class="card-body pb-2">
                                     <h3>{{ $event->title }}</h3>
                                     <h5>{{ $event->subtitle }}</h5>
-                                    <br>
+                                    <h5 class="text-theme">{{ __('Event Day: ') }}{{ $event->happened_at }}</h5>
+                                    <hr>
                                     <h5>{{ $event->description }}</h5>
-                                    <div>{{ $event->content }}</div>
-                                    <a class="btn btn-primary" href="{{ route('events.scanQrCode', $event) }}">
+                                    <hr>
+                                    <div>{!! $event->content !!}  }}</div>
+                                    <a class="btn btn-outline-theme" href="{{ route('events.scanQrCode', $event) }}">
                                         {{ __('Scan QR Code') }}
                                     </a>
-                                    <a class="btn btn-primary" href="{{ route('events.google.import') }}">
+                                    <a class="btn btn-outline-theme" href="{{ route('events.google.import') }}">
                                         {{ __('Import List Register') }}
                                     </a>
                                     <x-forms.buttons.primary type="button">
