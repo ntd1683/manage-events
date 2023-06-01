@@ -73,7 +73,7 @@ class Event extends Model
 
     public function scopeHappened(Builder $query)
     {
-        $query->where('happened_at', now());
+        $query->where('happened_at', '>=', today('Asia/Jakarta'));
     }
 
     public function scopeShouldPublish(Builder $query)

@@ -3,22 +3,30 @@
 namespace App\Http\Controllers\Ajax;
 
 use App\Http\Controllers\Controller;
+use App\Http\Query\EventFilterQuery;
 use App\Http\Requests\Ajax\AjaxStoreEventRequest;
+use App\Http\Requests\Ajax\EventFilterRequest;
 use App\Http\Trait\ResponseTrait;
 use App\Models\Event;
 use App\Models\RegisterEvent;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
 class AjaxEventController extends Controller
 {
     use ResponseTrait;
 
-    public function index(Request $request)
+    public function index(EventFilterRequest $request, EventFilterQuery $eventFilterQuery): View
+    {
+        $events = $eventFilterQuery->apply(Event::query())->paginate($request->get('per_page'));
+        return view('events.partials.list', compact('events'));
+    }
+
+    public function analytics(Request $request)
     {
         $selectUser = $request->select_user ?: 0;
         $selectAccept = $request->select_accept ?: -1;

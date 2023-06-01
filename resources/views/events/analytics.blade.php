@@ -111,7 +111,7 @@
                         lengthMenu: [ 10, 20, 30, 40, 50 ],
                         responsive: true,
                         ajax: {
-                            "url": "{!! route('ajax.events.index') !!}",
+                            "url": "{!! route('ajax.events.analytics') !!}",
                             "data": function ( d ) {
                                 return $.extend( {}, d, {
                                     "select_user": $('#select_user').val(),

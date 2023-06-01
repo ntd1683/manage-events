@@ -77,6 +77,7 @@ Route::group([
 //    Ajax
     Route::prefix('ajax')->name('ajax.')->group(function () {
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
+        Route::get('events/analytics', [AjaxEventController::class , 'analytics'])->name('events.analytics');
         Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
         Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
         Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');

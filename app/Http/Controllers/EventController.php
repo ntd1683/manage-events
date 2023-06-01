@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Query\EventFilterQuery;
+use App\Http\Requests\Ajax\EventFilterRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
@@ -15,9 +17,9 @@ use Illuminate\View\View;
 
 class EventController extends Controller
 {
-    public function index(): View
+    public function index(EventFilterRequest $request, EventFilterQuery $eventFilterQuery): View
     {
-        $events = Event::query()->get();
+        $events = $eventFilterQuery->apply(Event::query())->paginate($request->get('per_page'));
         return view('events.index', compact('events'));
     }
 
@@ -34,7 +36,6 @@ class EventController extends Controller
             ->accepted()
             ->where('happened_at', '=', today('Asia/Jakarta'))
             ->get();
-
 
         $eventId = $request->get('event_id') ?: -1;
 

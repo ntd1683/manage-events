@@ -10,7 +10,7 @@ Breadcrumbs::for('index', function (BreadcrumbTrail $trail) {
 });
 
 Breadcrumbs::for('events', function (BreadcrumbTrail $trail) {
-    $trail->push(trans('Events'), route('index'));
+    $trail->push(trans('Events'), route('events.index'));
 });
 
 Breadcrumbs::for('create_event', function (BreadcrumbTrail $trail) {
