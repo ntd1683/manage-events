@@ -54,6 +54,16 @@ selectEvent.change(() => {
     disabledCamera();
 })
 
+$('#button_error').click(() => {
+    let eventId = selectEvent.val();
+    let media = $('#media_' + eventId).val();
+    if(media) {
+        $('#text_error').text('Scan qr code for student registration form');
+        $('#img_error').attr('src', media);
+        $('#button_error').click();
+    }
+})
+
 window.addEventListener('load', () => {
     let html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",

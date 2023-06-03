@@ -11,6 +11,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ManageEventController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScanQrcodeController;
 use App\Http\Controllers\SettingController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
@@ -55,7 +56,7 @@ Route::group([
 //    Event
     Route::prefix('events')->name('events.')->group(function () {
         Route::get('analytics', [EventController::class, 'analytics'])->name('analytics');
-        Route::get('scan-qrcode', [EventController::class, 'scanQrCode'])->name('scanQrCode');
+        Route::get('scan-qrcode', [ScanQrcodeController::class, '__invoke'])->name('scanQrCode');
         Route::get('create', [EventController::class, 'create'])->name('create');
         Route::get('/', [EventController::class, 'index'])->name('index');
         Route::get('show/{event}', [EventController::class, 'show'])->name('show');

@@ -31,20 +31,6 @@ class EventController extends Controller
         return view('events.analytics');
     }
 
-    public function scanQrCode(Request $request): View
-    {
-        $events = auth()->user()
-            ->ManageEvents()
-            ->accepted()
-            ->published()
-            ->where('happened_at', '=', today('Asia/Jakarta'))
-            ->get();
-
-        $eventId = $request->get('event_id') ?: -1;
-
-        return view('events.scan-qr', compact('events', 'eventId'));
-    }
-
     public function create(): View
     {
         return view('events.create');

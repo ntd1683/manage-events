@@ -28,10 +28,12 @@
     @endpush
     <!-- BEGIN #content -->
     {{ Breadcrumbs::render('scan-qrcode') }}
-
-    <h1 class="page-header">
-        {{ __('Scan QR CODE') }} <small>{{ __('Attendance list of students') }}</small>
-    </h1>
+        <div class="d-flex justify-content-between">
+            <h1 class="page-header">
+                {{ __('Scan QR CODE') }} <small>{{ __('Attendance list of students') }}</small>
+            </h1>
+            <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_error" id="button_error">{{ __('Scan QR Code') }}</x-forms.buttons.warning>
+        </div>
     <div class="mb-3">
         <form action="{{ route('ajax.scan-qrcode') }}" method="post" onsubmit="return false" id="form">
             @csrf
@@ -63,8 +65,6 @@
         </x-slot:buttons>
     </x-modal>
 
-    <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_error" id="button_error"
-                             class="opacity-0">{{ __('Error') }}</x-forms.buttons.warning>
     <x-modal id="modal_error" title="{{ __('Error') }}">
         <div class="text-center">
             <h3>{{ __('Register through google form') }}</h3>
