@@ -25,10 +25,12 @@
                             <div id="table" class="mb-5">
                                 <p>{{ __('All events you\'ve created') }}</p>
                                 <div class="filter d-flex justify-content-between mb-2">
-                                    <x-forms.inputs.select class="me-2" id="select_user">
-                                        <option value="1">{{ __('Admin') }}</option>
-                                        <option value="0" selected>{{ __('User') }}</option>
-                                    </x-forms.inputs.select>
+                                    @if(auth()->user()->level === 4)
+                                        <x-forms.inputs.select class="me-2" id="select_user">
+                                            <option value="1">{{ __('Admin') }}</option>
+                                            <option value="0" selected>{{ __('User') }}</option>
+                                        </x-forms.inputs.select>
+                                    @endif
 
                                     <x-forms.inputs.select class="me-2" id="select_accept">
                                         <option value="0" selected>{{ __('ALL') }}</option>

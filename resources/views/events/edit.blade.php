@@ -26,7 +26,7 @@
                             <div class="card">
                                 <div class="card-body pb-2">
                                     <form action="{{ route('events.update', $event) }}" method="post" enctype="multipart/form-data">
-                                        @include('events.form', [$event, $media])
+                                        @include('events.form', [$event, $media, $emails])
                                     </form>
                                 </div>
                                 <div class="card-arrow">

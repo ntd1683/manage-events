@@ -10,9 +10,13 @@ class GoogleController extends Controller
 {
     public function __invoke(request $request): View
     {
-        $events = Event::query()->where('author', auth()->user()->id)->get();
+        $events = auth()->user()->events()
+            ->published()
+            ->accepted()
+            ->happened()
+            ->get();
         $eventId = $request->get('event_id') ?: -1;
 
-        return view('events.google.import', compact('events', 'eventId'));
+        return view('events.import', compact('events', 'eventId'));
     }
 }

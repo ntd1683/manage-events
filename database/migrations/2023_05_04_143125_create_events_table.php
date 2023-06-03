@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('subtitle')->nullable();
             $table->string('description')->nullable();
+            $table->string('code')->unique()->nullable();
             $table->longText('content')->nullable();
             $table->bigInteger('author');
             $table->string('google_sheet')->nullable();

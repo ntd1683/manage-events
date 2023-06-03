@@ -7,7 +7,10 @@ use App\Http\Requests\Ajax\EventFilterRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
+use App\Models\EventAttendance;
+use App\Models\ManageEvent;
 use App\Models\Media;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -30,10 +33,10 @@ class EventController extends Controller
 
     public function scanQrCode(Request $request): View
     {
-        $events = Event::query()
-            ->where('author', auth()->user()->id)
-            ->published()
+        $events = auth()->user()
+            ->ManageEvents()
             ->accepted()
+            ->published()
             ->where('happened_at', '=', today('Asia/Jakarta'))
             ->get();
 
@@ -49,8 +52,16 @@ class EventController extends Controller
 
     public function store(StoreEventRequest $request): RedirectResponse
     {
-        $happenedAt = Carbon::parse($request->get('happenedAt'));
+        $arrEmail = json_decode($request->get('emails'));
+        $emails = [];
+
+        foreach ($arrEmail as $email) {
+            $emails[] = get_object_vars($email)['value'];
+        }
+
+        $happenedAt = Carbon::createFromFormat('d-m-Y', $request->get('happened_at'))->format('Y-m-d');;
         $media_id = null;
+
         if ($request->hasFile('qr_code')) {
             $qr = $request->file('qr_code');
             $name = 'qr_' . Str::random(5) . '.' . $qr->extension();
@@ -69,7 +80,7 @@ class EventController extends Controller
             ...$request->validated(),
             'author' => auth()->user()->id,
             'media_id' => $media_id,
-            'happenedAt' => $happenedAt,
+            'happened_at' => $happenedAt,
         ]);
 
         if ($request->get('published')) {
@@ -85,10 +96,29 @@ class EventController extends Controller
             $event->save();
         }
 
-        return redirect()->route('events.index')->with('success', 'Thêm sự kiện thành công.');
+        ManageEvent::create([
+            'event_id' => $event->id,
+            'user_id' => auth()->user()->id,
+            'status' => 1,
+        ]);
+
+        foreach ($emails as $email) {
+            try {
+                $id = User::query()->where('email', $email)->first()->id;
+
+                ManageEvent::create([
+                    'event_id' => $event->id,
+                    'user_id' => $id,
+                    'status' => 0,
+                ]);
+            } catch (\Exception $e) {
+            }
+        }
+
+        return redirect()->route('events.index')->with('success', trans('Add Event Successfully'));
     }
 
-    public function show(Event $event): View | RedirectResponse
+    public function show(Event $event): View|RedirectResponse
     {
         if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
             return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
@@ -106,7 +136,7 @@ class EventController extends Controller
         return view('events.show', compact('event', 'media'));
     }
 
-    public function edit(Event $event): View | RedirectResponse
+    public function edit(Event $event): View|RedirectResponse
     {
         if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
             return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
@@ -119,11 +149,20 @@ class EventController extends Controller
             $media = $media->url;
         }
 
-        return view('events.edit', compact('event', 'media'));
+        $emails = $event->ManageUsers()->pluck('email')->toJson();
+
+        return view('events.edit', compact('event', 'media', 'emails'));
     }
 
     public function update(Event $event, UpdateEventRequest $request): RedirectResponse
     {
+        $arrEmail = json_decode($request->get('emails'));
+        $emails = [];
+
+        foreach ($arrEmail as $email) {
+            $emails[] = get_object_vars($email)['value'];
+        }
+
         $data = $request->validated();
         if ($request->hasFile('qr_code')) {
             if ($event->media_id) {
@@ -161,6 +200,19 @@ class EventController extends Controller
         } elseif ($request->get('accepted') === 0 && auth()->user()->level === 4) {
             $event->accepted = 0;
             $event->save();
+        }
+
+        foreach ($emails as $email) {
+            try {
+                $id = User::query()->where('email', $email)->first()->id;
+
+                ManageEvent::create([
+                    'event_id' => $event->id,
+                    'user_id' => $id,
+                    'status' => 0,
+                ]);
+            } catch (\Exception $e) {
+            }
         }
 
         return redirect()->route('events.index')->with('success', 'Update Event Successfully');

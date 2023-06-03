@@ -24,7 +24,6 @@ class EventSeeder extends Seeder
                 'description' => $faker->realText(),
                 'content' => $faker->realText(),
                 'author' => $userId,
-                'media_id' => '',
             ];
         }
         Event::insert($arr);

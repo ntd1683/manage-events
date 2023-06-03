@@ -1,2 +1,12 @@
 @import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
 @import 'summernote/dist/summernote-lite.css';
+@import '@yaireo/tagify/src/tagify.scss';
+
+.tagify {
+    --tag-bg : rgba(255,255,255,.15)!important;
+    --tag-remove-btn-color: white!important;
+    --tag-text-color: white!important;
+}
+.tagify {
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}

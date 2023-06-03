@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Enums\UserLevelEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -93,5 +94,10 @@ class User extends Authenticatable
             ->accepted()
             ->where('publish_at', '<=', now()->subMonth())
             ->get();
+    }
+
+    public function ManageEvents(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'manage_events');
     }
 }

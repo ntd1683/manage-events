@@ -42,6 +42,14 @@
                             <span class="menu-text">{{ __('Analytics') }}</span>
                         </a>
                     </div>
+                    <div @class(['menu-item', 'active' => request()->routeIs('events.manage')]) >
+                        <a href="{{ route('events.manage') }}" class="menu-link" style="padding-left: 0;" >
+                            <span class="menu-icon" style="margin-right: 3px;" >
+                                <i class="fa-solid fa-briefcase"></i>
+                            </span>
+                            <span class="menu-text">{{ __('Manage') }}</span>
+                        </a>
+                    </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.google.import')]) >
                         <a href="{{ route('events.google.import') }}" class="menu-link" style="padding-left: 0;" >
                             <span class="menu-icon" style="margin-right: 3px;" >

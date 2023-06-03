@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +26,7 @@ class Event extends Model
         'author',
         'google_sheet',
         'media_id',
+        'code',
         'published',
         'accepted',
         'publish_at',
@@ -58,26 +61,22 @@ class Event extends Model
         $this->save();
     }
 
-    public function scopePublished(Builder $query)
+    public function scopePublished(Builder $query): void
     {
-        if (auth()->user()->level === 4) {
-            $query->where('published', true);
-        } else {
-            $query->where('published', true)->where('author', auth()->user()->id);
-        }
+        $query->where('published', true);
     }
 
-    public function scopeAccepted(Builder $query)
+    public function scopeAccepted(Builder $query): void
     {
         $query->where('accepted', true);
     }
 
-    public function scopeHappened(Builder $query)
+    public function scopeHappened(Builder $query): void
     {
         $query->where('happened_at', '>=', today('Asia/Jakarta'));
     }
 
-    public function scopeShouldPublish(Builder $query)
+    public function scopeShouldPublish(Builder $query): void
     {
         $query
             ->accepted()
@@ -101,5 +100,10 @@ class Event extends Model
             }
             return $mediaUrl;
         })->shouldCache();
+    }
+
+    public function ManageUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'manage_events');
     }
 }

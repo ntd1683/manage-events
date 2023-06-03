@@ -17,8 +17,11 @@ window.addEventListener('load', () => {
     })
 
     $('#button_submit').on('click', () => {
+        let loading = `<div class="spinner-border text-success" style="width:1rem; height: 1rem;"></div><span>Loading...</span>`
+        let submit = 'Submit';
         let url = $('#form').attr('action');
 
+        $('#button_submit').html(loading);
         $.ajax({
             method: 'POST',
             url: url,
@@ -35,10 +38,14 @@ window.addEventListener('load', () => {
 
                 $('.message-success').text('Import successfully');
                 $('.toast-success').toast('show');
+
+                $('#button_submit').html(submit);
             },
             error: function (data) {
                 $('.message-error').text(data.message + ' ' + data.responseJSON.message);
                 $('.toast-error').toast('show');
+
+                $('#button_submit').html(submit);
             }
         });
     })

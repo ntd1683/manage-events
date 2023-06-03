@@ -2,6 +2,7 @@
 
 $event = new \App\Models\Event();
 $media = '';
+$emails = '';
 ?>
 <x-layouts.master>
     <!-- BEGIN container -->
@@ -24,11 +25,11 @@ $media = '';
                         <hr class="mb-4" />
 
                         <!-- BEGIN #formControls -->
-                        <div id="formControls" class="mb-5">
+                        <div class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
                                     <form action="{{ route('events.store') }}" method="post" enctype="multipart/form-data">
-                                        @include('events.form', [$event, $media])
+                                        @include('events.form', [$event, $media, $emails])
                                     </form>
                                 </div>
                                 <div class="card-arrow">
@@ -46,7 +47,9 @@ $media = '';
                     <div class="col-xl-3">
                         <!-- BEGIN #sidebar-bootstrap -->
                         <x-layouts.partials.menu-container>
-                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">{{ __('Register Event') }}</a>
+                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">{{ __('Form Register Event') }}</a>
+                            <a class="nav-link" href="#add_collaborators" data-toggle="scroll-to">{{ __('Add Collaborators') }}</a>
+                            <a class="nav-link" href="#qr_code" data-toggle="scroll-to">{{ __('QR Code') }}</a>
                         </x-layouts.partials.menu-container>
                         <!-- END #sidebar-bootstrap -->
                     </div>

@@ -28,6 +28,8 @@ class StoreEventRequest extends FormRequest
             'published' => ['nullable', Rule::in(['1', '0'])],
             'happened_at' => ['required', 'date_format:d-m-Y'],
             'accepted' => ['nullable', Rule::in(['1', '0'])],
+            'code' => ['required', 'string'],
+            'emails' => ['nullable', 'string']
         ];
     }
 }

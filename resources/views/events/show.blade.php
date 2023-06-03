@@ -31,12 +31,12 @@
                                     <a class="btn btn-outline-theme" href="{{ route('events.scanQrCode', $event) }}">
                                         {{ __('Scan QR Code') }}
                                     </a>
-                                    <a class="btn btn-outline-theme" href="{{ route('events.google.import') }}">
+                                    <a class="btn btn-outline-theme" href="{{ route('events.google.import') }}?event_id={{$event->id}}">
                                         {{ __('Import List Register') }}
                                     </a>
-                                    <x-forms.buttons.primary type="button">
+                                    <a class="btn btn-outline-theme" href="{{ route('events.edit', $event) }}">
                                         {{ __('Edit') }}
-                                    </x-forms.buttons.primary>
+                                    </a>
                                 </div>
                                 <div class="card-arrow">
                                     <div class="card-arrow-top-left"></div>

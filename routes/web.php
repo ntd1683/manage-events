@@ -4,15 +4,18 @@ use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\Ajax\AjaxGoogleController;
 use App\Http\Controllers\Ajax\AjaxProfileController;
 use App\Http\Controllers\Ajax\AjaxScanQrCodeController;
+use App\Http\Controllers\Ajax\AjaxUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\ManageEventController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
+use App\Http\Middleware\CheckVipMemberMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,6 +79,7 @@ Route::group([
 
 //    Ajax
     Route::prefix('ajax')->name('ajax.')->group(function () {
+        Route::get('user/check-email', [AjaxUserController::class , 'checkEmailUser'])->name('user.check-email');
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::get('events/analytics', [AjaxEventController::class , 'analytics'])->name('events.analytics');
         Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
@@ -85,5 +89,14 @@ Route::group([
         Route::post('profile/avatar', [AjaxProfileController::class , 'uploadAvatar'])->name('profile.avatar');
         Route::post('profile/change-password', [AjaxProfileController::class , 'changePassword'])->name('profile.changePassword');
         Route::post('profile/verify-email', [AjaxProfileController::class , 'verifyEmail'])->name('profile.verifyEmail');
+    });
+});
+
+Route::group([
+    'middleware' => CheckVipMemberMiddleware::class,
+], function () {
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::get('manage', [ManageEventController::class, 'index'])->name('manage');
+        Route::post('manage/store', [ManageEventController::class, 'store'])->name('manage.store');
     });
 });

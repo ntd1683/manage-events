@@ -21,6 +21,7 @@ class UpdateEventRequest extends FormRequest
             'title' => ['required', 'string'],
             'subtitle' => ['required', 'string'],
             'description' => ['required', 'string'],
+            'code' => ['required', 'string'],
             'content' => ['required', 'string'],
             'qr_code' => [
                 'nullable',
@@ -30,6 +31,7 @@ class UpdateEventRequest extends FormRequest
             'published' => ['nullable', Rule::in(['1', '0'])],
             'happened_at' => ['required', 'date_format:d-m-Y'],
             'accepted' => ['nullable', Rule::in(['1', '0'])],
+            'emails' => ['nullable', 'string']
         ];
     }
 }

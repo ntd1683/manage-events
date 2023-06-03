@@ -77,7 +77,9 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <x-forms.buttons.primary type="button" disabled id="button_submit">{{ __('Submit') }}</x-forms.buttons.primary>
+                                            <x-forms.buttons.primary type="button" disabled id="button_submit">
+                                                {{ __('Submit') }}
+                                            </x-forms.buttons.primary>
                                         </div>
                                     </form>
                                 </div>
