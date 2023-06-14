@@ -26,3 +26,5 @@ yarn-error.log
 /public/manage-events-385813-0cd928a738fb.json
 /public/manage-events-385813-eb3cbb198ffb.json
 /storage/credentials.json
+resources/views/test.blade.php
+app/Http/Controllers/TestController.php
