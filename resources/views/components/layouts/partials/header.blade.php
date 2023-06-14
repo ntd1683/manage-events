@@ -99,10 +99,44 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end mt-1 w-300px fs-11px pt-1">
                 <h6 class="dropdown-header fs-10px mb-1">{{ __('NOTIFICATIONS') }}</h6>
-                <div class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">{{ __('No record found')}}</div>
+                <hr class="bg-white-transparent-5 mb-0 mt-0"/>
+
+                @if(auth()->user()->email_verified_at == null)
+                    <a href="{{ route('profile') }}#verify_email" class="d-flex align-items-center py-10px dropdown-item text-wrap fw-semibold">
+                        <div class="fs-20px">
+                            <i class="fa-solid fa-envelope text-theme"></i>
+                        </div>
+                        <div class="flex-1 flex-wrap ps-3">
+                            <div class="mb-1 text-inverse">{{ __('Verify Email') }}</div>
+                            <div class="small text-inverse text-opacity-50">{{ __('JUST NOW') }}</div>
+                        </div>
+                        <div class="ps-2 fs-16px">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </a>
+                    <hr class="bg-white-transparent-5 mb-0 mt-0"/>
+                @endif
+                @forelse(getNotify() as $notify)
+                    <a @if($notify->link) href="{{ $notify->link }}" @endif class="d-flex align-items-center py-10px dropdown-item text-wrap fw-semibold">
+                        <div class="fs-20px">
+                            <i class="fa-solid {{ $notify->icon }} text-theme"></i>
+                        </div>
+                        <div class="flex-1 flex-wrap ps-3">
+                            <div class="mb-1 text-inverse">{{ $notify->title }}</div>
+                            <div class="small text-inverse text-opacity-50">{{ $notify->created_at->diffForHumans() }}</div>
+                        </div>
+                        <div class="ps-2 fs-16px">
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+                    </a>
+                @empty
+                    <div class="d-flex align-items-center py-10px dropdown-item text-wrap fs-6 bg-white bg-opacity-15 text-white text-opacity-50 h-100px">
+                        {{ __('No record found') }}
+                    </div>
+                @endforelse
                 <hr class="bg-white-transparent-5 mb-0 mt-0"/>
                 <div class="py-10px mb-n2 text-center">
-                    <a href="#" class="text-decoration-none fw-bold">{{ __('SEE ALL') }}</a>
+                    <a href="{{ route('notify.index') }}" class="text-decoration-none fw-bold">{{ __('SEE ALL') }}</a>
                 </div>
             </div>
         </div>

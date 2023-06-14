@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Ajax\AjaxEventController;
 use App\Http\Controllers\Ajax\AjaxGoogleController;
+use App\Http\Controllers\Ajax\AjaxNotifyController;
 use App\Http\Controllers\Ajax\AjaxProfileController;
 use App\Http\Controllers\Ajax\AjaxScanQrCodeController;
 use App\Http\Controllers\Ajax\AjaxUserController;
@@ -10,9 +11,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ManageEventController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScanQrcodeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TestController;
+use App\Http\Middleware\CheckBossMiddleware;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
@@ -73,6 +77,9 @@ Route::group([
 //  Setting
     Route::get('setting', [SettingController::class, 'index'])->name('setting');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
+    Route::prefix('notify')->name('notify.')->group(function () {
+        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
+    });
 
 //    Profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -84,12 +91,15 @@ Route::group([
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::get('events/analytics', [AjaxEventController::class , 'analytics'])->name('events.analytics');
         Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
-        Route::delete('delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
+        Route::delete('events/delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
         Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
         Route::post('google-spreadsheet', [AjaxGoogleController::class, 'import'])->name('google-spreadsheet');
         Route::post('profile/avatar', [AjaxProfileController::class , 'uploadAvatar'])->name('profile.avatar');
         Route::post('profile/change-password', [AjaxProfileController::class , 'changePassword'])->name('profile.changePassword');
         Route::post('profile/verify-email', [AjaxProfileController::class , 'verifyEmail'])->name('profile.verifyEmail');
+        Route::get('notify', [AjaxNotifyController::class , 'index'])->name('notify.index');
+        Route::get('notify/analytics', [AjaxNotifyController::class , 'analytics'])->name('notify.analytics');
+        Route::delete('notify/delete/{notify}', [AjaxNotifyController::class , 'destroy'])->name('notify.destroy');
     });
 });
 
@@ -101,3 +111,12 @@ Route::group([
         Route::post('manage/store', [ManageEventController::class, 'store'])->name('manage.store');
     });
 });
+
+//Notify
+Route::group([
+    'middleware' => CheckBossMiddleware::class,
+], function () {
+    Route::resource('notify', NotifyController::class);
+});
+
+Route::get('test', [TestController::class, '__invoke']);

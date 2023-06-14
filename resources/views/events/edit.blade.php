@@ -16,17 +16,18 @@
                         {{ Breadcrumbs::render('edit_event', $event) }}
 
                         <h1 class="page-header">
-                        {{ __('Edit Event') }}
+                            {{ __('Edit Event') }}
                         </h1>
 
-                        <hr class="mb-4" />
+                        <hr class="mb-4"/>
 
                         <!-- BEGIN #formControls -->
                         <div id="formControls" class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('events.update', $event) }}" method="post" enctype="multipart/form-data">
-                                        @include('events.form', [$event, $media, $emails])
+                                    <form action="{{ route('events.update', $event) }}" method="post"
+                                          enctype="multipart/form-data">
+                                        @include('events.partials.form', [$event, $media, $emails])
                                     </form>
                                 </div>
                                 <div class="card-arrow">
@@ -44,7 +45,8 @@
                     <div class="col-xl-3">
                         <!-- BEGIN #sidebar-bootstrap -->
                         <x-layouts.partials.menu-container>
-                            <a class="nav-link" href="#formControls" data-toggle="scroll-to">{{ __('Register Event') }}</a>
+                            <a class="nav-link" href="#formControls"
+                               data-toggle="scroll-to">{{ __('Register Event') }}</a>
                         </x-layouts.partials.menu-container>
                         <!-- END #sidebar-bootstrap -->
                     </div>
@@ -66,26 +68,35 @@
     </form>
     <!-- END container -->
     @if(! $event->google_sheet)
-        <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal" id="button_google" class="opacity-0">{{ __('click') }}</x-forms.buttons.warning>
+        <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal" id="button_google"
+                                 class="opacity-0">{{ __('click') }}</x-forms.buttons.warning>
         <x-modal id="modal" title="{{ __('Google Import From Sheet')}}">
             <p>{{ __('Do you want to add members registered by google sheet') }}: </p>
             <x-slot:buttons>
-                <a href="{{ route('events.google.import') }}?event_id={{ $event->id }}" class="btn btn-outline-theme">{{ __('Yes') }}</a>
-                <button type="button" class="btn btn-default text-white" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                <a href="{{ route('events.google.import') }}?event_id={{ $event->id }}"
+                   class="btn btn-outline-theme">{{ __('Yes') }}</a>
+                <button type="button" class="btn btn-default text-white"
+                        data-bs-dismiss="modal">{{ __('Close') }}</button>
             </x-slot:buttons>
         </x-modal>
         @push('js')
             <script>
                 window.addEventListener('load', () => {
                     $('#button_google').click();
-                    $('.btn-delete').on('click', () => {
-                        let confirm_delete = confirm("Are you sure you want to delete?");
-                        if (confirm_delete === true) {
-                            $('.form-delete').submit();
-                        }
-                    })
                 });
             </script>
         @endpush
     @endif
+    @push('js')
+        <script>
+            window.addEventListener('load', () => {
+                $('.btn-delete').on('click', () => {
+                    let confirm_delete = confirm("Are you sure you want to delete?");
+                    if (confirm_delete === true) {
+                        $('.form-delete').submit();
+                    }
+                })
+            });
+        </script>
+    @endpush
 </x-layouts.master>

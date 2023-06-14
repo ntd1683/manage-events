@@ -11,7 +11,7 @@ class ScanQrcodeController extends Controller
         $step = $request->get('step') === 2 ?: 1;
 
         $events = auth()->user()
-            ->ManageEvents()
+            ->manageEvents()
             ->accepted()
             ->published()
             ->where('happened_at', '=', today('Asia/Jakarta'))

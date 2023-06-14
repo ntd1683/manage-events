@@ -83,7 +83,7 @@
                                                         for="email">{{ __('Email') }}</x-forms.inputs.label>
                                                     @if(! auth()->user()->email_verified_at)
                                                         <a class="active text-decoration-none"
-                                                           data-bs-toggle="modal" data-bs-target="#modal_verify_email" style="cursor: pointer";>{{ __('Verify Email') }}</a>
+                                                           data-bs-toggle="modal" data-bs-target="#modal_verify_email" style="cursor: pointer"; id="verify_email">{{ __('Verify Email') }}</a>
                                                     @endif
                                                 </div>
                                                 <x-forms.inputs.text value="{{ old('email', auth()->user()->email) }}"

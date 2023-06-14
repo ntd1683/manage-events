@@ -79,7 +79,7 @@
     <div class="ms-0 me-0 mb-3">
         <span class="d-none" id="url_check_email">{{ route('ajax.user.check-email') }}</span>
         <x-forms.inputs.label>{{ __('Add Collaborators') }}</x-forms.inputs.label>
-        <input type="text" id="tagify" class="form-control" name="emails" value="{{ old('emails', $emails) }}">
+        <x-forms.inputs.text id="tagify" name="emails" value="{{ old('emails', $emails) }}" />
     </div>
 </div>
 <div class="row" id="qr_code">

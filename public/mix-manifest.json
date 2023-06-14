@@ -5,10 +5,11 @@
     "/js/scan-qrcode.js": "/js/scan-qrcode.js",
     "/js/google.js": "/js/google.js",
     "/js/datatable.js": "/js/datatable.js",
+    "/js/fontawesome.js": "/js/fontawesome.js",
     "/js/form-plugin.js": "/js/form-plugin.js",
     "/js/event.js": "/js/event.js",
     "/js/profile.js": "/js/profile.js",
-    "/css/form-plugin.css": "/css/form-plugin.css",
     "/css/datatable.css": "/css/datatable.css",
+    "/css/form-plugin.css": "/css/form-plugin.css",
     "/css/styles.css": "/css/styles.css"
 }

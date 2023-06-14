@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Notify;
 use App\Models\Option;
+use Illuminate\Database\Eloquent\Collection;
 
 if (!function_exists('option')) {
     function option($name, $default = '')
@@ -29,5 +31,19 @@ if (!function_exists('optionSave')) {
         }
 
         $option->save();
+    }
+}
+
+if (!function_exists('getNameRouteMain')) {
+    function getNameRouteMain(): string
+    {
+        return explode('.', request()->route()->getName())[0];
+    }
+}
+
+if (!function_exists('getNotify')) {
+    function getNotify(): Collection|array
+    {
+        return Notify::query()->where('author', auth()->user()->id)->get();
     }
 }

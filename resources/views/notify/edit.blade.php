@@ -1,9 +1,3 @@
-<?php
-
-$event = new \App\Models\Event();
-$media = '';
-$emails = '';
-?>
 <x-layouts.master>
     <!-- BEGIN container -->
     <div class="container">
@@ -16,10 +10,10 @@ $emails = '';
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
 
-                        {{ Breadcrumbs::render('create_event') }}
+                        {{ Breadcrumbs::render('create_notify') }}
 
                         <h1 class="page-header">
-                            {{ __('Create Event') }}
+                            {{ __('Edit Notify') }}
                         </h1>
 
                         <hr class="mb-4"/>
@@ -28,9 +22,9 @@ $emails = '';
                         <div class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('events.store') }}" method="post"
-                                          enctype="multipart/form-data">
-                                        @include('events.partials.form', [$event, $media, $emails])
+                                    <form action="{{ route('notify.update', $notify) }}" method="post">
+                                        @method('PUT')
+                                        @include('notify.partials.form', $notify)
                                     </form>
                                 </div>
                                 <div class="card-arrow">
@@ -44,19 +38,6 @@ $emails = '';
                         <!-- END #formControls -->
                     </div>
                     <!-- END col-9-->
-                    <!-- BEGIN col-3 -->
-                    <div class="col-xl-3">
-                        <!-- BEGIN #sidebar-bootstrap -->
-                        <x-layouts.partials.menu-container>
-                            <a class="nav-link" href="#formControls"
-                               data-toggle="scroll-to">{{ __('Form Register Event') }}</a>
-                            <a class="nav-link" href="#add_collaborators"
-                               data-toggle="scroll-to">{{ __('Add Collaborators') }}</a>
-                            <a class="nav-link" href="#qr_code" data-toggle="scroll-to">{{ __('QR Code') }}</a>
-                        </x-layouts.partials.menu-container>
-                        <!-- END #sidebar-bootstrap -->
-                    </div>
-                    <!-- END col-3 -->
                 </div>
                 <!-- END row -->
             </div>
@@ -65,4 +46,23 @@ $emails = '';
         <!-- END row -->
     </div>
     <!-- END container -->
+    <form action="{{ route('notify.destroy', $notify) }}" method="post" class="form-delete">
+        @csrf
+        @method('DELETE')
+        <x-forms.buttons.danger type="submit" class="opacity-0">
+            {{ __('Delete') }}
+        </x-forms.buttons.danger>
+    </form>
+    @push('js')
+        <script>
+            window.addEventListener('load', () => {
+                $('.btn-delete').on('click', () => {
+                    let confirm_delete = confirm("Are you sure you want to delete?");
+                    if (confirm_delete === true) {
+                        $('.form-delete').submit();
+                    }
+                })
+            });
+        </script>
+    @endpush
 </x-layouts.master>

@@ -96,8 +96,13 @@ class User extends Authenticatable
             ->get();
     }
 
-    public function ManageEvents(): BelongsToMany
+    public function manageEvents(): BelongsToMany
     {
         return $this->belongsToMany(Event::class, 'manage_events');
+    }
+
+    public function notify(): hasMany
+    {
+        return $this->hasMany(Notify::class, 'author');
     }
 }

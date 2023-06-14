@@ -10,7 +10,7 @@
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
 
-                        {{ Breadcrumbs::render('google') }}
+                        {{ Breadcrumbs::render('manage') }}
 
                         <div class="d-flex justify-content-between">
                             <h1 class="page-header">{{ __('More Collaborators') }}</h1>

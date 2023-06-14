@@ -18,6 +18,7 @@ mix
     .js('resources/js/scan-qrcode.js', 'public/js')
     .js('resources/js/google.js', 'public/js')
     .js('resources/js/datatable.js', 'public/js')
+    .js('resources/js/fontawesome.js', 'public/js')
     .js('resources/js/form-plugin.js', 'public/js')
     .js('resources/js/event.js', 'public/js')
     .js('resources/js/profile.js', 'public/js')

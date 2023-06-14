@@ -207,7 +207,7 @@ class EventController extends Controller
     public function destroy(Event $event): RedirectResponse
     {
         if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
-            return redirect()->route('events.index')->withErrors('You do not have permission to delete this event !');
+            abort(403);
         }
 
         $event->delete();

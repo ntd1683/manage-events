@@ -13,7 +13,7 @@ class ManageEventController extends Controller
     public function index(Request $request)
     {
         $step = $request->get('step') ?: 1;
-        $events = auth()->user()->ManageEvents()->accepted()->published()->get();
+        $events = auth()->user()->manageEvents()->accepted()->published()->get();
         return view('events.manage', compact('step', 'events'));
     }
 

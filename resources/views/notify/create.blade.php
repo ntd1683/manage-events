@@ -1,9 +1,3 @@
-<?php
-
-$event = new \App\Models\Event();
-$media = '';
-$emails = '';
-?>
 <x-layouts.master>
     <!-- BEGIN container -->
     <div class="container">
@@ -16,10 +10,10 @@ $emails = '';
                     <!-- BEGIN col-9 -->
                     <div class="col-xl-9">
 
-                        {{ Breadcrumbs::render('create_event') }}
+                        {{ Breadcrumbs::render('create_notify') }}
 
                         <h1 class="page-header">
-                            {{ __('Create Event') }}
+                            {{ __('Create Notify') }}
                         </h1>
 
                         <hr class="mb-4"/>
@@ -28,9 +22,8 @@ $emails = '';
                         <div class="mb-5">
                             <div class="card">
                                 <div class="card-body pb-2">
-                                    <form action="{{ route('events.store') }}" method="post"
-                                          enctype="multipart/form-data">
-                                        @include('events.partials.form', [$event, $media, $emails])
+                                    <form action="{{ route('notify.store') }}" method="post">
+                                        @include('notify.partials.form', $notify)
                                     </form>
                                 </div>
                                 <div class="card-arrow">
