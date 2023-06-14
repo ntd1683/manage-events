@@ -14,6 +14,7 @@ use Yajra\DataTables\DataTables;
 class AjaxNotifyController extends Controller
 {
     use ResponseTrait;
+
     public function index()
     {
         return DataTables::of(auth()->user()->notify())

@@ -15,13 +15,13 @@ class EventFilterQuery
     {
         $query->published()->accepted()->happened();
 
-        if($this->request->query('q')) {
+        if ($this->request->query('q')) {
             $query->where('title', 'like', '%' . $this->request->query('q') . '%');
         }
 
-        if($this->request->query('filter') == 1) {
+        if ($this->request->query('filter') == 1) {
             $query->orderByDesc('happened_at');
-        } else if($this->request->query('filter') == 0) {
+        } elseif ($this->request->query('filter') == 0) {
             $query->orderBy('happened_at');
         }
 

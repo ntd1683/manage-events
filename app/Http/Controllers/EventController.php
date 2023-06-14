@@ -45,7 +45,8 @@ class EventController extends Controller
             $emails[] = get_object_vars($email)['value'];
         }
 
-        $happenedAt = Carbon::createFromFormat('d-m-Y', $request->get('happened_at'))->format('Y-m-d');;
+        $happenedAt = Carbon::createFromFormat('d-m-Y', $request->get('happened_at'))->format('Y-m-d');
+        ;
         $media_id = null;
 
         if ($request->hasFile('qr_code')) {

@@ -18,13 +18,13 @@ class AjaxUserController extends Controller
             abort(403);
         }
 
-        if(auth()->user()->email === $request->get('email')) {
+        if (auth()->user()->email === $request->get('email')) {
             return $this->ErrorResponse('Can\'t check email myself');
         }
 
         try {
             $user = User::query()->where('email', $request->get('email'))->first();
-            if($user) {
+            if ($user) {
                 return $this->successResponse([], 'True');
             }
             return $this->ErrorResponse('Fail');

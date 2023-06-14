@@ -1,4 +1,5 @@
 <?php
+
 $notify = new \App\Models\Notify();
 ?>
 <x-layouts.master>

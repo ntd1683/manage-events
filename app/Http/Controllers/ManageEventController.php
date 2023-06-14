@@ -24,7 +24,7 @@ class ManageEventController extends Controller
         $userId = auth()->user()->id;
 
         $event = Event::query()->where('id', $eventId)->first();
-        if($event->code !== $code) {
+        if ($event->code !== $code) {
             abort('403');
         }
 
