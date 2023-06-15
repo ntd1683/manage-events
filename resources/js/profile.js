@@ -45,23 +45,30 @@ window.addEventListener('load', () => {
                 $('.toast-error').toast('show');
             }
         });
-    })
+    });
 
     $('#button_verify_email').click(() => {
+        let loading = "<div class=\"spinner-border text-success\" style=\"width:1rem; height: 1rem;\"></div><span>Loading...</span>";
+        let submit = 'Submit';
+
         let form = $('#form_verify_email');
         let url = form.attr('action');
         let formData = form.serializeArray();
+
+        $('#button_verify_email').html(loading);
         formData.push({ name: "_token", value: CSRF_TOKEN });
         $.ajax({
             url: url,
             type: 'POST',
             data: formData,
             success: function (data) {
+                $('#button_verify_email').html(submit);
                 $('#button_close_verify_email').click();
                 $('.message-success').text(data.message);
                 $('.toast-success').toast('show');
             },
             error: function (data) {
+                $('#button_verify_email').html(submit);
                 $('#button_close_verify_email').click();
                 $('.message-error').text(data.message + ' ' + data.responseJSON.message);
                 $('.toast-error').toast('show');
