@@ -73,10 +73,6 @@
         </script>
     @endif
 
-    <x-toast status="error" title="Error" time="1s ago">
-        {{ session()->get('error') }}
-    </x-toast>
-
     @if (session()->has('error'))
         <script>
             window.addEventListener('load', () => {

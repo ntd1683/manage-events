@@ -1,9 +1,3 @@
-<?php
-
-$event = new \App\Models\Event();
-$media = '';
-$emails = '';
-?>
 <x-layouts.master>
     <!-- BEGIN container -->
     <div class="container">

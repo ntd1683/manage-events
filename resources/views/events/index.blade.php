@@ -61,6 +61,11 @@
             </x-forms.buttons.primary>
         </x-slot:buttons>
     </x-modal>
+    <div class="toasts-container">
+        <x-toast status="error" title="Error" time="1s ago">
+            {{ session()->get('error') }}
+        </x-toast>
+    </div>
     @push('js')
         <script src="{{ asset('js/event.js') }}"></script>
     @endpush

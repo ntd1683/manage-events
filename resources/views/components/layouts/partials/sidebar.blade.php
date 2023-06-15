@@ -54,46 +54,49 @@
                             <span class="menu-text">{{ __('Index') }}</span>
                         </a>
                     </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
-                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;">
+
+                    @if(auth()->user()->level >= 2)
+                        <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
+                            <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;">
                             <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-plus"></i>
                             </span>
-                            <span class="menu-text">{{ __('Create') }}</span>
-                        </a>
-                    </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.analytics')]) >
-                        <a href="{{ route('events.analytics') }}" class="menu-link" style="padding-left: 0;">
+                                <span class="menu-text">{{ __('Create') }}</span>
+                            </a>
+                        </div>
+                        <div @class(['menu-item', 'active' => request()->routeIs('events.analytics')]) >
+                            <a href="{{ route('events.analytics') }}" class="menu-link" style="padding-left: 0;">
                             <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-chart-line"></i>
                             </span>
-                            <span class="menu-text">{{ __('Analytics') }}</span>
-                        </a>
-                    </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.manage')]) >
-                        <a href="{{ route('events.manage') }}" class="menu-link" style="padding-left: 0;">
+                                <span class="menu-text">{{ __('Analytics') }}</span>
+                            </a>
+                        </div>
+                        <div @class(['menu-item', 'active' => request()->routeIs('events.manage')]) >
+                            <a href="{{ route('events.manage') }}" class="menu-link" style="padding-left: 0;">
                             <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-briefcase"></i>
                             </span>
-                            <span class="menu-text">{{ __('Manage') }}</span>
-                        </a>
-                    </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.google.import')]) >
-                        <a href="{{ route('events.google.import') }}" class="menu-link" style="padding-left: 0;">
+                                <span class="menu-text">{{ __('Manage') }}</span>
+                            </a>
+                        </div>
+                        <div @class(['menu-item', 'active' => request()->routeIs('events.google.import')]) >
+                            <a href="{{ route('events.google.import') }}" class="menu-link" style="padding-left: 0;">
                             <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-brands fa-google"></i>
                             </span>
-                            <span class="menu-text">{{ __('Google Sheet Import') }}</span>
-                        </a>
-                    </div>
-                    <div @class(['menu-item', 'active' => request()->routeIs('events.scanQrCode')]) >
-                        <a href="{{ route('events.scanQrCode') }}" class="menu-link" style="padding-left: 0;">
+                                <span class="menu-text">{{ __('Google Sheet Import') }}</span>
+                            </a>
+                        </div>
+                        <div @class(['menu-item', 'active' => request()->routeIs('events.scanQrCode')]) >
+                            <a href="{{ route('events.scanQrCode') }}" class="menu-link" style="padding-left: 0;">
                             <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-qrcode"></i>
                             </span>
-                            <span class="menu-text">{{ __('Attendant Events') }}</span>
-                        </a>
-                    </div>
+                                <span class="menu-text">{{ __('Attendant Events') }}</span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
             @if(auth()->user()->level == 4)

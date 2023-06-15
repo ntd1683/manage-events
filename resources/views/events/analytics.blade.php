@@ -92,15 +92,11 @@
             <!-- END row -->
         </div>
         <!-- END container -->
-
-
-        <x-toast status="success" title="Success" time="1s ago">
-            {{ session()->get('success') }}
-        </x-toast>
-
-        <x-toast status="error" title="Error" time="1s ago">
-            {{ session()->get('error') }}
-        </x-toast>
+        <div class="toasts-container">
+            <x-toast status="error" title="Error" time="1s ago">
+                {{ session()->get('error') }}
+            </x-toast>
+        </div>
 
     @push('js')
             <script src="{{ asset('js/datatable.js') }}"></script>

@@ -33,7 +33,10 @@ class EventController extends Controller
 
     public function create(): View
     {
-        return view('events.create');
+        $event = new Event();
+        $media = '';
+        $emails = '';
+        return view('events.create', compact('event', 'media', 'emails'));
     }
 
     public function store(StoreEventRequest $request): RedirectResponse
@@ -107,9 +110,6 @@ class EventController extends Controller
 
     public function show(Event $event): View|RedirectResponse
     {
-        if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
-            return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
-        }
 
         $media = '';
 
