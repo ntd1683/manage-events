@@ -41,6 +41,21 @@
                                                                      value="{{ old('name', auth()->user()->name) }}"
                                                                      name="name" placeholder="{{ __('Name') }}"/>
                                             </div>
+                                            <div class="form-group mb-3">
+
+                                                <div class="form-check form-check-inline">
+                                                    <x-forms.inputs.radio value="1" name="gender" :checked="old('gender', auth()->user()->gender)"
+                                                    >{{ __('Male') }}</x-forms.inputs.radio>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <x-forms.inputs.radio value="0" name="gender" :checked="old('gender', auth()->user()->gender)"
+                                                    >{{ __('Female') }}</x-forms.inputs.radio>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <x-forms.inputs.radio value="2" name="gender" :checked="old('gender', auth()->user()->gender)"
+                                                    >{{ __('Other') }}</x-forms.inputs.radio>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group mb-3">

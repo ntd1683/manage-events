@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProfileRequest extends FormRequest
 {
@@ -27,6 +28,7 @@ class StoreProfileRequest extends FormRequest
             'class' => ['nullable', 'string'],
             'faculty' => ['nullable', 'string'],
             'phone' => ['nullable', 'string'],
+            'gender' => ['required', Rule::in([1,2,0])],
         ];
     }
 }
