@@ -66,3 +66,22 @@ Breadcrumbs::for('edit_notify', function (BreadcrumbTrail $trail) {
     $trail->parent('events');
     $trail->push(trans('Edit'), route('notify.edit'));
 });
+
+Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
+    $trail->push(trans('Users'), route('users.index'));
+});
+
+Breadcrumbs::for('analytics_user', function (BreadcrumbTrail $trail) {
+    $trail->parent('users');
+    $trail->push(trans('Analytics'), route('users.index'));
+});
+
+Breadcrumbs::for('create_user', function (BreadcrumbTrail $trail) {
+    $trail->parent('users');
+    $trail->push(trans('Create'), route('users.create'));
+});
+
+Breadcrumbs::for('edit_user', function (BreadcrumbTrail $trail, $route) {
+    $trail->parent('users');
+    $trail->push(trans('Edit'), route('users.edit', $route));
+});

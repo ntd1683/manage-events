@@ -24,7 +24,7 @@ class SendMailRegisterUserNotification
     public function handle(UserRegisterEvent $event): void
     {
         $user = $event->user;
-        Mail::send('email.register', compact('user'), function ($email) use ($user) {
+        Mail::send('email.reset-password', compact('user'), function ($email) use ($user) {
             $email->subject('Manage Events - Create Account Successfully');
             $email->to($user->email, $user->name);
         });

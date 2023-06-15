@@ -31,7 +31,8 @@
                             <h4><i class="fa-solid fa-earth-asia fa-fw text-theme"></i>{{ __('Information') }}</h4>
                             <p>{{ __('Edit profile information') }}</p>
                             <div class="card">
-                                <form action="{{ route('profile.store') }}" method="POST">
+                                <form action="{{ route('profile.update') }}" method="POST">
+                                    @csrf
                                     <div class="card-body pb-2">
                                         <div class="row">
                                             <div class="form-group mb-3">
@@ -87,7 +88,7 @@
                                                     @endif
                                                 </div>
                                                 <x-forms.inputs.text value="{{ old('email', auth()->user()->email) }}"
-                                                                     placeholder="{{ __('Email') }}" disabled/>
+                                                                     placeholder="{{ __('Email') }}" name="email"/>
                                             </div>
                                         </div>
                                         <div class="text-end" id="save">

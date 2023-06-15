@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +30,6 @@ class StoreUserRequest extends FormRequest
             'class' => ['nullable', 'string'],
             'faculty' => ['nullable', 'string'],
             'phone' => ['nullable', 'string'],
-            'email' => ['required', 'email', 'unique:users'],
             'level' => ['required', Rule::in([0,1,2,3,4])],
         ];
     }

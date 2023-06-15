@@ -69,7 +69,7 @@ class AjaxProfileController extends Controller
         $user->update(['remember_token' => $token]);
 
         Mail::send('email.verify_email', compact('user'), function ($email) use ($user) {
-            $email->subject(trans('Manage Events - Reset Password'));
+            $email->subject(trans('Manage Events - Verify Email'));
             $email->to($user->email, $user->name);
         });
 

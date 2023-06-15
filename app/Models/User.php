@@ -19,7 +19,6 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
-    use SoftDeletes;
 
     public $timestamps = true;
 

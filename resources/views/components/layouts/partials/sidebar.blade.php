@@ -11,6 +11,34 @@
                     <span class="menu-text">{{ __('Dashboard')}}</span>
                 </a>
             </div>
+
+            @if(auth()->user()->level == 4)
+                <div @class(['menu-item has-sub', 'active expand' => getNameRouteMain() === 'users' ])>
+                    <a href="#" class="menu-link">
+                        <span class="menu-icon"><i class="fa-solid fa-users"></i></span>
+                        <span class="menu-text">{{ __('Users') }}</span>
+                        <span class="menu-caret"><b class="caret"></b></span>
+                    </a>
+                    <div class="menu-submenu" @if(getNameRouteMain() === 'users') style="display: block;" @endif >
+                        <div @class(['menu-item', 'active' => request()->routeIs('users.index')]) >
+                            <a href="{{ route('users.index') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </span>
+                                <span class="menu-text">{{ __('Analytics') }}</span>
+                            </a>
+                        </div>
+                        <div @class(['menu-item', 'active' => request()->routeIs('users.create')])>
+                            <a href="{{ route('users.create') }}" class="menu-link" style="padding-left: 0;">
+                                    <span class="menu-icon" style="margin-right: 3px;">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </span>
+                                <span class="menu-text">{{ __('Create') }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div @class(['menu-item has-sub', 'active expand' => getNameRouteMain() === 'events' ])>
                 <a href="#" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-file-medical-fill"></i></span>
@@ -27,40 +55,40 @@
                         </a>
                     </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.create')])>
-                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                        <a href="{{ route('events.create') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-plus"></i>
                             </span>
                             <span class="menu-text">{{ __('Create') }}</span>
                         </a>
                     </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.analytics')]) >
-                        <a href="{{ route('events.analytics') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                        <a href="{{ route('events.analytics') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-chart-line"></i>
                             </span>
                             <span class="menu-text">{{ __('Analytics') }}</span>
                         </a>
                     </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.manage')]) >
-                        <a href="{{ route('events.manage') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                        <a href="{{ route('events.manage') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-briefcase"></i>
                             </span>
                             <span class="menu-text">{{ __('Manage') }}</span>
                         </a>
                     </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.google.import')]) >
-                        <a href="{{ route('events.google.import') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                        <a href="{{ route('events.google.import') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-brands fa-google"></i>
                             </span>
                             <span class="menu-text">{{ __('Google Sheet Import') }}</span>
                         </a>
                     </div>
                     <div @class(['menu-item', 'active' => request()->routeIs('events.scanQrCode')]) >
-                        <a href="{{ route('events.scanQrCode') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                        <a href="{{ route('events.scanQrCode') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-qrcode"></i>
                             </span>
                             <span class="menu-text">{{ __('Attendant Events') }}</span>
@@ -85,16 +113,16 @@
                             </a>
                         </div>
                         <div @class(['menu-item', 'active' => request()->routeIs('notify.create')])>
-                            <a href="{{ route('notify.create') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                            <a href="{{ route('notify.create') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-plus"></i>
                             </span>
                                 <span class="menu-text">{{ __('Create') }}</span>
                             </a>
                         </div>
                         <div @class(['menu-item', 'active' => request()->routeIs('notify.analytics')]) >
-                            <a href="{{ route('notify.analytics') }}" class="menu-link" style="padding-left: 0;" >
-                            <span class="menu-icon" style="margin-right: 3px;" >
+                            <a href="{{ route('notify.analytics') }}" class="menu-link" style="padding-left: 0;">
+                            <span class="menu-icon" style="margin-right: 3px;">
                                 <i class="fa-solid fa-chart-line"></i>
                             </span>
                                 <span class="menu-text">{{ __('Analytics') }}</span>

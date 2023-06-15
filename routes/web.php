@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScanQrcodeController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckBossMiddleware;
 use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
@@ -83,20 +84,29 @@ Route::group([
 
 //    Profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-    Route::post('profile', [ProfileController::class, 'store'])->name('profile.store');
+    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
 
 //    Ajax
     Route::prefix('ajax')->name('ajax.')->group(function () {
         Route::get('user/check-email', [AjaxUserController::class , 'checkEmailUser'])->name('user.check-email');
+        //users
+        Route::get('users/analytics', [AjaxUserController::class, 'analytics'])->name('users.analytics');
+        Route::delete('users/delete/{user}', [AjaxUserController::class, 'destroy'])->name('users.destroy');
+
+        //events
         Route::get('events', [AjaxEventController::class , 'index'])->name('events.index');
         Route::get('events/analytics', [AjaxEventController::class , 'analytics'])->name('events.analytics');
         Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
         Route::delete('events/delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
         Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
         Route::post('google-spreadsheet', [AjaxGoogleController::class, 'import'])->name('google-spreadsheet');
+
+        //profile
         Route::post('profile/avatar', [AjaxProfileController::class , 'uploadAvatar'])->name('profile.avatar');
         Route::post('profile/change-password', [AjaxProfileController::class , 'changePassword'])->name('profile.changePassword');
         Route::post('profile/verify-email', [AjaxProfileController::class , 'verifyEmail'])->name('profile.verifyEmail');
+
+        //notify
         Route::get('notify', [AjaxNotifyController::class , 'index'])->name('notify.index');
         Route::get('notify/analytics', [AjaxNotifyController::class , 'analytics'])->name('notify.analytics');
         Route::delete('notify/delete/{notify}', [AjaxNotifyController::class , 'destroy'])->name('notify.destroy');
@@ -117,6 +127,7 @@ Route::group([
     'middleware' => CheckBossMiddleware::class,
 ], function () {
     Route::resource('notify', NotifyController::class);
+    Route::resource('users', UserController::class);
 });
 
 Route::get('test', [TestController::class, '__invoke']);

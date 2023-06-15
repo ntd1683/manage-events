@@ -7,7 +7,7 @@ use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProcessResetPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\VerifyEmailRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -58,24 +58,20 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function processRegister(StoreUserRequest $request): RedirectResponse
+    public function processRegister(RegisterRequest $request): RedirectResponse
     {
-        try {
-            $user = User::create([
-                ...$request->validated(),
-                'password' => Hash::make($request->input('password')),
-            ]);
+        $user = User::create([
+            ...$request->validated(),
+            'password' => Hash::make($request->input('password')),
+            'level' => '0',
+        ]);
 
-            Auth::login($user, true);
+        Auth::login($user, true);
 
-            UserRegisterEvent::dispatch($user);
+        UserRegisterEvent::dispatch($user);
 
-            return redirect()->route('index')
-                ->with('success', 'Create new user successfully!');
-        } catch (\Exception $e) {
-            return redirect()->back()
-                ->withErrors($e->getMessage());
-        }
+        return redirect()->route('index')
+            ->with('success', 'Create new user successfully!');
     }
 
     public function forgotPassword(): View
@@ -99,7 +95,7 @@ class AuthController extends Controller
             ->with('success', trans('Please check your email to reset your password'));
     }
 
-    public function resetPassword(ResetPasswordRequest $request): View | RedirectResponse
+    public function resetPassword(ResetPasswordRequest $request): View|RedirectResponse
     {
         $token = $request->token;
 
