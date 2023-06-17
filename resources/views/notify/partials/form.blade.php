@@ -7,16 +7,19 @@
         <x-forms.inputs.label for="title">{{ __('Title') }}</x-forms.inputs.label>
         <x-forms.inputs.text id="title" value="{{ old('title', $notify->title) }}" name="title"
                              placeholder="{{ __('title') }}"/>
+        <x-forms.inputs.error messages="{{ $errors->first('title') }}"/>
     </div>
     <div class="form-group mb-3">
         <x-forms.inputs.label for="content">{{ __('Content') }}</x-forms.inputs.label>
         <x-forms.inputs.text id="content" value="{{ old('content', $notify->content) }}" name="content"
                              placeholder="{{ __('content') }}"/>
+        <x-forms.inputs.error messages="{{ $errors->first('content') }}"/>
     </div>
     <div class="form-group mb-3">
         <x-forms.inputs.label for="link">{{ __('Link') }}</x-forms.inputs.label>
         <x-forms.inputs.text id="link" value="{{ old('link', $notify->link) }}" name="link"
                              placeholder="{{ __('link') }}"/>
+        <x-forms.inputs.error messages="{{ $errors->first('link') }}"/>
     </div>
     <div class="form-group mb-3">
         <div class="d-flex justify-content-between">
@@ -25,6 +28,8 @@
         </div>
         <x-forms.inputs.fontawesome value="{{ old('icon', $notify->icon) }}" name="icon"
                              placeholder="{{ __('icon') }}"/>
+
+        <x-forms.inputs.error messages="{{ $errors->first('icon') }}"/>
     </div>
 </div>
 <div class="text-end">
