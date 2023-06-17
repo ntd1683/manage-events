@@ -9,7 +9,7 @@
         $themeMode = 'light';
     }
 @endphp
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['h-full no-js', $themeMode])>
 <head>
     <meta charset="utf-8"/>

@@ -98,7 +98,10 @@ Route::group([
         Route::get('events/analytics', [AjaxEventController::class , 'analytics'])->name('events.analytics');
         Route::get('events/store', [AjaxEventController::class , 'store'])->name('events.store');
         Route::delete('events/delete/{event}', [AjaxEventController::class , 'destroy'])->name('events.destroy');
-        Route::post('scan-qrcode', [AjaxScanQrCodeController::class , '__invoke'])->name('scan-qrcode');
+
+        Route::post('scan-qrcode', [AjaxScanQrCodeController::class , 'attendant'])->name('scan-qrcode');
+        Route::get('getCodeEvent', [AjaxScanQrCodeController::class, 'getCode'])->name('scan-qrcode.getcode');
+
         Route::post('google-spreadsheet', [AjaxGoogleController::class, 'import'])->name('google-spreadsheet');
 
         //profile
@@ -129,5 +132,7 @@ Route::group([
     Route::resource('notify', NotifyController::class);
     Route::resource('users', UserController::class);
 });
+Route::get('events/register-events/{event}', [EventController::class, 'registerNoAccount'])->name('events.register-events');
+Route::post('events/process-register-events', [EventController::class, 'processRegisterNoAccount'])->name('events.process-register-events');
 
 Route::get('test', [TestController::class, '__invoke']);

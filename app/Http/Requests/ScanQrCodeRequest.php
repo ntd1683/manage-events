@@ -13,11 +13,7 @@ class ScanQrCodeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        $validationData = parent::validationData();
-
-        $event = Event::query()->where('id', $validationData['event_id'])->first();
-
-        return auth()->user()->id === $event->author;
+        return auth()->user()->level >= 2 ;
     }
 
     /**

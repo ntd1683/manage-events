@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Query\EventFilterQuery;
 use App\Http\Requests\Ajax\EventFilterRequest;
+use App\Http\Requests\ProcessRegisterNoAccountRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use App\Models\EventAttendance;
 use App\Models\ManageEvent;
 use App\Models\Media;
+use App\Models\RegisterEvent;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -29,6 +31,42 @@ class EventController extends Controller
     public function analytics(): View
     {
         return view('events.analytics');
+    }
+
+    public function registerNoAccount(Request $request, Event $event): View
+    {
+        $code = substr(encrypt($event->code . Carbon::parse($event->happened_at)->format('Ymd')), 0, 9);
+        if($event->published != 1
+            || $event->accepted != 1
+            || $event->happened_at === today('Asia/Jakarta')
+            || $request->get('code') !== $code
+        ) {
+            abort(403);
+        }
+
+        $eventId = $event->id;
+        if(auth()->guest()) {
+            $user = new User();
+        } else {
+            $user = auth()->user();
+        }
+
+        return view('events.register-no-account', compact('user', 'eventId'));
+    }
+
+    public function processRegisterNoAccount(ProcessRegisterNoAccountRequest $request)
+    {
+        $data = $request->validated();
+        $registerEvent = RegisterEvent::create([
+            ...$data,
+        ]);
+
+        EventAttendance::create([
+            'event_id' => $request->get('event_id'),
+            'register_event_id' => $registerEvent->id,
+        ]);
+
+        return redirect()->route('index')->with('success', 'Successful attendance');
     }
 
     public function create(): View

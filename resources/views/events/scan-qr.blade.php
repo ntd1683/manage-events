@@ -35,6 +35,7 @@
             <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_error" id="button_error">{{ __('Scan QR Code') }}</x-forms.buttons.warning>
         </div>
     <div class="mb-3">
+        <input type="hidden" value="{{ route('ajax.scan-qrcode.getcode') }}" id="getCode">
         <form action="{{ route('ajax.scan-qrcode') }}" method="post" onsubmit="return false" id="form">
             @csrf
             @foreach($events as $event)
@@ -69,7 +70,9 @@
         <div class="text-center">
             <h3>{{ __('Register through google form') }}</h3>
             <p id="text_error" class="mb-2"></p>
-            <img src="" id="img_error" style="width: 70%;">
+            <div id="qrcode" class="d-flex justify-content-center">
+
+            </div>
         </div>
         <x-slot:buttons>
             <button type="button" class="btn btn-default text-white" data-bs-dismiss="modal">{{ __('Close') }}</button>
@@ -77,6 +80,7 @@
     </x-modal>
     <!-- END #content -->
     @push('js')
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
         <script src="{{ asset('js/scan-qrcode.js') }}"></script>
     @endpush
 </x-layouts.master>

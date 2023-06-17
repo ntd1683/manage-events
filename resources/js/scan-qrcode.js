@@ -4,7 +4,17 @@ import {Html5QrcodeScanner} from "html5-qrcode";
 // To use Html5Qrcode (more info below)
 import {Html5Qrcode} from "html5-qrcode";
 
+function getBaseURL () {
+    return window.location.origin;
+}
+
+const qrcode = new QRCode("qrcode");
+
+const urlBase = getBaseURL();
+let urlQrCode = urlBase;
+
 let selectEvent = $('#select_event');
+let code;
 
 function onScanSuccess(decodedText, decodedResult) {
     let url = $('#form').attr('action');
@@ -20,15 +30,8 @@ function onScanSuccess(decodedText, decodedResult) {
             $('#button_success').click();
         },
         error: function (data) {
-            let eventId = selectEvent.val();
-            let media = $('#media_' + eventId).val();
-            if(media) {
-                $('#text_error').text(data.responseJSON.message);
-                $('#img_error').attr('src', media);
-                $('#button_error').click();
-            }
-
-            $('.message-error').text(data.responseJSON.message);
+            $('#text_error').text(data.responseJSON.message);
+            $('#button_error').click();
             $('.toast-error').toast('show');
         }
     });
@@ -51,20 +54,27 @@ function disabledCamera() {
 }
 
 selectEvent.change(() => {
+    $.ajax({
+        method: 'GET',
+        url: $('#getCode').val(),
+        data: {
+            "event_id": selectEvent.val(),
+        },
+        success: function (response) {
+            code = response.data.code;
+            urlQrCode += 'events/register-events/' + selectEvent.val() + '?code=' + code;
+            qrcode.makeCode(urlQrCode);
+        }
+    });
     disabledCamera();
 })
 
 $('#button_error').click(() => {
-    let eventId = selectEvent.val();
-    let media = $('#media_' + eventId).val();
-    if(media) {
-        $('#text_error').text('Scan qr code for student registration form');
-        $('#img_error').attr('src', media);
-        $('#button_error').click();
-    }
+    // $('#text_error').text(data.responseJSON.message);
 })
 
 window.addEventListener('load', () => {
+
     let html5QrcodeScanner = new Html5QrcodeScanner(
         "reader",
         {fps: 10, qrbox: {width: 250, height: 250}},
