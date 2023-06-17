@@ -28,6 +28,7 @@
             <p class="mb-1">
                 {{ __('The page you requested was not found.') }}
             </p>
+            <a @if(auth()->guest()) href="{{ route('login') }}" @else href="{{ route('index') }}" @endif class="btn btn-outline-theme px-3 me-2 rounded-pill"><i class="bi bi-house-door me-1 ms-n1"></i> {{ __('Home') }}</a>
             <a href="{{ url()->previous() }}" class="btn btn-outline-theme px-3 rounded-pill"><i class="fa fa-arrow-left me-1 ms-n1"></i> {{ __('Go Back') }}</a>
         </div>
         <!-- END error-page-content -->
