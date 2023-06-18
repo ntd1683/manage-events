@@ -15,6 +15,7 @@ use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScanQrcodeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckBossMiddleware;
@@ -48,6 +49,10 @@ Route::group([
 
     Route::get('reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
     Route::post('reset-password', [AuthController::class, 'processResetPassword'])->name('processResetPassword');
+
+//    social
+    Route::get('/redirect/{social}', [SocialAuthController::class, 'redirect'])->name('login.social.redirect');
+    Route::get('/callback/{social}', [SocialAuthController::class, 'callback'])->name('login.social.callback');
 });
 
 Route::group([
