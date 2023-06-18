@@ -12,6 +12,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ManageEventController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScanQrcodeController;
 use App\Http\Controllers\SettingController;
@@ -139,5 +140,8 @@ Route::group([
 });
 Route::get('events/register-events/{event}', [EventController::class, 'registerNoAccount'])->name('events.register-events');
 Route::post('events/process-register-events', [EventController::class, 'processRegisterNoAccount'])->name('events.process-register-events');
+
+Route::get('privacy-policy', [PolicyController::class, 'privacy'])->name('privacy');
+Route::get('term-of-you', [PolicyController::class, 'termOfUse'])->name('termOfUse');
 
 Route::get('test', [TestController::class, '__invoke']);
