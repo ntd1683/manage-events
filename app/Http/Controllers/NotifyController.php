@@ -44,7 +44,7 @@ class NotifyController extends Controller
             'author' => auth()->user()->id,
         ]);
 
-        return redirect()->route('notify.analytics')->with('success', 'Add Notify Successfully');
+        return redirect()->route('notify.analytics')->with('success', trans('Add Notify Successfully'));
     }
 
     /**
@@ -68,7 +68,7 @@ class NotifyController extends Controller
 
         $notify->update($data);
 
-        return redirect()->route('notify.analytics')->with('success', 'Edit Notify Successfully');
+        return redirect()->route('notify.analytics')->with('success', trans('Edit Notify Successfully'));
     }
 
     /**
@@ -82,6 +82,6 @@ class NotifyController extends Controller
 
         $notify->delete();
 
-        return redirect()->route('notify.analytics')->with('success', 'Delete Notify Successfully');
+        return redirect()->route('notify.analytics')->with('success', trans('Delete Notify Successfully'));
     }
 }
