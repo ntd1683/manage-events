@@ -66,7 +66,7 @@ class EventController extends Controller
             'register_event_id' => $registerEvent->id,
         ]);
 
-        return redirect()->route('index')->with('success', 'Successful attendance');
+        return redirect()->route('index')->with('success', trans('Successful attendance'));
     }
 
     public function create(): View
@@ -164,7 +164,7 @@ class EventController extends Controller
     public function edit(Event $event): View|RedirectResponse
     {
         if (auth()->user()->level !== 4 && $event->author !== auth()->user()->id) {
-            return redirect()->route('events.index')->withErrors('You do not have permission to edit this event !');
+            return redirect()->route('events.index')->withErrors(trans('You do not have permission to edit this event !'));
         }
 
         $media = '';
@@ -240,7 +240,7 @@ class EventController extends Controller
             }
         }
 
-        return redirect()->route('events.index')->with('success', 'Update Event Successfully');
+        return redirect()->route('events.index')->with('success', trans('Update Event Successfully'));
     }
 
     public function destroy(Event $event): RedirectResponse
@@ -251,6 +251,6 @@ class EventController extends Controller
 
         $event->delete();
 
-        return redirect()->route('events.index')->with('success', 'Delete Event Successfully');
+        return redirect()->route('events.index')->with('success', trans('Delete Event Successfully'));
     }
 }

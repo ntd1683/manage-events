@@ -115,7 +115,7 @@ class AuthController extends Controller
             'remember_token' => null,
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
-        return redirect()->route('login')->with('success', 'Change Password Successfully !!!');
+        return redirect()->route('login')->with('success', trans('Change Password Successfully !!!'));
     }
 
     public function verifyEmail(VerifyEmailRequest $request)
@@ -124,6 +124,6 @@ class AuthController extends Controller
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
 
-        return redirect()->route('index')->with('success', 'Verify Email Successfully !!!');
+        return redirect()->route('index')->with('success', trans('Verify Email Successfully !!!'));
     }
 }

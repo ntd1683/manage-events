@@ -43,6 +43,6 @@ class SettingController extends Controller
             optionSave('site_favicon', $filePathFavicon);
         }
 
-        return redirect()->route('index')->with('success', 'Save Setting Successfully');
+        return redirect()->route('index')->with('success', trans('Save Setting Successfully'));
     }
 }
