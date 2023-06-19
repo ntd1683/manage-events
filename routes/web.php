@@ -7,6 +7,7 @@ use App\Http\Controllers\Ajax\AjaxProfileController;
 use App\Http\Controllers\Ajax\AjaxScanQrCodeController;
 use App\Http\Controllers\Ajax\AjaxUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChangeLanguageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ManageEventController;
@@ -22,6 +23,7 @@ use App\Http\Middleware\CheckLoginMiddleware;
 use App\Http\Middleware\CheckLogoutMiddleware;
 use App\Http\Controllers\EventController;
 use App\Http\Middleware\CheckVipMemberMiddleware;
+use App\Http\Middleware\Locale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,13 +77,6 @@ Route::group([
 
     Route::resource('media', MediaController::class);
 
-//  Setting
-    Route::get('setting', [SettingController::class, 'index'])->name('setting');
-    Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
-    Route::prefix('notify')->name('notify.')->group(function () {
-        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
-    });
-
 //    Profile
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -131,8 +126,20 @@ Route::group([
 ], function () {
     Route::resource('notify', NotifyController::class);
     Route::resource('users', UserController::class);
+//  Setting
+    Route::get('setting', [SettingController::class, 'index'])->name('setting');
+    Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
+    Route::prefix('notify')->name('notify.')->group(function () {
+        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
+    });
 });
 Route::get('events/register-events/{event}', [EventController::class, 'registerNoAccount'])->name('events.register-events');
 Route::post('events/process-register-events', [EventController::class, 'processRegisterNoAccount'])->name('events.process-register-events');
 
 Route::get('test', [TestController::class, '__invoke']);
+
+//Locale
+Route::group(['middleware' => Locale::class], function() {
+    Route::get('change-language', [ChangeLanguageController::class, '__invoke'])
+        ->name('change-language');
+});

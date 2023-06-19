@@ -34,65 +34,21 @@
 
     <!-- BEGIN menu -->
     <div class="menu">
-        <div class="menu-item dropdown">
-            <a href="#" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app" class="menu-link">
-                <div class="menu-icon"><i class="bi bi-search nav-icon"></i></div>
-            </a>
-        </div>
         <div class="menu-item dropdown dropdown-mobile-full">
-            <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link dropdown-toggle">
-                <div class="menu-icon"><i class="bi bi-grid-3x3-gap nav-icon"></i></div>
-            </a>
-            <div class="dropdown-menu fade dropdown-menu-end w-300px text-center p-0 mt-1">
-                <div class="row row-grid gx-0">
-                    <div class="col-4">
-                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
-                            <div class="position-relative">
-                                <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
-                                <i class="bi bi-envelope h2 opacity-5 d-block my-1"></i>
-                            </div>
-                            <div class="fw-500 fs-10px text-white">{{ __('INBOX') }}</div>
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
-                            <div><i class="bi bi-hdd-network h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">{{ __('DISK DRIVE') }}</div>
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
-                            <div><i class="bi bi-calendar4 h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">{{ __('CALENDAR') }}</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row row-grid gx-0">
-                    <div class="col-4">
-                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
-                            <div><i class="bi bi-terminal h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">{{ __('TERMINAL') }}</div>
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a href="{{ route('setting') }}" class="dropdown-item text-decoration-none p-3 bg-none">
-                            <div class="position-relative">
-                                <i class="bi bi-circle-fill position-absolute text-theme top-0 mt-n2 me-n2 fs-6px d-block text-center w-100"></i>
-                                <i class="bi bi-sliders h2 opacity-5 d-block my-1"></i>
-                            </div>
-                            <div class="fw-500 fs-10px text-white">{{ __('SETTINGS') }}</div>
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a href="#" class="dropdown-item text-decoration-none p-3 bg-none">
-                            <div><i class="bi bi-collection-play h2 opacity-5 d-block my-1"></i></div>
-                            <div class="fw-500 fs-10px text-white">{{ __('LIBRARY') }}</div>
-                        </a>
-                    </div>
-                </div>
+            <div class="me-2">
+                <label class="form-check-label" for="customSwitch1">English</label>
             </div>
-        </div>
-        <div class="menu-item dropdown dropdown-mobile-full">
+                <div class="form-check form-switch">
+                    <form action="{{ route('change-language') }}" method="get" id="form_change_language">
+                        <input type="checkbox" class="form-check-input" name="language" value="vi" id="language" onclick="changeLanguage()" @if(session()->get('lang') === 'vi') checked @endif>
+                            <script>
+                                function changeLanguage() {
+                                    $('#form_change_language').submit();
+                                }
+                            </script>
+                    </form>
+                    <label class="form-check-label" for="language">{{ __('Vietnamese') }}</label>
+                </div>
             <a href="#" data-bs-toggle="dropdown" data-bs-display="static" class="menu-link">
                 <div class="menu-icon"><i class="bi bi-bell nav-icon"></i></div>
                 <div class="menu-badge bg-theme"></div>
@@ -153,12 +109,10 @@
             <div class="dropdown-menu dropdown-menu-end me-lg-3 fs-11px mt-1">
                 <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">{{ __('PROFILE') }} <i
                         class="bi bi-person-circle ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('INBOX') }}<i
-                        class="bi bi-envelope ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="#">{{ __('CALENDAR') }}<i
-                        class="bi bi-calendar ms-auto text-theme fs-16px my-n1"></i></a>
-                <a class="dropdown-item d-flex align-items-center" href="{{ route('setting') }}">{{ __('SETTINGS') }}<i
-                        class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
+                @if(auth()->user()->level == 4)
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('setting') }}">{{ __('SETTINGS') }}<i
+                            class="bi bi-gear ms-auto text-theme fs-16px my-n1"></i></a>
+                @endif
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">{{ __('LOGOUT') }}<i
                         class="bi bi-toggle-off ms-auto text-theme fs-16px my-n1"></i></a>
@@ -166,20 +120,5 @@
         </div>
     </div>
     <!-- END menu -->
-
-    <!-- BEGIN menu-search -->
-    <form class="menu-search" method="POST" name="header_search_form">
-        <div class="menu-search-container">
-            <div class="menu-search-icon"><i class="bi bi-search"></i></div>
-            <div class="menu-search-input">
-                <input type="text" class="form-control form-control-lg" placeholder="{{ __('Search menu...') }}"/>
-            </div>
-            <div class="menu-search-icon">
-                <a href="#" data-toggle-class="app-header-menu-search-toggled" data-toggle-target=".app"><i
-                        class="bi bi-x-lg"></i></a>
-            </div>
-        </div>
-    </form>
-    <!-- END menu-search -->
 </div>
 <!-- END #header -->

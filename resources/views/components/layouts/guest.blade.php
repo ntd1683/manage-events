@@ -20,6 +20,7 @@
         <!-- btn-scroll-top -->
         <x-layouts.partials.scroll-top/>
 	</div>
+
 	<!-- END #app -->
 
     <!-- Toast -->
@@ -36,6 +37,18 @@
                     });
                 </script>
             @endforeach
+        @endif
+
+        @if($error = session()->get('error'))
+                <x-toast status="error" title="Error" time="1s ago" class="border-danger">
+                    {{ $error }}
+                </x-toast>
+
+                <script>
+                    window.addEventListener('load', () => {
+                        $('.toast-error').toast('show');
+                    });
+                </script>
         @endif
         <!-- Toast -->
     </div>
