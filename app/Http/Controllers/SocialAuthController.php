@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\SocialAccountService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
@@ -18,6 +19,12 @@ class SocialAuthController extends Controller
         $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
         if($user) {
             auth()->login($user);
+
+            Mail::send('email.create-user', compact('user'), function ($email) use ($user) {
+                $email->subject(trans('Manage Events - invitation to join'));
+                $email->to($user->email, $user->name);
+            });
+
             return redirect()->route('index')->with('success', trans('Login Successfully'));
         }
 
