@@ -50,7 +50,7 @@ class UserController extends Controller
             $email->to($user->email, $user->name);
         });
 
-        return redirect()->route('users.index')->with('success', 'Add User Successfully');
+        return redirect()->route('users.index')->with('success', trans('Add User Successfully'));
     }
 
     /**
@@ -79,7 +79,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('users.index')->with('success', 'Edit User Successfully');
+        return redirect()->route('users.index')->with('success', trans('Edit User Successfully'));
     }
 
     /**
@@ -93,6 +93,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'Delete User Successfully');
+        return redirect()->route('users.index')->with('success', trans('Delete User Successfully'));
     }
 }

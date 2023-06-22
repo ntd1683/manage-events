@@ -8,6 +8,6 @@ class DashboardController extends Controller
 {
     public function __invoke(): View
     {
-        return view('welcome');
+        return view(trans('welcome'));
     }
 }
