@@ -36,7 +36,8 @@ class EventController extends Controller
     public function registerNoAccount(Request $request, Event $event): View
     {
         $code = substr(encrypt($event->code . Carbon::parse($event->happened_at)->format('Ymd')), 0, 9);
-        if($event->published != 1
+        if (
+            $event->published != 1
             || $event->accepted != 1
             || $event->happened_at === today('Asia/Jakarta')
             || $request->get('code') !== $code
@@ -45,7 +46,7 @@ class EventController extends Controller
         }
 
         $eventId = $event->id;
-        if(auth()->guest()) {
+        if (auth()->guest()) {
             $user = new User();
         } else {
             $user = auth()->user();

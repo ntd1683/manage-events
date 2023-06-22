@@ -21,7 +21,7 @@ class SocialAccountService
         } else {
             $email = $providerUser->getEmail() ?? $providerUser->getNickname();
 
-            if($email == null) {
+            if ($email == null) {
                 return false;
             }
 

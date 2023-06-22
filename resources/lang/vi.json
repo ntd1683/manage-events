@@ -1,5 +1,5 @@
 {
-    
+
     "Delete User Successfully":"Xóa Người Dùng Thành Công",
     "Edit User Successfully":"Chỉnh Sửa Người Dùng Thành Công",
     "Add User Successfully":"Thêm Người Dùng Thành Công",
@@ -25,10 +25,10 @@
     "description": "mô tả",
     "Description": "Mô tả",
     "author name":"tên tác giả",
-    "Author":"Tác Giả", 
-    "subtitle":"phụ đề",  
+    "Author":"Tác Giả",
+    "subtitle":"phụ đề",
     "Subtitle":"Phụ Đề",
-    "title":"tiêu đề",   
+    "title":"tiêu đề",
     "Title:":"Tiêu Đề",
     "Register Event": "Đăng Kí Sự Kiện",
     "Go Back": "Quay Lại",
@@ -86,7 +86,7 @@
     "Please Enter Email...": "Vui Lòng Nhập Email...",
     "For your protection, please verify your identity.": "Để bảo vệ bạn, vui lòng xác minh danh tính của bạn.",
     "Start Scanning": "Bắt Đầu Quét",
-    "Index": "Mục lục",
+    "Index": "Trang chủ",
     "page header description goes here...": "mô tả tiêu đề trang ở đây",
     "Select Camera": "Chọn Camera",
     "Scan an Image File": "Quét tệp Hình Ảnh",
@@ -257,7 +257,7 @@
     "Cyprus": "Cyprus",
     "Czech Republic": "Cộng hòa Séc",
     "Côte d'Ivoire": "Côte d'Ivoire",
-    "Dashboard": "Bảng điều khiển",
+    "Dashboard": "Trang chủ",
     "December": "Tháng Mười Hai",
     "Decrease": "Giảm bớt",
     "Delete": "Xóa",

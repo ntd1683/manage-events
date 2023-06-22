@@ -25,7 +25,7 @@
 
     <!-- Toast -->
     <div class="toasts-container">
-        @if (session()->has('error'))
+        @if ($errors)
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <x-toast status="error" title="Error" time="1s ago" class="border-danger">
@@ -40,6 +40,16 @@
                 @endforeach
             @endif
         @endif
+            <x-toast status="success" title="Success" time="1s ago">
+                {{ session()->get('success') }}
+            </x-toast>
+            @if (session()->has('success'))
+                <script>
+                    window.addEventListener('load', () => {
+                        $('.toast-success').toast('show');
+                    });
+                </script>
+            @endif
 
         @if($error = session()->get('error'))
                 <x-toast status="error" title="Error" time="1s ago" class="border-danger">

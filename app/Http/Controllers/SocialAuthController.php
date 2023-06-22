@@ -17,7 +17,7 @@ class SocialAuthController extends Controller
     public function callback($social)
     {
         $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
-        if($user) {
+        if ($user) {
             auth()->login($user);
 
             Mail::send('email.create-user', compact('user'), function ($email) use ($user) {

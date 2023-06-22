@@ -148,7 +148,7 @@ Route::get('term-of-you', [PolicyController::class, 'termOfUse'])->name('termOfU
 Route::get('test', [TestController::class, '__invoke']);
 
 //Locale
-Route::group(['middleware' => Locale::class], function() {
+Route::group(['middleware' => Locale::class], function () {
     Route::get('change-language', [ChangeLanguageController::class, '__invoke'])
         ->name('change-language');
 });
