@@ -36,7 +36,7 @@
     <div class="menu">
         <div class="menu-item dropdown dropdown-mobile-full">
             <div class="me-2">
-                <label class="form-check-label" for="customSwitch1">English</label>
+                <label class="form-check-label" for="customSwitch1">{{ __('English') }}</label>
             </div>
                 <div class="form-check form-switch">
                     <form action="{{ route('change-language') }}" method="get" id="form_change_language">

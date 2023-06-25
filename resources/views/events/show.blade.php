@@ -27,7 +27,7 @@
                                     <hr>
                                     <h5>{{ $event->description }}</h5>
                                     <hr>
-                                    <div>{!! $event->content !!}  }}</div>
+                                    <div>{!! $event->content !!}</div>
                                     <x-forms.buttons.primary data-bs-toggle="modal"
                                                              data-bs-target="#modal_register"
                                                              data-event-id="{{ $event->id }}"
