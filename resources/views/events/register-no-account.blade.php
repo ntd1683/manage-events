@@ -17,7 +17,7 @@
                     <x-forms.inputs.error messages="{{ $errors->first('name') }}"/>
                 </div>
                 <div class="form-group mb-3">
-                    <x-forms.inputs.label for="code_student">{{ __('ID Student') }}</x-forms.inputs.label>
+                    <x-forms.inputs.label for="code_student">{{ __('Code Student') }}</x-forms.inputs.label>
                     <x-forms.inputs.text id="code_student" value="{{ old('code_student', $user->code_student) }}" name="code_student"
                                          placeholder="218xxxxx368"/>
 

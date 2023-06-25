@@ -45,7 +45,7 @@
             <x-forms.inputs.error messages="{{ $errors->first('published') }}"/>
         </div>
         <div class="form-group mb-3">
-            <x-forms.inputs.label for="happened_at">{{ __('Event Venue') }}</x-forms.inputs.label>
+            <x-forms.inputs.label for="happened_at">{{ __('Happened At') }}</x-forms.inputs.label>
             <x-forms.inputs.datepicker id="happened_at"
                                        value="{{ old('happened_at', \Illuminate\Support\Carbon::parse($event->happened_at)->format('d-m-Y')) }}"
                                        name="happened_at" placeholder="{{ __('d-m-Y') }}"/>
