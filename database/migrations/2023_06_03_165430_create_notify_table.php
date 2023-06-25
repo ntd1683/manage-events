@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('icon');
             $table->string('title')->unique();
             $table->string('content');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->bigInteger('author');
             $table->timestamps();
         });

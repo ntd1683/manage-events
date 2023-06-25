@@ -6,6 +6,7 @@ use App\Services\SocialAccountService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 
 class SocialAuthController extends Controller
 {
@@ -16,7 +17,13 @@ class SocialAuthController extends Controller
 
     public function callback($social)
     {
-        $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
+        try {
+            $socialite = Socialite::driver($social)->user();
+        } catch (InvalidStateException $e) {
+            $socialite = Socialite::driver($social)->stateless()->user();
+        }
+
+        $user = SocialAccountService::createOrGetUser($socialite, $social);
         if ($user) {
             auth()->login($user);
 
