@@ -80,15 +80,17 @@ class EventController extends Controller
 
     public function store(StoreEventRequest $request): RedirectResponse
     {
-        $arrEmail = json_decode($request->get('emails'));
-        $emails = [];
+        if ($request->get('emails')) {
+            $arrEmail = json_decode($request->get('emails'));
+            $emails = [];
 
-        foreach ($arrEmail as $email) {
-            $emails[] = get_object_vars($email)['value'];
+            foreach ($arrEmail as $email) {
+                $emails[] = get_object_vars($email)['value'];
+            }
         }
 
         $happenedAt = Carbon::createFromFormat('d-m-Y', $request->get('happened_at'))->format('Y-m-d');
-        ;
+
         $media_id = null;
 
         if ($request->hasFile('qr_code')) {
@@ -131,16 +133,18 @@ class EventController extends Controller
             'status' => 1,
         ]);
 
-        foreach ($emails as $email) {
-            try {
-                $id = User::query()->where('email', $email)->first()->id;
+        if (isset($emails)) {
+            foreach ($emails as $email) {
+                try {
+                    $id = User::query()->where('email', $email)->first()->id;
 
-                ManageEvent::create([
-                    'event_id' => $event->id,
-                    'user_id' => $id,
-                    'status' => 0,
-                ]);
-            } catch (\Exception $e) {
+                    ManageEvent::create([
+                        'event_id' => $event->id,
+                        'user_id' => $id,
+                        'status' => 0,
+                    ]);
+                } catch (\Exception $e) {
+                }
             }
         }
 
@@ -175,18 +179,21 @@ class EventController extends Controller
             $media = $media->url;
         }
 
-        $emails = $event->ManageUsers()->pluck('email')->toJson();
+        $emails = $event->manageUsers()->pluck('email')->toJson();
 
         return view('events.edit', compact('event', 'media', 'emails'));
     }
 
     public function update(Event $event, UpdateEventRequest $request): RedirectResponse
     {
-        $arrEmail = json_decode($request->get('emails'));
         $emails = [];
 
-        foreach ($arrEmail as $email) {
-            $emails[] = get_object_vars($email)['value'];
+        if ($request->get('emails')) {
+            $arrEmail = json_decode($request->get('emails'));
+
+            foreach ($arrEmail as $email) {
+                $emails[] = get_object_vars($email)['value'];
+            }
         }
 
         $data = $request->validated();
@@ -227,10 +234,11 @@ class EventController extends Controller
             $event->accepted = 0;
             $event->save();
         }
-
+        $userIdOld = $event->manageUsers()->pluck('user_id');
         foreach ($emails as $email) {
             try {
                 $id = User::query()->where('email', $email)->first()->id;
+                $userIdOld = $userIdOld->diff($id);
 
                 ManageEvent::create([
                     'event_id' => $event->id,
@@ -239,6 +247,10 @@ class EventController extends Controller
                 ]);
             } catch (\Exception $e) {
             }
+        }
+
+        foreach($userIdOld as $each) {
+            ManageEvent::where('event_id', $event->id)->where('user_id', $each)->delete();
         }
 
         return redirect()->route('events.index')->with('success', trans('Update Event Successfully'));

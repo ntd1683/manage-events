@@ -42,10 +42,7 @@
                         <!-- BEGIN #sidebar-bootstrap -->
                         <x-layouts.partials.menu-container>
                             <a class="nav-link" href="#formControls"
-                               data-toggle="scroll-to">{{ __('Form Register Event') }}</a>
-                            <a class="nav-link" href="#add_collaborators"
-                               data-toggle="scroll-to">{{ __('Add Collaborators') }}</a>
-                            <a class="nav-link" href="#qr_code" data-toggle="scroll-to">{{ __('QR Code') }}</a>
+                               data-toggle="scroll-to">{{ __('Form Register Notify') }}</a>
                         </x-layouts.partials.menu-container>
                         <!-- END #sidebar-bootstrap -->
                     </div>

@@ -130,14 +130,14 @@ Route::group([
 Route::group([
     'middleware' => CheckBossMiddleware::class,
 ], function () {
+    Route::prefix('notify')->name('notify.')->group(function () {
+        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
+    });
     Route::resource('notify', NotifyController::class);
     Route::resource('users', UserController::class);
 //  Setting
     Route::get('setting', [SettingController::class, 'index'])->name('setting');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
-    Route::prefix('notify')->name('notify.')->group(function () {
-        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
-    });
 });
 Route::get('events/register-events/{event}', [EventController::class, 'registerNoAccount'])->name('events.register-events');
 Route::post('events/process-register-events', [EventController::class, 'processRegisterNoAccount'])->name('events.process-register-events');
