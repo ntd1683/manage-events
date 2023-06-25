@@ -102,7 +102,7 @@ class Event extends Model
         })->shouldCache();
     }
 
-    public function ManageUsers(): BelongsToMany
+    public function manageUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'manage_events');
     }

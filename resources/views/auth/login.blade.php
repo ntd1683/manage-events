@@ -37,6 +37,14 @@
                 </div>
                 <button type="submit"
                         class="btn btn-outline-theme btn-lg d-block w-100 fw-500 mb-3">{{ __('Log In') }}</button>
+                <div class="text-center h2">
+{{--                    <a href="{{ route('login.social.redirect', 'facebook') }}" class="me-3 text-decoration-none">--}}
+{{--                        <i class="fa-brands fa-facebook"></i>--}}
+{{--                    </a>--}}
+                    <a href="{{ route('login.social.redirect', 'google') }}">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
+                </div>
                 <div class="text-center text-white text-opacity-50">
                     {{ __('Don\'t have an account yet?') }} <a href="{{ route('register') }}">{{ __('Sign up') }}</a>.
                 </div>

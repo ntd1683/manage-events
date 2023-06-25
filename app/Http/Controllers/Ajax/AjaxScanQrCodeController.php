@@ -47,7 +47,7 @@ class AjaxScanQrCodeController extends Controller
 
     public function getCode(Request $request): JsonResponse
     {
-        if(auth()->user()->level < 2) {
+        if (auth()->user()->level < 2) {
             abort('403');
         }
 

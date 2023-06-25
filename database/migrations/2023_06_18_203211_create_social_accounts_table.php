@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notify', function (Blueprint $table) {
+        Schema::create('social_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
-            $table->string('title')->unique();
-            $table->string('content');
-            $table->string('link')->nullable();
-            $table->bigInteger('author');
+            $table->bigInteger('user_id');
+            $table->string('provider_user_id');
+            $table->string('provider');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notify');
+        Schema::dropIfExists('social_accounts');
     }
 };

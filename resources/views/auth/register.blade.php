@@ -44,7 +44,7 @@
                 <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="customCheck1"/>
-                        <label class="form-check-label" for="customCheck1">{{ __('I have read and agree to the ') }}<a href="#">{{ __('Terms of Use') }}</a> {{ __('and') }} <a href="#">{{ __('Privacy Policy') }}</a>.</label>
+                        <label class="form-check-label" for="customCheck1">{{ __('I have read and agree to the ') }}<a href="{{ route('termOfUse') }}" target="_blank">{{ __('Terms of Use') }}</a> {{ __('and') }} <a href="{{ route('privacy') }}" target="_blank">{{ __('Privacy Policy') }}</a>.</label>
                     </div>
                 </div>
                 <div class="mb-3">

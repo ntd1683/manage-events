@@ -25,19 +25,31 @@
 
     <!-- Toast -->
     <div class="toasts-container">
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <x-toast status="error" title="Error" time="1s ago" class="border-danger">
-                    {{ $error }}
-                </x-toast>
+        @if ($errors)
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <x-toast status="error" title="Error" time="1s ago" class="border-danger">
+                        {{ $error }}
+                    </x-toast>
 
+                    <script>
+                        window.addEventListener('load', () => {
+                            $('.toast-error').toast('show');
+                        });
+                    </script>
+                @endforeach
+            @endif
+        @endif
+            <x-toast status="success" title="Success" time="1s ago">
+                {{ session()->get('success') }}
+            </x-toast>
+            @if (session()->has('success'))
                 <script>
                     window.addEventListener('load', () => {
-                        $('.toast-error').toast('show');
+                        $('.toast-success').toast('show');
                     });
                 </script>
-            @endforeach
-        @endif
+            @endif
 
         @if($error = session()->get('error'))
                 <x-toast status="error" title="Error" time="1s ago" class="border-danger">

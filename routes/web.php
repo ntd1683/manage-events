@@ -13,9 +13,11 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ManageEventController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScanQrcodeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckBossMiddleware;
@@ -50,6 +52,10 @@ Route::group([
 
     Route::get('reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
     Route::post('reset-password', [AuthController::class, 'processResetPassword'])->name('processResetPassword');
+
+//    social
+    Route::get('/redirect/{social}', [SocialAuthController::class, 'redirect'])->name('login.social.redirect');
+    Route::get('/callback/{social}', [SocialAuthController::class, 'callback'])->name('login.social.callback');
 });
 
 Route::group([
@@ -124,22 +130,25 @@ Route::group([
 Route::group([
     'middleware' => CheckBossMiddleware::class,
 ], function () {
+    Route::prefix('notify')->name('notify.')->group(function () {
+        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
+    });
     Route::resource('notify', NotifyController::class);
     Route::resource('users', UserController::class);
 //  Setting
     Route::get('setting', [SettingController::class, 'index'])->name('setting');
     Route::post('setting', [SettingController::class, 'store'])->name('setting.store');
-    Route::prefix('notify')->name('notify.')->group(function () {
-        Route::get('analytics', [NotifyController::class, 'analytics'])->name('analytics');
-    });
 });
 Route::get('events/register-events/{event}', [EventController::class, 'registerNoAccount'])->name('events.register-events');
 Route::post('events/process-register-events', [EventController::class, 'processRegisterNoAccount'])->name('events.process-register-events');
 
+Route::get('privacy-policy', [PolicyController::class, 'privacy'])->name('privacy');
+Route::get('term-of-you', [PolicyController::class, 'termOfUse'])->name('termOfUse');
+
 Route::get('test', [TestController::class, '__invoke']);
 
 //Locale
-Route::group(['middleware' => Locale::class], function() {
+Route::group(['middleware' => Locale::class], function () {
     Route::get('change-language', [ChangeLanguageController::class, '__invoke'])
         ->name('change-language');
 });
