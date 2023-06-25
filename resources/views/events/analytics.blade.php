@@ -52,7 +52,7 @@
                                                 <th>#</th>
                                                 <th>{{ __('Title') }}</th>
                                                 <th>{{ __('Subtitle') }}</th>
-                                                <th>{{ __('Happened At') }}</th>
+                                                <th>{{ __('Event Venue') }}</th>
                                                 <th>{{ __('Number Participants') }}</th>
                                                 <th>{{ __('Published') }}</th>
                                                 <th>{{ __('Accepted') }}</th>

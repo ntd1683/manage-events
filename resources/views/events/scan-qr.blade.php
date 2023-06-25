@@ -30,7 +30,7 @@
     {{ Breadcrumbs::render('scan-qrcode') }}
         <div class="d-flex justify-content-between">
             <h1 class="page-header">
-                {{ __('Scan QR CODE') }} <small>{{ __('Attendance list of students') }}</small>
+                {{ __('Scan QR Code') }} <small>{{ __('Attendance list of students') }}</small>
             </h1>
             <x-forms.buttons.warning type="button" data-bs-toggle="modal" data-bs-target="#modal_error" id="button_error">{{ __('Scan QR Code') }}</x-forms.buttons.warning>
         </div>
